@@ -128,7 +128,7 @@ if(verbose){
 ## Sensitivity models group 0 (5ABCD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.0 <- c(file.path(model.dir,
-                                      "0_1b_5ABCD_BASE_2020_2016_avwt"),
+                                      "0_1b_5ABCD_BASE_2020_2016_wt"),
                             file.path(model.dir,
                                       "0_1c_5ABCD_BASE_2020_no_wt_since_2016"))
 

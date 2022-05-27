@@ -1,146 +1,26 @@
 
 # Context
 
-The last assessment for Pacific Cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2018 [@forrest2020; @dfo2019].
-Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (consisting of Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined) (Figure \@ref(fig:fig-map)).
-Both the 3CD and 5ABCD stocks were assessed to be in the Cautious Zone [@dfo2009].
+The last assessment for Pacific Cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@forrest2020; @dfo2019].
+Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (consisting of Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined).
 
-Fishery-independent synoptic bottom trawl surveys are conducted biennially in BC, usually occurring in even-numbered years for WCVI, and odd-numbered years in QCS and HS.
-However, due to the coronavirus disease 2019 (COVID-19) pandemic, the scheduled 2020 WCVI survey did not occur.
-The 2018 survey index for WCVI was very low, at approximately 26--27% of the magnitude of the 2014 and 2016 observations (Figure \@ref(fig:fig-summary-indices-3cd)).
-The commercial catch  per unit effort (CPUE) index has also decreased since 2016 (Figure \@ref(fig:fig-summary-indices-3cd)).
-Catches in 2018 and 2019 in Area 3CD were also much lower than previous years (Table \@ref(tab:tab-catch-3cd), Figure \@ref(fig:fig-catch-3cd)).
+The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples. Due to the coronavirus disease 2019 (COVID-19) pandemic, there has been no biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020. In 2022, it has been three years since the time series of commercial mean weights was updated.
 
-The previous advice [@dfo2019] recommended assessment updates in each area be provided in years immediately following the biennial groundfish synoptic bottom trawl survey (i.e., when the most recent survey index point is available).
-However, given the low 2018 index of abundance in Area 3CD, coupled with the lack of updated survey information in 2020, Fisheries and Oceans Canada (DFO) Pacific Fisheries Management Branch has requested that DFO Pacific Science Branch assess the status of both BC Pacific Cod stocks in 2020 and recommend harvest advice for 2021 to inform the development of the 2020/2021 Integrated Fisheries Management Plan.
+Here, we report on the potential impact of the loss of commercial sampling, by comparing results from the 2020 assessment [@dfo2021] with four alternative data treatments that attempt to mitigate the loss of commercial biological sampling from 2020 to 2022. The four treatments are:
 
-This Science Response reports results from the Science Response Process of October 2020 on the Stock Assessment Update of British Columbia Pacific Cod for Areas 3CD, and 5ABCD in 2020.
+1. Include no commercial mean weight index for the last three years of the assessment.
 
-# Background
+2. Use the 2017 commercial mean weight index value for model years 2018, 2019 and 2020.
 
-Pacific Cod (or Grey Cod) is a relatively short-lived (~10--13 *y*), fast-growing member of the family Gadidae.
-It is distributed throughout the North Pacific Ocean, and throughout the waters of BC, typically in depth ranges up to 200 m. 
-Four stocks of Pacific Cod are defined for management purposes on the BC coast: Strait of Georgia (4B), West Coast Vancouver Island (3CD), Queen Charlotte Sound (5AB), and Hecate Strait (5CD).
+3. Use the 2015-2017 average of the commercial mean weight index for model years 2018, 2019 and 2020.
 
-This assessment provides science advice for the stocks in Queen Charlotte Sound combined with Hecate Strait (5ABCD) and West Coast Vancouver Island (3CD) (Figure \@ref(fig:fig-map)). The choice to combine Areas 5AB and 5CD was made during the 2018 assessment [@dfo2019], mainly due to poor model diagnostics and the lack of historical fishery-independent indices of abundance for the Area 5AB model in the 2013 assessment [@forrest2015].
-There is also no evidence for genetic distinction between these two stocks [@forrest2015].
+4. Use the ratio of an average mean weight index from the synoptic trawl survey to the commercial mean weight index. *TODO: There will be me multiple ways to do this*
 
-## Description of the fishery
-
-Pacific Cod in BC are caught almost entirely in the groundfish bottom trawl fishery, which is part of BC's integrated groundfish fishery [@dfo2017].
-They are caught in small quantities in the groundfish longline fishery (around 0.5% of the total annual catch on average), which is also part of the integrated fishery.
-The depth range of capture in 5ABCD ranges from around 60--200 m, with data showing a shift to deeper depths since 1996 [@forrest2020].
-Currently, the majority of the BC Pacific Cod catch is taken in Area 5CD.
-Commercial catches also come from Area 5AB and Area 3CD. 
-Near negligible catch is taken from the west coast of Haida Gwaii, Area 5E (< 0.5% of total average annual catch since 1985).
-The BC integrated fishery is subject to 100% at-sea and dockside monitoring.
-Since 1996, all bottom trawl vessels have carried observers who record the catch of each species and estimate quantities of released (discarded) fish.
-
-# Analysis and Response
-
-## Data
-
-Data were extracted from DFO databases using methods described in @forrest2020.
-Biological data from fishery-independent and commercial fishery sources were available up until 2019.
-Catch data were updated to 2020, with data extrapolated from October 1, 2020 to the end of the fishing year (see below).
-For each area, models were fit to the following data: commercial catch, fishery-independent indices of abundance, commercial catch per unit effort (CPUE), and annual mean weight of fish in the commercial catch.
-
-### Commercial catch
-
-Commercial catch data (Tables \@ref(tab:tab-catch-3cd) and \@ref(tab:tab-catch-5abcd), Figures \@ref(fig:fig-catch-3cd) and \@ref(fig:fig-catch-5abcd) ) were extracted from three different databases held by DFO: *GFCatch* (Canadian trawl landings, 1954--1995); *PacHarvTrawl* (Canadian trawl landings, 1996 to March 31, 2007); and *GFFOS* (Canadian trawl landings, April 1, 2007 to 2020).
-Catch data prior to 1981 include catch by US vessels [@forrest2015; @forrest2020].
-Fishing years are defined as beginning on April 1 for all years, and are referenced by starting year, e.g., fishing year 1957 runs from April 1, 1957 to March 31, 1958 [see @forrest2020].
-
-Prior to the introduction of at-sea observer coverage in 1996, estimates of discards for the period 1956--1995 were obtained from fishing logbooks in the absence of at-sea observers.
-Pre-1996 discards are, therefore, a major source of uncertainty in this assessment.
-Estimates in years following the introduction of 100% at-sea observer coverage in 1996 are considered to be  accurate.
-Pacific Cod can be legally discarded by trawlers in BC.
-However, on-board observers first estimate the quantity being discarded, which is counted against the quota.
-Therefore, in addition to greater accuracy in reporting of discards since 1996, incentives to avoid discarding have also been greater.
-
-At the time of the assessment, the 2020 fishing year was incomplete.
-In order to provide projections for the 2021 fishing season, the 2020 catch (landings + discards) was extrapolated in each area, using the three-year average proportion of catch taken by September 30 (representing the end of the second quarter of the 2020 fishing year).
-This proportion was used to extrapolate from the catch at September 30, 2020 to a total estimated catch for the 2020 fishing year (Tables \@ref(tab:tab-catch-3cd) and \@ref(tab:tab-catch-5abcd)). In Area 3CD, the average proportion was 67.4% (average of 85.6%. 46.2% and 70.5% for the 2017, 2018, and 2019 fishing years, respectively).
-In area 5ABCD, the average proportion was 87.8% (average of 88.6%. 82.7% and 92.1% for the 2017, 2018, and 2019 fishing years, respectively).
-In Area 3CD, the average proportion of catch taken by September 30 has been inconsistent in recent years and therefore the 2020 extrapolation should be considered uncertain.
-However, the magnitude of the catch in the past three years has been low, and the 2020 catch is expected to have a minor impact on 2021 catch advice.
-In addition, 2020 catch patterns in both areas may be atypical due to the COVID-19 pandemic.
-
-### Canadian bottom trawl surveys
-
-Survey indices (Table \@ref(tab:surv-canadian-table) and Figure \@ref(fig:surv-canadian)) were calculated using a swept area analysis, documented in Appendix A of @forrest2020.
-Abundance in Area 3CD (Figure \@ref(fig:fig-map)) is indexed by the WCVI Synoptic Survey.
-The survey was first conducted in 2004 and is conducted in alternating (even-numbered) years.
-Due to the COVID-19 pandemic there was no survey in 2020.
-Abundance in Area 5AB (Figure \@ref(fig:fig-map)) is indexed by the QCS Synoptic Survey.
-The survey was first conducted in 2003 and 2004, and then in odd years since 2005.
-Abundance in Area 5CD (Figure \@ref(fig:fig-map)) was indexed by the HS Multispecies Assemblage Survey in 1984, 1987, 1989, 1991, 1993, 1995, 1996, 1998, 2000, 2002, and 2003.
-Since 2005, it has been indexed in odd-numbered years by the HS Synoptic Survey.
-Details on spatial extent and depth strata of all surveys are provided in Appendix A of @forrest2020.
-
-### NMFS Triennial Survey (in Canadian waters)
-
-An additional relative abundance index for Area 3CD was developed using data from the
-National Marine Fisheries Service (NMFS) Triennial survey, which operated off the lower half of WCVI between 1980 and 2001 (Figure \@ref(fig:tri-fig9)).
-See Appendix A of @forrest2020 for details.
-
-### Commercial CPUE
-
-Standardized commercial CPUE indices were developed for the historical (1956--1995) and modern (1996--2019) periods (Figures  \@ref(fig:cpue-index-ts-hist) and \@ref(fig:cpue-index-ts-modern)).
-The indices were developed using a Tweedie generalized linear mixed model (GLMM) described in detail in Appendix B of @forrest2020.
-The historical-period GLMMs included predictors for depth, locality, month, and a locality-year interaction (Figure \@ref(fig:cpue-index-ts-hist)).
-The modern-period GLMMs included predictors for depth, latitude, locality, month, vessel, and a locality-year interaction (Figure \@ref(fig:cpue-index-ts-modern)).
-
-### Annual mean weight in commercial catch
-
-Annual mean weight in the commercial catch was calculated using the methodology decribed in Appendix C of @forrest2020.
-Commercial biological samples were available for calculating mean weight from 1956 to 2019.
-In the absence of available commercial biological samples for 2020, the annual mean weight for 2020 was assumed the same as 2019.
-
-## Stock assessment model
-
-The current stock assessment model is a Bayesian delay-difference model [@deriso1980], fit to survey indices, commercial CPUE, commercial catch data and commercial annual mean weights [@forrest2015; @forrest2020].
-A full stock assessment history for both stocks is provided in @forrest2020.
-The current model is fully described in Appendix D of @forrest2020.
-All fixed parameters and prior probability distributions for model parameters in the current assessment were the same as those reported in @forrest2020 (see also Tables \@ref(tab:tab-param-table-3cd) and \@ref(tab:tab-param-table-5abcd), this document).
-
-@forrest2015 and @forrest2020 used a model-averaging approach to construct decision tables based on combined posterior samples from several sensitivity cases.
-This was to address some of the key irresolvable uncertainties associated with the stock assessment.
-Major axes of uncertainty were catchability ($q$) in the indices of abundance, the magnitude of natural mortality ($M$), age at recruitment to the fishery, and the magnitude of observation errors in the surveys and mean weight [@forrest2020].
-Details are provided in the model scenarios section.
-Other stock assessments that have used a model-averaging approach are Pacific Hake [@stewart2011], Pacific Halibut [@stewart2016], BC Shortspine Thornyhead [@starr2017], BC Walleye Pollock [@starr2018] and three assessments of BC *Sebastes* stocks [@dfo2019b; @dfo2020a; @dfo2020b].
-
-## Reference points
-
-The DFO Fishery Decision-making Framework Incorporating the Precautionary Approach (PA) Policy [@dfo2009] requires stock status to be characterized using three reference points:
-
-1. An Upper Stock Reference point, USR;
-2. A Limit Reference Point, LRP;
-3. A Limit Removal Rate, LRR.
-
-The USR and LRP define the threshold of three biomass-based stock status zones defined under the PA Policy [@dfo2009]: Critical Zone (below the LRP); Cautious Zone (above the LRP and below the USR); and Healthy Zone (above the USR).
-
-As in the 2018 assessment [@dfo2019], historical reference points were used to assess stock status, where
-
-1. The USR is the historical mean of the biomass estimates from 1956--2004.
-
-2. The LRP is the lowest estimated biomass agreed upon as an undesirable state to be avoided. For Area 5ABCD this is the estimated biomass in 2000. For Area 3CD it is the estimated biomass in 1986.
-
-3. The LRR is the average fishing mortality rate from 1956--2004.
-
-See @forrest2020 for the history of the choice to use historical reference points for Pacific Cod.
-See also @forrest2018 for simulation-testing of historical reference points for the 5CD stock of Pacific Cod.
+We caution that the true impact of missing commercial length data from 2020 to 2022 can never be fully evaluated, as these data will never exist. However, the results of this analysis can provide guidance on the likely relative impact of using each of the four approaches to mitigating the loss of this data.
 
 ## Model scenarios
+The four alternative mean weight scenarios for each area (3CD and 5ABCD) are compared to the 2020 reference case models [@dfo2021]. For each scenario, we compare estimates of biomass, recruitment, relative depletion and key model parameters. Except for the treatment of the final years of the commercial mean weight index, all other model settings are identical to the reference cases for each area in the 2020 stock assessment [@dfo2021].
 
-Reference case models were established for Areas 3CD and 5ABCD to represent what were considered the most plausible choices across a range of assumptions for each stock.
-The Reference models for Areas 3CD and 5ABCD shared similar characteristics to each other in terms of data choices, prior probability distributions and fixed parameter settings.
-Key characteristics of the models are provided in Tables \@ref(tab:tab-param-table-3cd) and \@ref(tab:tab-param-table-5abcd).
-For further details, see @forrest2020.
-These models served as the basis from which sensitivity scenarios were developed, altering alternative model assumptions one at a time.
-A set of model scenarios for each stock was agreed upon at the Canadian Science Advisory Secretariat (CSAS) Regional Peer Review (RPR) meeting for model averaging in the 2018 assessment [@dfo2019].
-The same sets were used here (updated with catch data to 2020 and index data to 2019 where available).
-Full details on the model configurations and assumptions for each scenario are provided in @forrest2020.
 
 ### Area 3CD
 

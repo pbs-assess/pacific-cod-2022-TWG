@@ -48,7 +48,7 @@ Commercial mean weight vs survey mean weight shown in **Figs 10 and 11**. *Show 
 
 Resulting commercial mean weight indices from predicting 2018-2020 are shown in *Figs 12 and 13*.
 
-## Effects of longer term losses
+## Effects of longer term data losses
 
 *TODO: repeat a couple of the analyses (maybe 3 and 4) with 10 years lost data*
 

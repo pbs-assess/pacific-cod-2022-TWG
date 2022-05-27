@@ -2,16 +2,25 @@
 
 # Figures
 
-```{r}
-mw5ABCD <- read_csv(here::here("data/results/AnnualMeanWeight_5ABCD.csv"))
-mw3CD <- read_csv(here::here("data/results/AnnualMeanWeight_3CD.csv"))
-```
-
-# Area 3CD
+## Area 3CD
 
 ```{r fig-base-mean-weight-3cd, fig.cap="Reference model MPD fit to the mean weight data for Area 3CD. For clarity, only MPD results are shown."}
 plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(base.model.3cd[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-3cd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD (no data for 2018-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.00[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.00[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-3cd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD (2016 mean weight index value used for 2018-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.00[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.00[[2]], french=french),
           nrow = 1,
           ncol = 2)
 ```
@@ -26,6 +35,13 @@ b.plot(base.model.3cd,
        usr = c(1956, 2004), french=french)
 ```
 
+
+```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to the four treatments of the commercial mean weight index, Area 3CD."}
+b.plot(c(base.model.3cd, sens.models.00), c(base.model.3cd.name, sens.models.name.00))
+```
+
+
+
 \clearpage
 
 ## Area 5ABCD
@@ -38,6 +54,24 @@ plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, f
 ```
 
 
+```{r fig-base-mean-weight-5abcd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD (no data for 2018-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.0[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.0[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+
+```{r fig-base-mean-weight-5abcd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD (2017 mean weight index value used for 2018-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.0[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.0[[2]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+
+
+
 ```{r fig-model-ref-biomass-5abcd, fig.cap="Combined posterior biomass for the reference case model for Area 5ABCD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.5abcd,
        base.model.5abcd.name,
@@ -45,6 +79,11 @@ b.plot(base.model.5abcd,
        add.hist.ref = TRUE,
        lrp = c(2000, 2000),
        usr = c(1956, 2004), french=french)
+```
+
+
+```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the four treatments of the commercial mean weight index, Area 5ABCD."}
+b.plot(c(base.model.5abcd, sens.models.0), c(base.model.5abcd.name, sens.models.name.0))
 ```
 
 

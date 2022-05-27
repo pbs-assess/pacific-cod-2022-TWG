@@ -2,8 +2,13 @@
 
 # Tables {#sec:tables}
 
+```{r}
 
-\clearpage
+#mw5ABCD <- read_csv(here::here("data/results/AnnualMeanWeight_5ABCD.csv"))
+#mw3CD <- read_csv(here::here("data/results/AnnualMeanWeight_3CD.csv"))
+
+```
+
 
 ```{r tab-param-est-table-3cd, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
@@ -19,7 +24,7 @@ make.parameters.est.table(base.model.3cd,
 ```{r tab-param-est-table-3cd-sc1, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.00[[1]],
-  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020"),
+  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020)"),
   omit_pars = pars_est_omit, french=french)
 ```
 
@@ -27,7 +32,7 @@ make.parameters.est.table(sens.models.00[[1]],
 ```{r tab-param-est-table-3cd-sc2, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.00[[2]],
-  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018-2020"),
+  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018-2020)"),
   omit_pars = pars_est_omit, french=french)
 ```
 

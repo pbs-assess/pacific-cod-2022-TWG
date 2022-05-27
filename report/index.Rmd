@@ -1,5 +1,5 @@
 ---
-title: "THIS IS NOT A SCIENCE RESPONSE! Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD, and Area 5ABCD in 2022"
+title: "THIS IS NOT A SCIENCE RESPONSE!! Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD, and Area 5ABCD in 2022"
 title_short: "Pacific Cod commercial samples"
 title_other: ""
 year: 2022

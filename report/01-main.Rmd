@@ -72,7 +72,7 @@ Reference point estimates from the Reference case model are shown in Table \@ref
 
 Reference point estimates from Sc 1-4 are shown in Tables \@ref(tab:tab-param-est-table-5abcd-sc1) to \@ref(tab:tab-param-est-table-5abcd-sc2).
 
-Fits to the commercial mean weight index from the Reference case model are shown in Figure \@ref(fig:fig-base-mean-weight-5acd).
+Fits to the commercial mean weight index from the Reference case model are shown in Figure \@ref(fig:fig-base-mean-weight-5abcd).
 
 Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd).
 

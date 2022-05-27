@@ -7,17 +7,11 @@ mw5ABCD <- read_csv(here::here("data/results/AnnualMeanWeight_5ABCD.csv"))
 mw3CD <- read_csv(here::here("data/results/AnnualMeanWeight_3CD.csv"))
 ```
 
+# Area 3CD
+
 ```{r fig-base-mean-weight-3cd, fig.cap="Reference model MPD fit to the mean weight data for Area 3CD. For clarity, only MPD results are shown."}
 plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(base.model.3cd[[1]], french=french),
-          nrow = 1,
-          ncol = 2)
-```
-
-
-```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}
-plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
-          mw.compare.plot(base.model.5abcd[[1]], french=french),
           nrow = 1,
           ncol = 2)
 ```
@@ -30,6 +24,15 @@ b.plot(base.model.3cd,
        add.hist.ref = TRUE,
        lrp = c(1986, 1986),
        usr = c(1956, 2004), french=french)
+```
+
+## Area 5ABCD
+
+```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}
+plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(base.model.5abcd[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
 ```
 
 

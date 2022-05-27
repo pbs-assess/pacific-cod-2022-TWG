@@ -1,18 +1,18 @@
 ---
-title: "Status Update of Pacific Cod (*Gadus macrocephalus*) for West Coast Vancouver Island (Area 3CD), and Hecate Strait and Queen Charlotte Sound (Area 5ABCD) in 2020"
-title_short: "Pacific Cod status update in 2020"
-title_other: "Mise à jour sur l’état des stocks de morues du Pacifique (*Gadus macrocephalus*) au large de la côte ouest de l’île de Vancouver (zone 3CD) ainsi que dans le détroit d’Hécate et le bassin de la Reine-Charlotte (zone 5ABCD) en 2020"
-year: 2021
-month: January
-report_number: 002
+title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for West Coast Vancouver Island (Area 3CD), and Hecate Strait and Queen Charlotte Sound (Area 5ABCD) in 2022"
+title_short: "Pacific Cod commercial samples"
+title_other: ""
+year: 2022
+month: May
+report_number: 001
 approver: |
-  Carmel Lowe\
-  Regional Director
-approval_year: 2020
-approval_month: November
-approval_day: 26
+  Robyn Forrest\
+  Project lead
+approval_year: 2022
+approval_month: May
+approval_day: 31
 work_done_year: 2021
-work_done_month: January
+work_done_month: May
 branch: Science Branch
 region: Pacific Region
 header: "" # or "" to omit

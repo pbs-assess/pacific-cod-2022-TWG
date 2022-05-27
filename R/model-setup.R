@@ -128,12 +128,12 @@ if(verbose){
 ## Sensitivity models group 0 (5ABCD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.0 <- c(file.path(model.dir,
-                                      "0_1b_5ABCD_BASE_2020_2016_wt"),
+                                     "0_1c_5ABCD_BASE_2020_no_wt_since_2016"),
                             file.path(model.dir,
-                                      "0_1c_5ABCD_BASE_2020_no_wt_since_2016"))
+                                      "0_1b_5ABCD_BASE_2020_2016_wt"))
 
-sens.models.name.0 <- c("Use 2016 weight from 2017 to 2020",
-                        "No mean weight since 2016")
+sens.models.name.0 <- c("No mean weight since 2016",
+                        "Use 2016 weight from 2017 to 2020")
 
 ## -----------------------------------------------------------------------------
 ## Decision table models to average (3CD)
@@ -164,12 +164,12 @@ sens.models.name.0 <- c("Use 2016 weight from 2017 to 2020",
 ## Sensitivity models group 00 (3CD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.00 <- c(file.path(model.dir,
-                                      "1_1b_3CD_BASE_2020_2016_wt"),
+                                      "1_1c_3CD_BASE_2020_no_wt_since_2016"),
                             file.path(model.dir,
-                                      "1_1c_3CD_BASE_2020_no_wt_since_2016"))
+                                      "1_1b_3CD_BASE_2020_2016_wt"))
 
-sens.models.name.00 <- c("Use 2016 weight from 2017 to 2020",
-                         "No mean weight since 2016")
+sens.models.name.00 <- c("No mean weight since 2016",
+                         "Use 2016 weight from 2017 to 2020")
 
 
 ## -----------------------------------------------------------------------------

@@ -16,9 +16,7 @@ We caution that the true impact of missing commercial length data from 2020 to 2
 
 For each area (3CD and 5ABCD), we evaluated four different treatments of the commercial mean weight index, by comparing model results to the Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment, relative depletion and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
 
-
-
-The four scenarios are:
+The four treatments (scenarios) were:
 
 Sc 1. Include no commercial mean weight index for the last three years of the assessment.
 
@@ -26,9 +24,9 @@ Sc 2. Use the 2017 commercial mean weight index value for model years 2018, 2019
 
 Sc 3. Use the 2015-2017 average of the commercial mean weight index for model years 2018, 2019 and 2020.
 
-Sc 4. Use the ratio of an average mean weight index from the synoptic trawl survey to the commercial mean weight index. *TODO: There will be me multiple ways to do this*  
+Sc 4. Use linear regression to predict the commercial mean weight index in 2018-2020 from the mean weight index from the synoptic trawl survey.   
 
-Scenarios 1-3 are straightforward (**see Figs 1-6 **).
+Scenarios 1-3 are straightforward. Resulting mean weight indices are shown in **Figs 1-6 **).
 
 ### Calibrating the commercial mean weight series to the mean weight from the synoptic surveys.
 
@@ -50,17 +48,23 @@ Commercial mean weight vs survey mean weight shown in **Figs 10 and 11**. *Show 
 
 Resulting commercial mean weight indices from predicting 2018-2020.
 
+## Effects of longer term losses
+
+*TODO: repeat a couple of the analyses (maybe 3 and 4) with 10 years lost data*
+
 # Results
 
 ### Area 3CD
 
-Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-3cd)).
+Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-3cd).
 
-Reference point estimates from the Sc 1 are shown in Table \@ref(tab:tab-param-est-table-3cd)).
+Reference point estimates from Sc 1-4 are shown in Tables \@ref(tab:tab-param-est-table-3cd-sc1) to \@ref(tab:tab-param-est-table-3cd-sc2).
 
 ### Area 5ABCD
 
-Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-5abcd)).
+Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-5abcd).
+
+Reference point estimates from Sc 1-4 are shown in Tables \@ref(tab:tab-param-est-table-5abcd-sc1) to \@ref(tab:tab-param-est-table-5abcd-sc2).
 
 
 \clearpage

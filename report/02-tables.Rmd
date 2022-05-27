@@ -15,6 +15,24 @@ make.parameters.est.table(base.model.3cd,
   omit_pars = pars_est_omit, french=french)
 ```
 
+
+```{r tab-param-est-table-3cd-sc1, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.00[[1]],
+  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020"),
+  omit_pars = pars_est_omit, french=french)
+```
+
+
+```{r tab-param-est-table-3cd-sc2, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.00[[2]],
+  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018-2020"),
+  omit_pars = pars_est_omit, french=french)
+```
+
+\clearpage
+
 ```{r tab-param-est-table-5abcd, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$", "$B_0$")
 make.parameters.est.table(base.model.5abcd,
@@ -24,5 +42,22 @@ make.parameters.est.table(base.model.5abcd,
     q.5abcd.desc),
   omit_pars = pars_est_omit, french=french)
 ```
+
+
+```{r tab-param-est-table-5abcd-sc1, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.0[[1]],
+  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020"),
+  omit_pars = pars_est_omit, french=french)
+```
+
+
+```{r tab-param-est-table-5abcd-sc2, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.0[[2]],
+  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018-2020"),
+  omit_pars = pars_est_omit, french=french)
+```
+
 
 \clearpage

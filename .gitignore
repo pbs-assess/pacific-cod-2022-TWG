@@ -58,6 +58,7 @@ index/resdoc.tex
 *.pfc
 *.dat
 *.ctl
+report/nul
 
 csas-style
 report/resdoc.knit.md

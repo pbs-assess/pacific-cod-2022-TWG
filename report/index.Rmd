@@ -1,10 +1,10 @@
 ---
-title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for West Coast Vancouver Island (Area 3CD), and Hecate Strait and Queen Charlotte Sound (Area 5ABCD) in 2022"
+title: "THIS IS NOT A SCIENCE RESPONSE! Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD, and Area 5ABCD in 2022"
 title_short: "Pacific Cod commercial samples"
 title_other: ""
 year: 2022
 month: May
-report_number: 001
+report_number: XXX
 approver: |
   Robyn Forrest\
   Project lead

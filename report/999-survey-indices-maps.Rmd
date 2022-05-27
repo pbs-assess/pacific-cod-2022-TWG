@@ -1,0 +1,88 @@
+---
+title: "Pacific Cod Survey Indices 2022"
+output: html_document
+---
+
+# FISHERY-INDEPENDENT INDICES OF ABUNDANCE
+
+## CANADIAN SURVEYS
+
+### HECATE STRAIT ASSEMBLAGE SURVEY
+```{r}
+source(here::here("R/plot-survey-sets.R"))
+library(tidyverse)
+library(gfdata)
+library(gfplot)
+
+dat.file <- here::here("data/pcod-cache/pacific-cod.rds")
+
+if(!file.exists(dat.file)){
+  cache_pbs_data(species = "pacific cod",
+                 path = file.path(rootd.data,
+                                  "pcod-cache"),
+                 survey_sets = TRUE,
+                 unsorted_only = FALSE)
+}
+dat <- readRDS(dat.file)
+
+```
+
+
+```{r survey-maps-hs-msa, fig.asp=1, fig.cap="Individual survey tows for the Hecate Strait multi-species groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, "HS MSA")
+```
+
+```{r survey-maps-syn-hs, fig.asp=1, fig.cap="Individual survey tows for the Hecate Strait (SYN HS) synoptic groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, "SYN HS")
+```
+
+```{r survey-maps-syn-qcs, fig.asp=1, fig.cap="Individual survey tows for the Queen Charlotte Sound (SYN QCS) synoptic groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, "SYN QCS")
+```
+
+```{r survey-maps-syn-wcvi, fig.asp=1, fig.cap="Individual survey tows for the West Coast Vancouver Island (SYN WCVI) synoptic groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, "SYN WCVI")
+```
+
+```{r survey-maps-syn-evenyrs, fig.asp=1, fig.cap="Individual survey tows for the Hecate Strait and Queen Charlotte Sound synoptic groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, survey_abbrev=c("SYN WCHG","SYN WCVI"))
+```
+
+```{r survey-maps-syn-oddyrs, fig.asp=1, fig.cap="Individual survey tows for the Hecate Strait and Queen Charlotte Sound synoptic groundfish bottom trawl survey. Light gray crosses indicate survey sets that did not catch Pacific Cod. Circles have their area and color proportional to the density of Pacific Cod for that survey set. Eastings and Northings are for UTM zone 9."}
+plot_multiyear_survey_sets(dat$survey_sets, survey_abbrev=c("SYN HS","SYN QCS"))
+```
+
+
+```{r surv-canadian-table, results='asis'}
+dplyr::filter(dat$survey_index, survey_abbrev %in%
+  c("SYN QCS", "SYN WCVI", "SYN HS", "SYN WCHG", "OTHER HS MSA")) %>%
+  dplyr::select(survey_abbrev, year, biomass, re, lowerci, upperci, num_sets, num_pos_sets) %>%
+  dplyr::mutate(lowerci = round(lowerci/1000, 1), upperci = round(upperci/1000, 1),
+    biomass = round(biomass/1000, 1), re = round(re, 2)) %>%
+  dplyr::rename(`Survey abbrev.` = survey_abbrev, Year = year, Biomass = biomass,
+    CV = re, `Lower CI` = lowerci, `Upper CI` = upperci, Sets = num_sets, `Positive sets` = num_pos_sets) %>%
+  dplyr::arrange(`Survey abbrev.`, Year) %>%
+  knitr::kable(caption = "Pacific Cod survey data for Canadian trawl surveys. Relative biomass and associated lower and upper confidence intervals (CI) are shown in metric tons (without accounting for survey catchability). Positive sets refers to the number of trawl sets that caught Pacific Cod.", booktabs = TRUE, linesep = "", 
+    format = "pandoc")
+```
+
+```{r surv-canadian, fig.cap="Pacific Cod survey data for Canadian trawl surveys. Shown is relative biomass and associated lower and upper confidence intervals. Positive sets refers to the number of trawl sets that caught Pacific Cod."}
+gfplot::tidy_survey_index(dat$survey_index,
+  survey = c("SYN QCS", "SYN WCVI", "SYN HS", "SYN WCHG", "OTHER HS MSA")) %>%
+  plot_survey_index()
+```
+
+```{r write-surv-canadian-table, results='asis'}
+surveydat <- dat$survey_index %>% 
+  dplyr::filter(survey_abbrev %in%
+  c("SYN QCS", "SYN WCVI", "SYN HS", "SYN WCHG", "OTHER HS MSA")) %>%
+  dplyr::select(survey_abbrev, year, biomass, re, lowerci, upperci, num_sets, num_pos_sets) %>%
+  dplyr::mutate(lowerci = round(lowerci/1000, 1), upperci = round(upperci/1000, 1),
+    biomass = round(biomass/1000, 1), re = round(re, 2)) %>%
+  dplyr::rename(`Survey abbrev.` = survey_abbrev, Year = year, Biomass = biomass,
+    CV = re, `Lower CI` = lowerci, `Upper CI` = upperci, Sets = num_sets, `Positive sets` = num_pos_sets) %>%
+  dplyr::arrange(`Survey abbrev.`, Year)
+
+write_csv(surveydat, here::here("data/generated/all_surveys.csv"))
+
+```

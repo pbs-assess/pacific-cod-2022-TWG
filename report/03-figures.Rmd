@@ -26,6 +26,8 @@ b.plot(base.model.3cd,
        usr = c(1956, 2004), french=french)
 ```
 
+\clearpage
+
 ## Area 5ABCD
 
 ```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}

@@ -2,19 +2,21 @@
 # Context
 
 The last assessment for Pacific Cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@forrest2020; @dfo2019].
-Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (consisting of Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined).
+Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (consisting of Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined). GMU have submitted a RSIA for an update to the stock assessment for both areas by November 2022 (advice for fishing opportunities in 2023).
 
-The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples. Due to the coronavirus disease 2019 (COVID-19) pandemic, there has been no biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020. In 2022, it has been three years since the time series of commercial mean weights was updated.
+The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples. Due to the COVID-19 pandemic and a subsequent shift towards at-sea electronic monitoring, there has been no at-sea biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020. In 2022, it has been four years since the time series of commercial mean weights was updated (i.e., no new data for the past three years).
 
-Here, we report on the potential impact of the loss of commercial sampling, by comparing results from the 2020 assessment [@dfo2021] with four alternative data treatments that attempt to mitigate the loss of commercial biological sampling from 2020 to 2022. 
+Here, we report on the potential impact of the loss of commercial sampling in 2020-2022, by comparing results from the 2020 stock assessment [@dfo2021] with four alternative data treatments that attempt to mitigate a hypothetical loss of commercial biological sampling from 2018 to 2020. This represents a loss of the most recent three years of data from the 2020 stock assessment, to mimic the effect of losing three years of data (2020 to 2022) in the upcoming 2022 assessment.
 
-We caution that the true impact of missing commercial length data from 2020 to 2022 can never be fully evaluated, as these data will never exist. However, the results of this analysis can provide guidance on the likely relative impact of using each of the four approaches to mitigating the loss of this data.
+We caution that the true impact of missing commercial length data from 2020 to 2022 can never be fully evaluated, as these data will never exist. However, the results of this analysis can provide guidance on the likely relative impact of using each of the four approaches on stock assessment results.
 
 # Methods
 
 ## Model scenarios
 
-We evaluated the effect of four different treatments of the commercial mean weight index (scenarios) on model results, as compared to the Reference case for each area (3CD and 5ABCD). Model results are compared to the 2020 reference case models [@dfo2021]. For each scenario, we compare estimates of biomass, recruitment, relative depletion and key model parameters. Except for the treatment of the final years of the commercial mean weight index, all other model settings are identical to the reference cases for each area in the 2020 stock assessment [@dfo2021].
+For each area (3CD and 5ABCD), we evaluated four different treatments of the commercial mean weight index, by comparing model results to the Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment, relative depletion and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
+
+
 
 The four scenarios are:
 
@@ -26,7 +28,7 @@ Sc 3. Use the 2015-2017 average of the commercial mean weight index for model ye
 
 Sc 4. Use the ratio of an average mean weight index from the synoptic trawl survey to the commercial mean weight index. *TODO: There will be me multiple ways to do this*  
 
-Scenarios 1-3 are straightforward (**see Figs 1-6**).
+Scenarios 1-3 are straightforward (**see Figs 1-6 **).
 
 ### Calibrating the commercial mean weight series to the mean weight from the synoptic surveys.
 

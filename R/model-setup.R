@@ -98,75 +98,25 @@ if(verbose){
   cat0("Base model pretty name for reference model 3cd:\n", base.model.3cd.name)
 }
 
-# ## -----------------------------------------------------------------------------
-# ## Decision table models to average (5ABCD)
-# ## -----------------------------------------------------------------------------
-# desc.models.5abcd.dir.name <- c(base.model.5abcd.dir.name,
-#                                 file.path(model.dir,
-#                                           "0_2d_5ABCD_rsoleq_1_1"),
-#                                 file.path(model.dir,
-#                                           "0_2e_5ABCD_q_cv06"),
-#                                 file.path(model.dir,
-#                                           "0_3a_5ABCD_Mprior_mean04_sd01"),
-#                                 file.path(model.dir,
-#                                           "0_5a_5ABCD_kage_3"),
-#                                 file.path(model.dir,
-#                                           "0_6b_5ABCD_sig015"),
-#                                 file.path(model.dir,
-#                                           "0_7b_5ABCD_sigW_015"))
-# desc.models.5abcd.name <- c(base.model.5abcd.name,
-#                             ifelse(french, "Sc 2d.", "2d) HSSS ln(q) prior mean = ln(1.0 * 0.35), QCSSS = ln(1.0 * 0.65)"),
-#                             ifelse(french, "Sc 2e.", "2e) HSSS and QCSS ln(q) prior SD = 0.6"),
-#                             ifelse(french, "Sc 3a.", "3a) M prior mean = 0.4, SD = 0.1"),
-#                             ifelse(french, "Sc 5a.", "5a) kage = 3y and update FW parameters"),
-#                             ifelse(french, "Sc 6b.", "6b) Fix sigma O = 0.15"),
-#                             ifelse(french, "Sc 7b.", "7b) Fix sigma W = 0.15"))
-#
 
-## MOST OF THESE SENSITIVITY MODELS ARE NOT USED -- DELETE FOR NOW
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 0 (5ABCD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.0 <- c(file.path(model.dir,
-                                     "0_1c_5ABCD_BASE_2020_no_wt_since_2016"),
+                                     "0_1b_5ABCD_BASE_2020_no_wt_since_2016"),
                             file.path(model.dir,
-                                      "0_1b_5ABCD_BASE_2020_2016_wt"))
+                                      "0_1c_5ABCD_BASE_2020_2016_wt"))
 
 sens.models.name.0 <- c("No mean weight since 2016",
                         "Use 2016 weight from 2017 to 2020")
 
 ## -----------------------------------------------------------------------------
-## Decision table models to average (3CD)
-## -----------------------------------------------------------------------------
-# desc.models.3cd.dir.name <- c(base.model.3cd.dir.name,
-#                               file.path(model.dir,
-#                                         "1_2d_3CD_q_1"),
-#                               file.path(model.dir,
-#                                         "1_2e_3CD_q_cv06"),
-#                               file.path(model.dir,
-#                                         "1_3a_3CD_Mprior_mean04_sd01"),
-#                               file.path(model.dir,
-#                                         "1_5a_3CD_kage3"),
-#                               file.path(model.dir,
-#                                         "1_6b_3CD_sig015"),
-#                               file.path(model.dir,
-#                                         "1_7b_3CD_sigW015"))
-#
-# desc.models.3cd.name <- c(base.model.3cd.name,
-#                           ifelse(french, "Sc 2d.", "2d) WCVISS ln(q) prior mean = ln(1.0)"),
-#                           ifelse(french, "Sc 2e.", "2e) WCVISS ln(q) prior SD = 0.6"),
-#                           ifelse(french, "Sc 3a.", "3a) M prior mean = 0.4, SD = 0.1"),
-#                           ifelse(french, "Sc 5a.", "5a) kage = 3y and update FW parameters"),
-#                           ifelse(french, "Sc 6b.", "6b) Fix sigma O = 0.15"),
-#                           ifelse(french, "Sc 7b.", "7b) Fix sigma W = 0.15"))
-
-## -----------------------------------------------------------------------------
 ## Sensitivity models group 00 (3CD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.00 <- c(file.path(model.dir,
-                                      "1_1c_3CD_BASE_2020_no_wt_since_2016"),
+                                      "1_1b_3CD_BASE_2020_no_wt_since_2016"),
                             file.path(model.dir,
-                                      "1_1b_3CD_BASE_2020_2016_wt"))
+                                      "1_1c_3CD_BASE_2020_2016_wt"))
 
 sens.models.name.00 <- c("No mean weight since 2016",
                          "Use 2016 weight from 2017 to 2020")

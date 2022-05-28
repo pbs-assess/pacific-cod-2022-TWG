@@ -18,6 +18,8 @@ For each area (3CD and 5ABCD), we evaluated four different treatments of the com
 
 The four treatments (scenarios) were:
 
+**NOTE ABOUT 3CD BASE: the 2017 value was anomalously high (3.024 kg) and was not used in the 2020 assessment. There was no 2018 value. So here for Scenario 1, we will delete data for 2019-2020. For Scenario 2 we will use the 2016 value for the years 2018:2020 (maintaining the missing data in 2017 but adding a data point in 2018). For Scenario 3, we will use the average 2014-2016 for 2018-2020**
+
 Sc 1. Include no commercial mean weight index for the last three years of the assessment.
 
 Sc 2. Use the 2017 commercial mean weight index value for model years 2018, 2019 and 2020.

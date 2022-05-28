@@ -34,13 +34,13 @@ Scenarios 1-3 are straightforward. Resulting mean weight indices are shown in **
 
 First, we calculated survey mean weight, using the same approach as for the commercial mean weights ... DESCRIBE METHOD
 
-We then plotted the commercial mean weights against the survey mean weights from 1997-2016 (Area 3CD) or 1997-2017 (Area 5ABCD) (**Figure 7**).
+We then plotted the commercial mean weights against the survey mean weights from 1997-2016 (Area 3CD) or 1997-2018 (Area 5ABCD) (**Figure 7**).
 
 We then fitted a linear regression to get the coefficient ... 
 
 Then applied the coefficient to predict the commercial mean weight for 2018-2020 from the survey mean weight from 2018 (WCVI) and 2017-2019 (HS) ... for HS we interpolated survey mean weights for years with no survey, for WCVI, we just used 2018. Note, there was no WCVI survey in 2020 due to the pandemic.  
 
-* This might not be worth the effort given that there was no WCVI survey in 2020. Do we want to do the regression on the whole time series starting in 1997 or more recent? *
+* This might not be worth the effort given that there was no WCVI survey in 2020. Do we want to do the regression on the whole time series starting in 1997 or more recent?*
 
 Survey mean weight indices shown in **Figs 8 and 9**.
 
@@ -49,6 +49,8 @@ Commercial mean weight vs survey mean weight shown in **Figs 10 and 11**. *Show 
 *Report coefficients*
 
 Resulting commercial mean weight indices from predicting 2018-2020 are shown in *Figs 12 and 13*.
+
+*TODO: also do the regression using all available survey and commercial data, as this is what we will have for 2022*
 
 ## Effects of longer term data losses
 

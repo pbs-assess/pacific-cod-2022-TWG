@@ -29,6 +29,7 @@ library(png)
 library(leaflet)
 library(svglite)
 library(rosettafish)
+library(reshape2)
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")

@@ -1,16 +1,31 @@
-graphics.off()
-rm(list = ls(all.names = TRUE))
-library(gfplot)
-library(tidyverse)
-library(readr)
-library(lubridate)
-library(psych)
-library(reshape2)
+# This script is called by all.R
+
+#Length-weight parameters
+#coastwide
+.ALPHA <- 6.79e-06
+.BETA <- 3.11
+
+#3CD
+.ALPHA3FEM <- 7.43e-06
+.ALPHA3 <- 7.65616e-06
+.BETA3FEM <- 3.09
+.BETA3 <- 3.08
+
+#5ABCD
+.ALPHA5FEM <- 6.52e-06
+.ALPHA5 <- 6.722839e-06
+.BETA5FEM <- 3.12
+.BETA5 <- 3.11
+
+#old (2013 assessment)
+.ALPHA2013 <- 7.377e-06
+.BETA2013 <- 3.0963
+
+prevMeanWeight <- read.csv(file.path(rootd.data, "MeanWeights_previous.csv"))
 
 rootd <- here::here()
 rootd.data <- file.path(rootd, "data")
 resultsd <- file.path(rootd.data, "results")
-source(here::here("R/get-data.R"))
 dir.create(resultsd, showWarnings = FALSE)
 
 if(FALSE){

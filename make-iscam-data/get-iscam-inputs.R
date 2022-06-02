@@ -4,17 +4,22 @@
 # Code taken from elsewhere in the repo, originally written by Sean Anderson,
 # Chris Grandin and RF
 
+# This script can stand alone
+
 library(tidyverse)
 library(gfdata)
 library(gfplot)
 library(here)
 
 # load necessary functions
-source(here('R/get-data.R'))
+source(here('R/get-data-functions.R'))
 source(here('R/cpue-functions.R'))
 french <- FALSE
 
 # 1. Get the data and save into pcod-cache folder
+# Note that return_all_lengths must be set to TRUE because some lengths since
+# 2016 were recorded as TOTAL_LENGTH instead of FORK_LENGTH.
+# Maria confirmed this would have been a recording error rather than measurement error (May 2022)
 dat.file <- here("data/pcod-cache/pacific-cod.rds")
 
 if(!file.exists(dat.file)){
@@ -22,27 +27,31 @@ if(!file.exists(dat.file)){
                          path = file.path(rootd.data,
                                           "pcod-cache"),
                          survey_sets = TRUE,
-                         unsorted_only = FALSE)
+                         unsorted_only = FALSE,
+                         return_all_lengths = TRUE)
 }
-dat <- readRDS(dat.file) #query done April 20,2022
+dat <- readRDS(dat.file) #query done June 2,2022
+
+#test
+unique(dat$commercial_samples$length_type)
 
 # Need to update the commercial samples to use the return_all_lengths argument,
 # which is currently only implemented in get_commercial_samples()
 # Need it so that it doesn't just use fork length
 
 # April 22, 2022. Philina updated gfdata to include length type
-file.name <- here::here("data/generated/comm-samples-with-length-type.rds")
-if(!file.exists(file.name)){
-  comsamp_newgfdata <- gfdata::get_commercial_samples("pacific cod",
-                                                            unsorted_only = FALSE,
-                                                            return_all_lengths = TRUE)
-  saveRDS(comsamp_newgfdata,file.name)
-}else{
-  comsamp_newgfdata <- readRDS(file.name)
-}
-
-# Replace commercial_samples
-dat$commercial_samples <- comsamp_newgfdata
+# file.name <- here::here("data/generated/comm-samples-with-length-type.rds")
+# if(!file.exists(file.name)){
+#   comsamp_newgfdata <- gfdata::get_commercial_samples("pacific cod",
+#                                                             unsorted_only = FALSE,
+#                                                             return_all_lengths = TRUE)
+#   saveRDS(comsamp_newgfdata,file.name)
+# }else{
+#   comsamp_newgfdata <- readRDS(file.name)
+# }
+#
+# # Replace commercial_samples
+# dat$commercial_samples <- comsamp_newgfdata
 
 
 #=================================================================================

@@ -10,6 +10,7 @@ library(dplyr)
 library(ggplot2)
 library(grid)
 library(gridExtra)
+library(gfdata)
 library(gfplot)
 library(purrr)
 library(scales)
@@ -52,17 +53,8 @@ source(file.path(rootd.R, "tables-decisions.R"))
 source(file.path(rootd.R, "plot-survey-sets.R"))
 source(file.path(rootd.R, "get-alk.R"))
 source(file.path(rootd.R, "get-age-sample.R"))
-source(file.path(rootd.R, "get-data.R"))
+source(file.path(rootd.R, "get-data-functions.R"))
 
-## # Code to setup forecast model runs
-## # source("forecast-catch-levels.r")
-## # Code to setup retro model runs.
-## # source("retrospective-setup.r")
-##
-## # Set up variables for data tables from csv files
-## # source("data-tables.r")
-##
-##
 ## # Load the raw data
 dat.file <- file.path(rootd.data,
                       "pcod-cache",
@@ -70,16 +62,18 @@ dat.file <- file.path(rootd.data,
 
 if(!file.exists(dat.file)){
   gfdata::cache_pbs_data(species = "pacific cod",
-                 path = file.path(rootd.data,
-                                  "pcod-cache"),
-                 survey_sets = TRUE,
-                 unsorted_only = FALSE)
+                         path = file.path(rootd.data,
+                                          "pcod-cache"),
+                         survey_sets = TRUE,
+                         unsorted_only = FALSE)
 }
 dat <- readRDS(dat.file)
 
 tac.file <- file.path(rootd.data,
                       "pcod-tac-1996-2021.csv")
 tac <- read.csv(tac.file, header = TRUE)
+
+source(file.path(rootd.R, "get-mean-weight.R"))
 
 ## ggplot globals for project
 ggplot2::theme_set(gfplot::theme_pbs())

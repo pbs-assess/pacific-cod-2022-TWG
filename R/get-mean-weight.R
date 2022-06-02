@@ -23,18 +23,6 @@
 
 prevMeanWeight <- read.csv(file.path(rootd.data, "MeanWeights_previous.csv"))
 
-rootd <- here::here()
-rootd.data <- file.path(rootd, "data")
-resultsd <- file.path(rootd.data, "results")
-dir.create(resultsd, showWarnings = FALSE)
-
-if(FALSE){
-  gfplot::cache_pbs_data(species = "pacific pod",
-                 path = file.path(rootd.data, "pcod-cache"),
-                 unsorted_only = FALSE)
-}
-
-dat <- load.data(cache.dir = file.path(rootd.data, "pcod-cache")) #Original line
 d <- dat$commercial_samples
 
 ################################################################

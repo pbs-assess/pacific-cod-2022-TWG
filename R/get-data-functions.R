@@ -4,24 +4,6 @@
 ## 5AB - use QCSSS and CPUE
 ## 3CD - use WCVISS and CPUE
 
-## # Load the raw data
-dat.file <- file.path(rootd.data,
-                      "pcod-cache",
-                      "pacific-cod.rds")
-
-if(!file.exists(dat.file)){
-  gfdata::cache_pbs_data(species = "pacific cod",
-                         path = file.path(rootd.data,
-                                          "pcod-cache"),
-                         survey_sets = TRUE,
-                         unsorted_only = FALSE)
-}
-dat <- readRDS(dat.file)
-
-tac.file <- file.path(rootd.data,
-                      "pcod-tac-1996-2021.csv")
-tac <- read.csv(tac.file, header = TRUE)
-
 #' Load the data from the RDS files produced by extract.data()
 #'
 #' @param cache.dir Relative name of the directory to hold the RDS files

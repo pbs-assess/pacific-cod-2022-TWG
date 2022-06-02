@@ -33,6 +33,7 @@ rootd.data <- file.path(rootd, "data")
 rootd.index <- file.path(rootd, "index")
 rootd.models <- file.path(rootd, "models")
 rootd.pres <- file.path(rootd, "presentations")
+resultsd <- file.path(rootd.data, "results")
 
 source(file.path(rootd.R, "utilities.R"))
 source(file.path(rootd.R, "verify.R"))

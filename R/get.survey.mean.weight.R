@@ -8,6 +8,8 @@
 # June 2 2022. Robyn Forrest (RF)
 
 # TODO: Check that the catch weighting makes sense
+# Well, none of it really makes sense because length sampling has been
+# length-stratified for most years of the survey!!
 
 french <- FALSE
 source(here::here("R/all.R"))

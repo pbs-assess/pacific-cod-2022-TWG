@@ -37,7 +37,7 @@ if(!file.exists(dat.file)){
                          unsorted_only = FALSE,
                          return_all_lengths = TRUE)
 }
-dat <- readRDS(dat.file) #query done June 2,2022
+dat <- readRDS(dat.file) #query done April 20,2022
 
 #test
 unique(dat$commercial_samples$length_type)

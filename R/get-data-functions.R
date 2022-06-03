@@ -15,7 +15,7 @@ load.data <- function(cache.dir = file.path(rootd.data, "cache")){
 
 #' Extract table of commercial specimens for areas requested
 #'
-#' @param dat A tibble of the commercial samples from gfplot package
+#' @param dat A tibble of the commercial samples from gfdata package
 #' @param a Growth parameter alpha
 #' @param b Growth parameter beta
 #'

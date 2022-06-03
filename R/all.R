@@ -30,6 +30,7 @@ library(leaflet)
 library(svglite)
 library(rosettafish)
 library(reshape2)
+library(here)
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
@@ -75,10 +76,25 @@ if(!file.exists(dat.file)){
 }
 dat <- readRDS(dat.file)
 
+file.name <- here::here("data/generated/comm-samples-with-length-type.rds")
+
+if(!file.exists(file.name)){
+  comsamp_newgfdata <- gfdata::get_commercial_samples("pacific cod",
+                                                      unsorted_only = FALSE,
+                                                      return_all_lengths = TRUE)
+  saveRDS(comsamp_newgfdata,file.name)
+}else{
+  comsamp_newgfdata <- readRDS(file.name)
+}
+
+# # Replace commercial_samples
+dat$commercial_samples <- comsamp_newgfdata
+
 tac.file <- file.path(rootd.data,
                       "pcod-tac-1996-2021.csv")
 tac <- read.csv(tac.file, header = TRUE)
 
+# Get the commercial mean weights once the data has been pulled
 source(file.path(rootd.R, "get-mean-weight.R"))
 
 ## ggplot globals for project

@@ -100,59 +100,57 @@ if(verbose){
 
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 0 (5ABCD)
+## Sensitivity models group 1 (5ABCD)
 ## -----------------------------------------------------------------------------
-sens.models.dir.name.0 <- c(file.path(model.dir,
+sens.models.dir.name.1 <- c(file.path(model.dir,
                                      "0_1b_5ABCD_BASE_2020_no_wt_since_2017"),
                             file.path(model.dir,
                                       "0_1c_5ABCD_BASE_2020_2017_wt"),
                             file.path(model.dir,
                                       "0_1d_5ABCD_BASE_2020_mean_wt_2015-17"))
 
-sens.models.name.0 <- c("No mean weight since 2017",
+sens.models.name.1 <- c("No mean weight since 2017",
                         "Use 2017 weight for 2018:2020",
                         "Use mean 2015:2017 weight for 2018:2020")
 
 ## -----------------------------------------------------------------------------
-## Sensitivity models group 00 (3CD)
+## Sensitivity models group 2 (5ABCD)
 ## -----------------------------------------------------------------------------
-sens.models.dir.name.00 <- c(file.path(model.dir,
+sens.models.dir.name.2 <- c(file.path(model.dir,
+                                      "0_2b_5ABCD_BASE_2020_no_wt_since_2013"),
+                            file.path(model.dir,
+                                      "0_2c_5ABCD_BASE_2020_2013_wt"))
+
+sens.models.name.2 <- c("No mean weight since 2013",
+                        "Use 2013 weight for 2014:2020")
+
+
+## -----------------------------------------------------------------------------
+## Sensitivity models group 11 (3CD)
+## -----------------------------------------------------------------------------
+sens.models.dir.name.11 <- c(file.path(model.dir,
                                       "1_1b_3CD_BASE_2020_no_wt_since_2016"),
                             file.path(model.dir,
                                       "1_1c_3CD_BASE_2020_2016_wt"),
                             file.path(model.dir,
                                       "1_1d_3CD_BASE_2020_mean_wt_2014-16"))
 
-sens.models.name.00 <- c(c("No mean weight since 2016",
+sens.models.name.11 <- c(c("No mean weight since 2016",
                            "Use 2016 weight for 2018:2020",
                            "Use mean 2014:2016 weight for 2018:2020"))
 
+## -----------------------------------------------------------------------------
+## Sensitivity models group 22 (3CD)
+## -----------------------------------------------------------------------------
+sens.models.dir.name.22 <- c(file.path(model.dir,
+                                       "1_2b_3CD_BASE_2020_no_wt_since_2013"),
+                             file.path(model.dir,
+                                       "1_2c_3CD_BASE_2020_2013_wt"))
 
-## -----------------------------------------------------------------------------
-## Retrospectives
-## -----------------------------------------------------------------------------
-retro.dir.names.3cd <- c(file.path(base.model.3cd.dir.name,
-                                   "Retrospective01"),
-                         file.path(base.model.3cd.dir.name,
-                                   "Retrospective02"),
-                         file.path(base.model.3cd.dir.name,
-                                   "Retrospective03"),
-                         file.path(base.model.3cd.dir.name,
-                                   "Retrospective04"))
-retro.dir.names.5abcd <- c(file.path(base.model.5abcd.dir.name,
-                                   "Retrospective01"),
-                           file.path(base.model.5abcd.dir.name,
-                                     "Retrospective02"),
-                           file.path(base.model.5abcd.dir.name,
-                                     "Retrospective03"),
-                           file.path(base.model.5abcd.dir.name,
-                                     "Retrospective04"))
-retro.dir.names <- c(retro.dir.names.3cd,
-                     retro.dir.names.5abcd)
-retro.names <- c("- 1 year",
-                 "- 2 years",
-                 "- 3 years",
-                 "- 4 years")
+sens.models.name.22 <- c("No mean weight since 2013",
+                         "Use 2016 weight for 2014:2020")
+
+
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -160,42 +158,11 @@ retro.names <- c("- 1 year",
 ## and sensitivity models change in the model.dir.names above..
 load.models.into.parent.env <- function(){
   base.model.5abcd <<- load.models(base.model.5abcd.dir.name)
-  #desc.models.5abcd <<- load.models(desc.models.5abcd.dir.name)
-  #avg.model.5abcd <<- avg.models(desc.models.5abcd)
-  sens.models.0 <<- load.models(sens.models.dir.name.0)
-  # sens.models.1.sub <<- load.models(sens.models.dir.name.1.sub)
-  # sens.models.1.sub2 <<- load.models(sens.models.dir.name.1.sub2)
-  # sens.models.1 <<- load.models(sens.models.dir.name.1)
-  # sens.models.2 <<- load.models(sens.models.dir.name.2)
-  # sens.models.2.sub <<- load.models(sens.models.dir.name.2.sub)
-  # sens.models.3 <<- load.models(sens.models.dir.name.3)
-  # sens.models.4 <<- load.models(sens.models.dir.name.4)
-  # sens.models.5 <<- load.models(sens.models.dir.name.5)
-  # sens.models.6 <<- load.models(sens.models.dir.name.6)
-  #sens.models.6.sub <<- load.models(sens.models.dir.name.6.sub)
-  # sens.models.7 <<- load.models(sens.models.dir.name.7)
-  # sens.models.108 <<- load.models(sens.models.dir.name.108)
-
+  sens.models.1 <<- load.models(sens.models.dir.name.1)
+  sens.models.2 <<- load.models(sens.models.dir.name.2)
   base.model.3cd <<- load.models(base.model.3cd.dir.name)
-  #desc.models.3cd <<- load.models(desc.models.3cd.dir.name)
-  #avg.model.3cd <<- avg.models(desc.models.3cd)
-  sens.models.00 <<- load.models(sens.models.dir.name.00)
-  # sens.models.8.sub <<- load.models(sens.models.dir.name.8.sub)
-  # sens.models.8.sub2 <<- load.models(sens.models.dir.name.8.sub2)
-  # sens.models.8 <<- load.models(sens.models.dir.name.8)
-  # sens.models.9 <<- load.models(sens.models.dir.name.9)
-  # sens.models.9.sub <<- load.models(sens.models.dir.name.9.sub)
-  # sens.models.10 <<- load.models(sens.models.dir.name.10)
-  # sens.models.11 <<- load.models(sens.models.dir.name.11)
-  # sens.models.12 <<- load.models(sens.models.dir.name.12)
-  # sens.models.13 <<- load.models(sens.models.dir.name.13)
-  #sens.models.13.sub <<- load.models(sens.models.dir.name.13.sub)
-  # sens.models.14 <<- load.models(sens.models.dir.name.14)
-  # sens.models.15 <<- load.models(sens.models.dir.name.15)
-
-
-  # base.retro.models.5abcd <<- load.models(retro.dir.names.5abcd)
-  # base.retro.models.3cd <<- load.models(retro.dir.names.3cd)
+  sens.models.11 <<- load.models(sens.models.dir.name.11)
+  sens.models.22 <<- load.models(sens.models.dir.name.22)
 }
 
 build <- function(ovwrt.base = FALSE,
@@ -232,27 +199,10 @@ build <- function(ovwrt.base = FALSE,
 
   ## Sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the for loop below to work right
-  sens.models.names.list <- c(#unlist(desc.models.5abcd.dir.name),
-                              #unlist(desc.models.3cd.dir.name)#,
-                              unlist(sens.models.dir.name.0),
-                              # unlist(sens.models.dir.name.1),
-                              # unlist(sens.models.dir.name.2),
-                              # unlist(sens.models.dir.name.3),
-                              # unlist(sens.models.dir.name.4),
-                              # unlist(sens.models.dir.name.5),
-                              # unlist(sens.models.dir.name.6),
-                              # unlist(sens.models.dir.name.7),
-                              # unlist(sens.models.dir.name.108),
-                              unlist(sens.models.dir.name.00)#,
-                              # unlist(sens.models.dir.name.8),
-                              # unlist(sens.models.dir.name.9),
-                              # unlist(sens.models.dir.name.10),
-                              # unlist(sens.models.dir.name.11),
-                              # unlist(sens.models.dir.name.12),
-                              # unlist(sens.models.dir.name.13),
-                              # unlist(sens.models.dir.name.14),
-                              # unlist(sens.models.dir.name.15)
-                              )
+  sens.models.names.list <- c( unlist(sens.models.dir.name.1),
+                               unlist(sens.models.dir.name.2),
+                               unlist(sens.models.dir.name.11),
+                               unlist(sens.models.dir.name.22))
   ## Sensitivity models
   for(model.nm in sens.models.names.list){
     create.rdata.file(model.nm,
@@ -264,16 +214,4 @@ build <- function(ovwrt.base = FALSE,
                       high = confidence.vals[2],
                       verbose = verbose)
   }
-  #
-  # ## Retrospective models
-  # for(model.nm in retro.dir.names){
-  #   create.rdata.file(model.nm,
-  #                     ovwrt.rdata = ovwrt.retro,
-  #                     load.proj = TRUE,
-  #                     burnin = burnin,
-  #                     thin = thin,
-  #                     low = confidence.vals[1],
-  #                     high = confidence.vals[2],
-  #                     verbose = verbose)
-  # }
 }

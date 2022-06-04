@@ -136,6 +136,20 @@ Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fi
 
 ### Area 3CD
 
+```{r tab-param-mean-weight-recent, results='asis'}
+
+
+```
+
+
+
+```{r tab-param-est-biomass, results='asis'}
+
+
+```
+
+
+
 ```{r tab-param-est-table-3cd, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(base.model.3cd,

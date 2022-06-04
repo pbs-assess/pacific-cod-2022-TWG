@@ -57,6 +57,11 @@ if(!knitr:::is_latex_output())
   options(knitr.table.format = "pandoc")
 ```
 
+*TODO: add a table of the mean weights for each scenario (from csv)*
+
+*TODO: add a note that survey lengths are length stratified and not useful for creating an index of mean weight*
+
+
 # Context
 
 The last assessment for Pacific Cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@forrest2020; @dfo2019].
@@ -72,6 +77,8 @@ We caution that the true impact of missing commercial length data from 2020 to 2
 
 ## Model scenarios
 
+### Short-term loss of commercial length data 
+
 For each area (3CD and 5ABCD), we evaluated three alternative treatments of the commercial mean weight index, by comparing 2020 results to the 2020 Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
 
 The three treatments (scenarios) were:
@@ -86,13 +93,9 @@ Sc 3. For 3CD, use the 2014-2016 average of the commercial mean weight index for
    
 Resulting mean weight indices are shown in Figs XX.
 
-## Effects of longer term data losses
+### Medium-term loss of commercial length data
 
-*TODO: repeat 1 and 2 with 10 years lost data*
-
-*TODO: add a table of the mean weights for each scenario (from csv)*
-
-*TODO: add a note that survey lengths are length stratified and not useful for creating an index of mean weight*
+ADD TEXT HERE
 
 # Results
 
@@ -108,7 +111,6 @@ Fits to the commercial mean weight index from the Reference case model are shown
 
 Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd).
 
-
 ### Area 5ABCD
 
 Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-5abcd).
@@ -123,13 +125,9 @@ Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fi
 
 # Tables {#sec:tables}
 
-```{r}
+## Short-term loss of commercial length data
 
-#mw5ABCD <- read_csv(here::here("data/results/AnnualMeanWeight_5ABCD.csv"))
-#mw3CD <- read_csv(here::here("data/results/AnnualMeanWeight_3CD.csv"))
-
-```
-
+### Area 3CD
 
 ```{r tab-param-est-table-3cd, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
@@ -141,14 +139,12 @@ make.parameters.est.table(base.model.3cd,
   omit_pars = pars_est_omit, french=french)
 ```
 
-
 ```{r tab-param-est-table-3cd-sc1, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.11[[1]],
   caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020)"),
   omit_pars = pars_est_omit, french=french)
 ```
-
 
 ```{r tab-param-est-table-3cd-sc2, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
@@ -157,7 +153,6 @@ make.parameters.est.table(sens.models.11[[2]],
   omit_pars = pars_est_omit, french=french)
 ```
 
-
 ```{r tab-param-est-table-3cd-sc3, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.11[[3]],
@@ -165,8 +160,9 @@ make.parameters.est.table(sens.models.11[[3]],
   omit_pars = pars_est_omit, french=french)
 ```
 
-
 \clearpage
+
+### Area 3CD
 
 ```{r tab-param-est-table-5abcd, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$", "$B_0$")
@@ -178,14 +174,12 @@ make.parameters.est.table(base.model.5abcd,
   omit_pars = pars_est_omit, french=french)
 ```
 
-
 ```{r tab-param-est-table-5abcd-sc1, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.1[[1]],
   caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018-2020"),
   omit_pars = pars_est_omit, french=french)
 ```
-
 
 ```{r tab-param-est-table-5abcd-sc2, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
@@ -194,7 +188,6 @@ make.parameters.est.table(sens.models.1[[2]],
   omit_pars = pars_est_omit, french=french)
 ```
 
-
 ```{r tab-param-est-table-5abcd-sc3, results='asis'}
 pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
 make.parameters.est.table(sens.models.1[[3]],
@@ -202,8 +195,13 @@ make.parameters.est.table(sens.models.1[[3]],
   omit_pars = pars_est_omit, french=french)
 ```
 
+## Medium-term loss of commercial length data
 
+### Area 3CD
 
+\clearpage
+
+### Area 5ABCD
 
 \clearpage
 
@@ -258,6 +256,8 @@ b.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.nam
 r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
 
+\clearpage
+
 ### Area 5ABCD
 
 ```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}
@@ -305,6 +305,8 @@ b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 
+\clearpage
+
 ## Medium-term loss of commercial length data
 
 ### Area 3CD
@@ -331,6 +333,7 @@ b.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.nam
 r.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.name.22))
 ```
 
+\clearpage
 
 ### Area 5ABCD
 

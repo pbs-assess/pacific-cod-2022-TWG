@@ -75,9 +75,8 @@ We caution that the true impact of missing commercial length data from 2020 to 2
 
 # Methods
 
-## Model scenarios
+## Short-term loss of commercial length data 
 
-### Short-term loss of commercial length data 
 
 For each area (3CD and 5ABCD), we evaluated three alternative treatments of the commercial mean weight index, by comparing 2020 results to the 2020 Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
 
@@ -93,13 +92,15 @@ Sc 3. For 3CD, use the 2014-2016 average of the commercial mean weight index for
    
 Resulting mean weight indices are shown in Figs XX.
 
-### Medium-term loss of commercial length data
+## Medium-term loss of commercial length data
 
 ADD TEXT HERE
 
 # Results
 
 *TODO: update text for sensitivity analyses, add biomass, recruitment and depletion tables, add depletion and recruitment plots, calculate percentage differences*
+
+## Short-term loss of commercial length data
 
 ### Area 3CD
 
@@ -120,6 +121,12 @@ Reference point estimates from Sc 1-4 are shown in Tables \@ref(tab:tab-param-es
 Fits to the commercial mean weight index from the Reference case model are shown in Figure \@ref(fig:fig-base-mean-weight-5abcd).
 
 Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd).
+
+## Medium-term loss of commercial length data
+
+### Area 3CD
+
+### Area 5ABCD
 
 \clearpage
 

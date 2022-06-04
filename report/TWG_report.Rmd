@@ -38,7 +38,6 @@ load.models.into.parent.env()
 
 ```
 
-
 ```{r custom-vars, cache=TRUE, echo=FALSE, message=FALSE, results='hide'}
 #NOTE. if adding sensitivity models need to modify load.models.into.parent.env()
 # in model-setup.R (as well as path names to sensitivity folders)
@@ -65,7 +64,7 @@ Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouve
 
 The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples. Due to the COVID-19 pandemic and a subsequent shift towards at-sea electronic monitoring, there has been no at-sea biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020. In 2022, it has been four years since the time series of commercial mean weights was updated (i.e., no new data for the past three years).
 
-Here, we report on the potential impact of the loss of commercial sampling in 2020-2022, by comparing results from the 2020 stock assessment [@dfo2021] with four alternative data treatments that attempt to mitigate a hypothetical loss of commercial biological sampling from 2018 to 2020. This represents a loss of the most recent three years of data from the 2020 stock assessment, to mimic the effect of losing three years of data (2020 to 2022) in the upcoming 2022 assessment.
+Here, we report on the potential impact of the loss of commercial sampling in 2020-2022, by comparing results from the 2020 stock assessment [@dfo2021] with three alternative data treatments that attempt to mitigate a hypothetical loss of commercial biological sampling from 2018 to 2020. This represents a loss of the most recent three years of data from the 2020 stock assessment, to mimic the effect of losing three years of data (2020 to 2022) in the upcoming 2022 assessment.
 
 We caution that the true impact of missing commercial length data from 2020 to 2022 can never be fully evaluated, as these data will never exist. However, the results of this analysis can provide guidance on the likely relative impact of using each of the four approaches on stock assessment results.
 
@@ -73,9 +72,9 @@ We caution that the true impact of missing commercial length data from 2020 to 2
 
 ## Model scenarios
 
-For each area (3CD and 5ABCD), we evaluated four different treatments of the commercial mean weight index, by comparing model results to the Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment, relative depletion and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
+For each area (3CD and 5ABCD), we evaluated three alternative treatments of the commercial mean weight index, by comparing 2020 results to the 2020 Reference case [@dfo2021]. For each scenario, we compared estimates of biomass, recruitment and key model parameters to those from the 2020 assessment. Apart for the treatment of the final three years of the commercial mean weight index, all other model settings are identical to the reference cases.
 
-The four treatments (scenarios) were:
+The three treatments (scenarios) were:
 
 **NOTE ABOUT 3CD BASE: the 2017 value was anomalously high (3.024 kg) and was not used in the 2020 assessment. There was no 2018 value. So here for Scenario 1, we will delete data for 2019-2020. For Scenario 2 we will use the 2016 value for the years 2018:2020 (maintaining the missing data in 2017 but adding a data point in 2018). For Scenario 3, we will use the average 2014-2016 for 2018-2020 (again,adding a data point in 2018) **
 
@@ -85,7 +84,7 @@ Sc 2. For 3CD, use the 2016 commercial mean weight index value for model years 2
 
 Sc 3. For 3CD, use the 2014-2016 average of the commercial mean weight index for model years 2018, 2019 and 2020. For 5ABCD, use the 2015-2017 average of the commercial mean weight index for model years 2018, 2019 and 2020.
    
-Resulting mean weight indices are shown in **Figs 1-6 **).
+Resulting mean weight indices are shown in Figs XX.
 
 ## Effects of longer term data losses
 
@@ -158,6 +157,15 @@ make.parameters.est.table(sens.models.11[[2]],
   omit_pars = pars_est_omit, french=french)
 ```
 
+
+```{r tab-param-est-table-3cd-sc3, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.11[[3]],
+  caption = paste0("Same as the reference case table, but for Sc 3 (mean 2014-2016 mean weight value for 2018-2020)"),
+  omit_pars = pars_est_omit, french=french)
+```
+
+
 \clearpage
 
 ```{r tab-param-est-table-5abcd, results='asis'}
@@ -187,7 +195,13 @@ make.parameters.est.table(sens.models.1[[2]],
 ```
 
 
-\clearpage
+```{r tab-param-est-table-5abcd-sc3, results='asis'}
+pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
+make.parameters.est.table(sens.models.1[[3]],
+  caption = paste0("Same as the reference case table, but for Sc 3 (Mean 2015-2017 mean weight value for 2018-2020"),
+  omit_pars = pars_est_omit, french=french)
+```
+
 
 
 
@@ -195,7 +209,9 @@ make.parameters.est.table(sens.models.1[[2]],
 
 # Figures
 
-## Area 3CD
+## Short-term loss of commercial length data
+
+### Area 3CD
 
 ```{r fig-base-mean-weight-3cd, fig.cap="Reference model MPD fit to the mean weight data for Area 3CD. For clarity, only MPD results are shown."}
 plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -218,7 +234,6 @@ plot_grid(mw.plot(sens.models.11[[2]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
-
 ```{r fig-base-mean-weight-3cd-sc3, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD (mean 2014:2016 index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.11[[3]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.11[[3]], french=french),
@@ -235,20 +250,15 @@ b.plot(base.model.3cd,
        usr = c(1956, 2004), french=french)
 ```
 
-
 ```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to the three treatments of the commercial mean weight index, Area 3CD."}
 b.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
-
-\clearpage
-
 
 ```{r fig-sens-recr-3cd, fig.cap="Sensitivity of recruitment estimates to the three treatments of the commercial mean weight index, Area 3CD."}
 r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
 
-
-## Area 5ABCD
+### Area 5ABCD
 
 ```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}
 plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -257,14 +267,12 @@ plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, f
           ncol = 2)
 ```
 
-
 ```{r fig-base-mean-weight-5abcd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 5ABCD (no data for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.1[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.1[[1]], french=french),
           nrow = 1,
           ncol = 2)
 ```
-
 
 ```{r fig-base-mean-weight-5abcd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 5ABCD (2017 mean weight index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.1[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -273,14 +281,12 @@ plot_grid(mw.plot(sens.models.1[[2]], cv = 0.2, every = 10, last.yr = 2020, fren
           ncol = 2)
 ```
 
-
 ```{r fig-base-mean-weight-5abcd-sc3, fig.cap="Scenario 3 model MPD fit to the mean weight data for Area 5ABCD (mean 2015:2017 index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.1[[3]], cv = 0.2, every = 10, last.yr = 2020, french=french),
-          mw.compare.plot(sens.models.1[[2]], french=french),
+          mw.compare.plot(sens.models.1[[3]], french=french),
           nrow = 1,
           ncol = 2)
 ```
-
 
 ```{r fig-model-ref-biomass-5abcd, fig.cap="Combined posterior biomass for the reference case model for Area 5ABCD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.5abcd,
@@ -291,16 +297,61 @@ b.plot(base.model.5abcd,
        usr = c(1956, 2004), french=french)
 ```
 
-
 ```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the three treatments of the commercial mean weight index, Area 5ABCD."}
 b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 
-\clearpage
-
-
-```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to setting $k_{age} = 3y$ and update the Ford-Walford parameters accordingly, and to using the growth parameters used in the previous stock assessment, Area 5ABCD."}
+```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the three treatments of the commercial mean weight index, Area 5ABCD."}
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 
+## Medium-term loss of commercial length data
 
+### Area 3CD
+
+```{r fig-base-mean-weight-3cd-sc-4, fig.cap="Scenario 4 model MPD fit to the mean weight data for Area 3CD (no data for 2014-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.22[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.22[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-3cd-sc-5, fig.cap="Scenario 5 model MPD fit to the mean weight data for Area 3CD (2013 mean weight index value used for 2014-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.22[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.22[[2]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-sens-biomass-3cd-m1, fig.cap="Sensitivity of biomass estimates to the two medium-term treatments of the commercial mean weight index, Area 3CD."}
+b.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.name.22))
+```
+
+```{r fig-sens-recr-3cd-m2, fig.cap="Sensitivity of recruitment estimates to the two medium-term treatments of the commercial mean weight index, Area 3CD."}
+r.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.name.22))
+```
+
+
+### Area 5ABCD
+
+```{r fig-base-mean-weight-5abcd-sc-4, fig.cap="Scenario 4 model MPD fit to the mean weight data for Area 5ABCD (no data for 2014-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.2[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.2[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-5abcd-sc-5, fig.cap="Scenario 5 model MPD fit to the mean weight data for Area 5ABCD (2013 mean weight index value used for 2014-2020). For clarity, only MPD results are shown."}
+plot_grid(mw.plot(sens.models.2[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.2[[2]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-sens-biomass-5abcd-m1, fig.cap="Sensitivity of biomass estimates to the two medium-term treatments of the commercial mean weight index, Area 5ABCD."}
+b.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.name.2))
+```
+
+```{r fig-sens-recr-5abcd-m2, fig.cap="Sensitivity of recruitment estimates to the two medium-term treatments of the commercial mean weight index, Area 5ABCD."}
+r.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.name.2))
+```

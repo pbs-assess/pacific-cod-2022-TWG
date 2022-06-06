@@ -611,7 +611,6 @@ make.ref.points.table <- function(models,
 
 }
 
-
 make.value.table <- function(model,
   type,
   digits = 3,

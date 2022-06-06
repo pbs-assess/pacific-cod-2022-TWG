@@ -83,11 +83,11 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Base model names and directories
 ## -----------------------------------------------------------------------------
-base.model.3cd.name <- ifelse(french, "Sc 1a. Ref", "1a) 2020 Reference model 3CD")
+base.model.3cd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference model 3CD")
 base.model.3cd.dir.name <- file.path(model.dir,
                                      "1_1a_3CD_BASE_2020")
 
-base.model.5abcd.name <- ifelse(french, "Sc 1a. Ref", "1a) 2020 Reference model 5ABCD")
+base.model.5abcd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference model 5ABCD")
 base.model.5abcd.dir.name <- file.path(model.dir,
                                        "0_1a_5ABCD_BASE_2020")
 

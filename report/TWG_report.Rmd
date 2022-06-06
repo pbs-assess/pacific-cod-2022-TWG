@@ -47,7 +47,7 @@ build(ovwrt.base = FALSE,
       burnin = 1000,
       thin = 1)
 
-load.models.into.parent.env()
+#load.models.into.parent.env()
 
 source(file.path(rootd.R, "custom-knitr-variables.R")) # Making catch data objects is in this file
 ```
@@ -56,8 +56,6 @@ source(file.path(rootd.R, "custom-knitr-variables.R")) # Making catch data objec
 if(!knitr:::is_latex_output())
   options(knitr.table.format = "pandoc")
 ```
-
-*TODO: add a table of the mean weights for each scenario (from csv)*
 
 *TODO: add a note that survey lengths are length stratified and not useful for creating an index of mean weight*
 
@@ -136,15 +134,18 @@ Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fi
 
 ### Area 3CD
 
-```{r tab-param-mean-weight-recent, results='asis'}
-
+```{r tab-mean-weight-recent-3cd, results='asis', tab.cap="Table of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD"}
+mw.table(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11), years=2010:2020)
 
 ```
 
-
-
-```{r tab-param-est-biomass, results='asis'}
-
+```{r tab-param-est-biomass-3cd, results='asis'}
+make.value.table(base.model.5abcd,
+                 1,
+                 digits = 2,
+                 caption = paste0("Posterior (2.5\\textsuperscript{th} percentile, Median, and 97.5\\textsuperscript{th} ",
+                                  "percentile) and MPD estimates of Biomass, ",
+                                  "for the Reference Case, Area 3CD."))
 
 ```
 

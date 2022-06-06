@@ -138,9 +138,10 @@ Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fi
 mw.table(c(base.model.3cd, sens.models.11), 
          c(base.model.3cd.name, sens.models.name.11), 
          years=2010:2020,
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020")
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
 ```
+
 
 ```{r tab-param-est-biomass-3cd, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.11), 
@@ -149,85 +150,139 @@ make.value.table.compare(c(base.model.3cd, sens.models.11),
                  type= 1,
                  mpdmed="med",
                  digits = 2,
-                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020")
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
-```
-
-
-
-```{r tab-param-est-table-3cd, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(base.model.3cd,
-  caption = paste0("Posterior (2.5\\textsuperscript{th} percentile, Median, and ",
-    "97.5\\textsuperscript{th} percentile) and MPD ",
-    "estimates of key parameters from the Reference Case, Area 3CD. $R_0$ is in thousands of fish. $\\hat{R}$ is the potential scale reduction statistic and $n_\\mathrm{eff}$ is the effective number of simulation draws (see text). ",
-    q.3cd.desc),
-  omit_pars = pars_est_omit, french=french)
-```
-
-```{r tab-param-est-table-3cd-sc1, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.11[[1]],
-  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018:2020)"),
-  omit_pars = pars_est_omit, french=french)
-```
-
-```{r tab-param-est-table-3cd-sc2, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.11[[2]],
-  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018:2020)"),
-  omit_pars = pars_est_omit, french=french)
-```
-
-```{r tab-param-est-table-3cd-sc3, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.11[[3]],
-  caption = paste0("Same as the reference case table, but for Sc 3 (mean(2014:2016) mean weight value for 2018:2020)"),
-  omit_pars = pars_est_omit, french=french)
 ```
 
 \clearpage
 
-### Area 3CD
+```{r tab-param-est-recruit-3cd, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.11), 
+                 c(base.model.3cd.name, sens.models.name.11), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
-```{r tab-param-est-table-5abcd, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$", "$B_0$")
-make.parameters.est.table(base.model.5abcd,
-  caption = paste0("Posterior (2.5\\textsuperscript{th} percentile, Median, and ",
-    "97.5\\textsuperscript{th} percentile) and MPD ",
-    "estimates of key parameters from the Reference Case, Area 5ABCD. $R_0$ is in thousands of fish. $\\hat{R}$ is the potential scale reduction statistic and $n_\\mathrm{eff}$ is the effective number of simulation draws (see text). ",
-    q.5abcd.desc),
-  omit_pars = pars_est_omit, french=french)
 ```
 
-```{r tab-param-est-table-5abcd-sc1, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.1[[1]],
-  caption = paste0("Same as the reference case table, but for Sc 1 (no mean weight index for 2018:2020"),
-  omit_pars = pars_est_omit, french=french)
+\clearpage
+
+
+### Area 5ABCD
+
+```{r tab-mean-weight-recent-5abcd, results='asis'}
+mw.table(c(base.model.5abcd, sens.models.1), 
+         c(base.model.5abcd.name, sens.models.name.1), 
+         years=2010:2020,
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
+
 ```
 
-```{r tab-param-est-table-5abcd-sc2, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.1[[2]],
-  caption = paste0("Same as the reference case table, but for Sc 2 (2016 mean weight value for 2018:2020"),
-  omit_pars = pars_est_omit, french=french)
+
+```{r tab-param-est-biomass-5abcd, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.1), 
+                 c(base.model.5abcd.name, sens.models.name.1), 
+                 years=2010:2020,
+                 type= 1,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
+
 ```
 
-```{r tab-param-est-table-5abcd-sc3, results='asis'}
-pars_est_omit <- c("$\\overline{R}_{init}$", "$\\overline{R}$", "$\\vartheta$","$B_0$")
-make.parameters.est.table(sens.models.1[[3]],
-  caption = paste0("Same as the reference case table, but for Sc 3 (Mean 2015-2017 mean weight value for 2018:2020"),
-  omit_pars = pars_est_omit, french=french)
+\clearpage
+
+```{r tab-param-est-recruit-5abcd, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.1), 
+                 c(base.model.5abcd.name, sens.models.name.1), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
+
 ```
+
+\clearpage
 
 ## Medium-term loss of commercial length data
 
 ### Area 3CD
 
+
+```{r tab-mean-weight-recent-3cd-2, results='asis'}
+mw.table(c(base.model.3cd, sens.models.22), 
+         c(base.model.3cd.name, sens.models.name.22), 
+         years=2010:2020,
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+
+```{r tab-param-est-biomass-3cd-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2020,
+                 type= 1,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
 \clearpage
 
+```{r tab-param-est-recruit-3cd-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+\clearpage
+
+
 ### Area 5ABCD
+
+
+```{r tab-mean-weight-recent-5abcd-2, results='asis'}
+mw.table(c(base.model.5abcd, sens.models.2), 
+         c(base.model.5abcd.name, sens.models.name.2), 
+         years=2010:2020,
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+
+```{r tab-param-est-biomass-5abcd-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2020,
+                 type= 1,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+\clearpage
+
+```{r tab-param-est-recruit-5abcd-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
 
 \clearpage
 

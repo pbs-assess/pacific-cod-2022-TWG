@@ -674,14 +674,14 @@ make.value.table.compare.med.mpd <- function(models,
                                          years=2010:2020,
                                          type,
                                          digits = 3,
-                                         caption = "default"){
+                                         caption = ""){
 
   years<-years
   vars.list.mpd <- lapply(models,
                            function(x){
 
             if(type == 1){
-              out.dat <- models[1][[1]]$mcmccalcs$sbt.quants
+              out.dat <- x$mcmccalcs$sbt.quants
             }else if(type == 2){
               out.dat <- x$mcmccalcs$recr.quants
             }else if(type == 3){
@@ -695,7 +695,7 @@ make.value.table.compare.med.mpd <- function(models,
             }
 
             tab.mpd <- f(t(out.dat[2,]), digits)
-            tab.mpd <- t(tab.mpd) %>%
+            tab.mpd <- t(tab.mpd)
             tab.mpd
   })
 

@@ -28,18 +28,17 @@ mw.table <- function(models,
                   rbind(tab) %>%
                   arrange(yrs)
                 tab <- tmp}
+
+              tab <- tab$obs
+              tab
               })
 
-     # bind together in a table and add row names
-     mean.wts <- mean.wts.list[[1]]
-     colnames(mean.wts) <- c("Year",model.names[1])
-     if(length(models)>1){
-       for(i in 2:length(models)){
-          mean.wt <- mean.wts.list[[i]]$obs
-          mean.wts <- cbind(mean.wts,mean.wt)
-          colnames(mean.wts) <- c(colnames(mean.wts[1:i]),model.names[i])
-        }# end if
-      }#end for
+
+    # bind together in a table and add row names
+    mean.wts <- do.call(cbind, lapply(mean.wts.list, as.data.frame))
+    mean.wts <- cbind(years,mean.wts)
+    colnames(mean.wts) <- c("Year",model.names)
+
 
      knitr::kable(mean.wts,
                   caption = caption,

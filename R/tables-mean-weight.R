@@ -39,13 +39,12 @@ mw.table <- function(models,
     mean.wts <- cbind(years,mean.wts)
     colnames(mean.wts) <- c("Year",model.names)
 
-
-     knitr::kable(mean.wts,
+    knitr::kable(mean.wts,
                   caption = caption,
                   longtable = TRUE, format = "pandoc",
                   align = get.align(ncol(mean.wts))[-1],
                   booktabs = TRUE, linesep = "", escape = FALSE, row.names = FALSE) %>%
-       kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
+     kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
 
  }# end function
 

@@ -667,17 +667,19 @@ make.value.table <- function(model,
 }
 
 # Added by RF. June 6, 2022 for TWG meeting
-# compare median posteriors and mpds of multiple models
+# compare median posteriors or mpds of multiple models
+# select MPD with 'mpd' or Median with 'med'
 # NO FRENCH
-make.value.table.compare.med.mpd <- function(models,
+make.value.table.compare <- function(models,
                                          model.names,
                                          years=2010:2020,
-                                         type,
+                                         type=1,
+                                         mpdmed="med",
                                          digits = 3,
                                          caption = ""){
 
   years<-years
-  vars.list.mpd <- lapply(models,
+  vars.list <- lapply(models,
                            function(x){
 
             if(type == 1){
@@ -694,25 +696,21 @@ make.value.table.compare.med.mpd <- function(models,
               stop("Type ", type, " not implemented.")
             }
 
-            tab.mpd <- f(t(out.dat[2,]), digits)
-            tab.mpd <- t(tab.mpd)
-            tab.mpd
+            if(mpdmed=="med"){
+              tab <- f(t(out.dat[2,]), digits)
+            }else{
+              tab <- f(t(out.dat[4,]), digits)
+            }
+            tab <- t(tab)
+            tab
   })
 
-  z <- do.call(cbind, lapply(vars.list.mpd, as.data.frame))
+  tab <- do.call(cbind, lapply(vars.list, as.data.frame))
+  tab <- cbind(rownames(tab),tab)
+  colnames(tab) <- c("Year",model.names)
+  dplyr::filter(tab,Year %in% years)
 
-  # bind together in a table and add row names
-  vars.mpds <- vars.list.mpd[[1]]
-  if(length(models)>1){
-    for(i in 2:length(models)){
-      vars.mpd <- vars.list.mpd[[i]]
-      vars.mpds  <- cbind(vars.mpds,vars.mpd)
-    }# end if
-  }#end for
-
-
-      colnames(tab.med) <- latex.bold(latex.perc(colnames(tab.med)))
-      colnames(tab.mpd) <- latex.bold(latex.perc(colnames(tab.mpd)))
+  colnames(tab) <- latex.bold(latex.perc(colnames(tab)))
 
 
   knitr::kable(tab,

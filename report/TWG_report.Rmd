@@ -138,17 +138,18 @@ Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fi
 mw.table(c(base.model.3cd, sens.models.11), 
          c(base.model.3cd.name, sens.models.name.11), 
          years=2010:2020,
-         caption="Table of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020")
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020")
 
 ```
 
 ```{r tab-param-est-biomass-3cd, results='asis'}
-# make.value.table(base.model.5abcd,
-#                  1,
-#                  digits = 2,
-#                  caption = paste0("Posterior (2.5\\textsuperscript{th} percentile, #Median, and 97.5\\textsuperscript{th} ",
-#                                   "percentile) and MPD estimates of Biomass, ",
-#                                   "for the Reference Case, Area 3CD."))
+make.value.table.compare(c(base.model.3cd, sens.models.11), 
+                 c(base.model.3cd.name, sens.models.name.11), 
+                 years=2010:2020,
+                 type= 1,
+                 mpdmed="med",
+                 digits = 2,
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020")
 
 ```
 

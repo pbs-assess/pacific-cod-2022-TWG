@@ -708,7 +708,7 @@ make.value.table.compare <- function(models,
   tab <- do.call(cbind, lapply(vars.list, as.data.frame))
   tab <- cbind(rownames(tab),tab)
   colnames(tab) <- c("Year",model.names)
-  dplyr::filter(tab,Year %in% years)
+  tab <- dplyr::filter(tab,Year %in% years)
 
   colnames(tab) <- latex.bold(latex.perc(colnames(tab)))
 

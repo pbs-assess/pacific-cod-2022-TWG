@@ -7,7 +7,8 @@
 
 mw.table <- function(models,
                      model.names,
-                     years=2010:2020){
+                     years=2010:2020,
+                     caption = caption){
 
     years <- years
     # get all the mean weights in a list format
@@ -39,6 +40,13 @@ mw.table <- function(models,
           colnames(mean.wts) <- c(colnames(mean.wts[1:i]),model.names[i])
         }# end if
       }#end for
-     as_tibble(mean.wts)
+
+     knitr::kable(mean.wts,
+                  caption = caption,
+                  longtable = TRUE, format = "pandoc",
+                  align = get.align(ncol(mean.wts))[-1],
+                  booktabs = TRUE, linesep = "", escape = FALSE, row.names = FALSE) %>%
+       kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
+
  }# end function
 

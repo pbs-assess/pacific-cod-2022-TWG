@@ -60,7 +60,7 @@ source(file.path(rootd.R, "plot-survey-sets.R"))
 source(file.path(rootd.R, "get-alk.R"))
 source(file.path(rootd.R, "get-age-sample.R"))
 source(file.path(rootd.R, "get-data-functions.R"))
-source(file.path(rootd.R, "mw.table.R"))
+source(file.path(rootd.R, "tables-mean-weight.R"))
 
 ## # Load the raw data
 dat.file <- file.path(rootd.data,

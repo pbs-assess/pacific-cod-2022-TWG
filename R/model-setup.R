@@ -83,11 +83,11 @@ if(verbose){
 ## -----------------------------------------------------------------------------
 ## Base model names and directories
 ## -----------------------------------------------------------------------------
-base.model.3cd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference model 3CD")
+base.model.3cd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference 3CD")
 base.model.3cd.dir.name <- file.path(model.dir,
                                      "1_1a_3CD_BASE_2020")
 
-base.model.5abcd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference model 5ABCD")
+base.model.5abcd.name <- ifelse(french, "Sc 1a. Ref", "2020 Reference 5ABCD")
 base.model.5abcd.dir.name <- file.path(model.dir,
                                        "0_1a_5ABCD_BASE_2020")
 
@@ -109,9 +109,9 @@ sens.models.dir.name.1 <- c(file.path(model.dir,
                             file.path(model.dir,
                                       "0_1d_5ABCD_BASE_2020_mean_wt_2015-17"))
 
-sens.models.name.1 <- c("No mean weight since 2017",
-                        "Use 2017 weight for 2018:2020",
-                        "Use mean 2015:2017 weight for 2018:2020")
+sens.models.name.1 <- c("Scenario 1",
+                        "Scenario 2",
+                        "Scenario 3")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 2 (5ABCD)
@@ -121,8 +121,8 @@ sens.models.dir.name.2 <- c(file.path(model.dir,
                             file.path(model.dir,
                                       "0_2c_5ABCD_BASE_2020_2013_wt"))
 
-sens.models.name.2 <- c("No mean weight since 2013",
-                        "Use 2013 weight for 2014:2020")
+sens.models.name.2 <- c("Scenario 4",
+                        "Scenario 5")
 
 
 ## -----------------------------------------------------------------------------
@@ -135,9 +135,9 @@ sens.models.dir.name.11 <- c(file.path(model.dir,
                             file.path(model.dir,
                                       "1_1d_3CD_BASE_2020_mean_wt_2014-16"))
 
-sens.models.name.11 <- c(c("No mean weight since 2016",
-                           "Use 2016 weight for 2018:2020",
-                           "Use mean 2014:2016 weight for 2018:2020"))
+sens.models.name.11 <- c("Scenario 1",
+                         "Scenario 2",
+                         "Scenario 3")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 22 (3CD)
@@ -147,8 +147,8 @@ sens.models.dir.name.22 <- c(file.path(model.dir,
                              file.path(model.dir,
                                        "1_2c_3CD_BASE_2020_2013_wt"))
 
-sens.models.name.22 <- c("No mean weight since 2013",
-                         "Use 2016 weight for 2014:2020")
+sens.models.name.22 <- c("Scenario 4",
+                         "Scenario 5")
 
 
 

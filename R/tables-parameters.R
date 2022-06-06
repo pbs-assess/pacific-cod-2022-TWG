@@ -666,6 +666,66 @@ make.value.table <- function(model,
     kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
 }
 
+# Added by RF. June 6, 2022 for TWG meeting
+# compare median posteriors and mpds of multiple models
+# NO FRENCH
+make.value.table.compare.med.mpd <- function(models,
+                                         model.names,
+                                         years=2010:2020,
+                                         type,
+                                         digits = 3,
+                                         caption = "default"){
+
+  years<-years
+  vars.list.mpd <- lapply(models,
+                           function(x){
+
+            if(type == 1){
+              out.dat <- models[1][[1]]$mcmccalcs$sbt.quants
+            }else if(type == 2){
+              out.dat <- x$mcmccalcs$recr.quants
+            }else if(type == 3){
+              out.dat <- x$mcmccalcs$f.mort.quants[[1]]
+            }else if(type == 4){
+              out.dat <- x$mcmccalcs$u.mort.quants[[1]]
+            }else if(type == 5){
+              out.dat <- x$mcmccalcs$depl.quants
+            }else{
+              stop("Type ", type, " not implemented.")
+            }
+
+            tab.mpd <- f(t(out.dat[2,]), digits)
+            tab.mpd <- t(tab.mpd) %>%
+            tab.mpd
+  })
+
+  z <- do.call(cbind, lapply(vars.list.mpd, as.data.frame))
+
+  # bind together in a table and add row names
+  vars.mpds <- vars.list.mpd[[1]]
+  if(length(models)>1){
+    for(i in 2:length(models)){
+      vars.mpd <- vars.list.mpd[[i]]
+      vars.mpds  <- cbind(vars.mpds,vars.mpd)
+    }# end if
+  }#end for
+
+
+      colnames(tab.med) <- latex.bold(latex.perc(colnames(tab.med)))
+      colnames(tab.mpd) <- latex.bold(latex.perc(colnames(tab.mpd)))
+
+
+  knitr::kable(tab,
+               caption = caption,
+               longtable = TRUE, format = "pandoc",
+               align = get.align(ncol(tab))[-1],
+               booktabs = TRUE, linesep = "", escape = FALSE, row.names = FALSE) %>%
+    kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
+}
+
+
+
+
 
 model.param.desc.table <- function(cap = "",
                                    font.size = 8){

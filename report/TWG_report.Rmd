@@ -1,10 +1,16 @@
 ---
-title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD and Area 5ABCD in 2022"
+title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD and Area 5ABCD in 2022. *Do not circulate without permission from the authors*."
 author: "Robyn Forrest, ..."
-date: "03/06/2022"
+date: "07/06/2022"
+link-citations: true
+bibliography: bib/refs.bib
+documentclass: article
+geometry: margin=2.2cm
 output:
-   bookdown::pdf_document2: default
-  #bookdown::html_document2: default
+  bookdown::pdf_document2:
+    toc: yes
+    fig_caption: yes
+    number_sections: yes
 ---
 
 ```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
@@ -32,12 +38,6 @@ source(file.path(here::here(), "R", "all.R")) #Loading the data is in this file 
 
 ```
 
-```{r load-models}
-
-#load.models.into.parent.env()
-
-```
-
 ```{r custom-vars, cache=TRUE, echo=FALSE, message=FALSE, results='hide'}
 #NOTE. if adding sensitivity models need to modify load.models.into.parent.env()
 # in model-setup.R (as well as path names to sensitivity folders)
@@ -57,15 +57,13 @@ if(!knitr:::is_latex_output())
   options(knitr.table.format = "pandoc")
 ```
 
-*TODO: add a note that survey lengths are length stratified and not useful for creating an index of mean weight*
-
 
 # Context
 
-The last assessment for Pacific Cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@forrest2020; @dfo2019].
-Separate assessments were undertaken for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (consisting of Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined). GMU have submitted a RSIA for an update to the stock assessment for both areas by November 2022 (advice for fishing opportunities in 2023).
+The last assessment for Pacific cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@dfo2021].
+Separate assessments were done for stocks in Area 3CD (West Coast Vancouver Island, WCVI) and Area 5ABCD (Queen Charlotte Sound (QCS) and Hecate Strait (HS) combined). GMU have requested science advice to update to the stock assessment for both areas by November 2022 (advice for fishing opportunities in 2023).
 
-The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples. Due to the COVID-19 pandemic and a subsequent shift towards at-sea electronic monitoring, there has been no at-sea biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020. In 2022, it has been four years since the time series of commercial mean weights was updated (i.e., no new data for the past three years).
+The stock assessment is a delay-difference model, fit to commercial and survey indices of abundance, commercial catch and an an index of commercial mean weight, derived from commercial length samples [@forrest2020]. Due to the COVID-19 pandemic and a subsequent shift towards at-sea electronic monitoring, there has been no at-sea biological sampling on commercial trawl vessels since 2019. The 2020 assessment update used the 2019 mean weight value for 2020 for both stocks. For the 2022 assessment update, it will have been three years since the time series of commercial mean weights was updated (i.e., no new data since 2019). In general, even before the pandemic, there was a decline in commercial sampling of Pacific cod (Appendix A). 
 
 Here, we report on the potential impact of the loss of commercial sampling in 2020-2022, by comparing results from the 2020 stock assessment [@dfo2021] with three alternative data treatments that attempt to mitigate a hypothetical loss of commercial biological sampling from 2018 to 2020. This represents a loss of the most recent three years of data from the 2020 stock assessment, to mimic the effect of losing three years of data (2020 to 2022) in the upcoming 2022 assessment.
 
@@ -98,9 +96,7 @@ ADD TEXT HERE
 
 *TODO: update text for sensitivity analyses, add biomass, recruitment and depletion tables, add depletion and recruitment plots, calculate percentage differences*
 
-## Short-term loss of commercial length data
-
-### Area 3CD
+## Area 3CD
 
 Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-3cd).
 
@@ -110,7 +106,7 @@ Fits to the commercial mean weight index from the Reference case model are shown
 
 Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd).
 
-### Area 5ABCD
+## Area 5ABCD
 
 Reference point estimates from the Reference case model are shown in Table \@ref(tab:tab-param-est-table-5abcd).
 
@@ -120,19 +116,17 @@ Fits to the commercial mean weight index from the Reference case model are shown
 
 Biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd).
 
-## Medium-term loss of commercial length data
 
-### Area 3CD
 
-### Area 5ABCD
+# References {-}
+
+<div id="refs"></div>
 
 \clearpage
 
 # Tables {#sec:tables}
 
-## Short-term loss of commercial length data
-
-### Area 3CD
+## Area 3CD
 
 ```{r tab-mean-weight-recent-3cd, results='asis'}
 mw.table(c(base.model.3cd, sens.models.11), 
@@ -181,7 +175,7 @@ make.value.table.compare(c(base.model.3cd, sens.models.11),
 
 \clearpage
 
-### Area 5ABCD
+## Area 5ABCD
 
 ```{r tab-mean-weight-recent-5abcd, results='asis'}
 mw.table(c(base.model.5abcd, sens.models.1), 
@@ -228,110 +222,13 @@ make.value.table.compare(c(base.model.5abcd, sens.models.1),
 
 ```
 
-\clearpage
 
-## Medium-term loss of commercial length data
-
-### Area 3CD
-
-
-```{r tab-mean-weight-recent-3cd-2, results='asis'}
-mw.table(c(base.model.3cd, sens.models.22), 
-         c(base.model.3cd.name, sens.models.name.22), 
-         years=2010:2020,
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
-
-```
-
-
-```{r tab-param-est-biomass-3cd-2, results='asis'}
-make.value.table.compare(c(base.model.3cd, sens.models.22), 
-                 c(base.model.3cd.name, sens.models.name.22), 
-                 years=2010:2021,
-                 type= 1,
-                 mpdmed="med",
-                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
-
-```
 
 \clearpage
 
-```{r tab-param-est-biomass-3cd-per-2, results='asis'}
-make.value.table.compare(c(base.model.3cd, sens.models.22), 
-                 c(base.model.3cd.name, sens.models.name.22), 
-                 years=2010:2021,
-                 type= 1,
-                 mpdmed="med",
-                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
-                 percent=TRUE)
+# Figures {#sec:figures}
 
-```
-
-
-```{r tab-param-est-recruit-3cd-2, results='asis'}
-make.value.table.compare(c(base.model.3cd, sens.models.22), 
-                 c(base.model.3cd.name, sens.models.name.22), 
-                 years=2010:2020,
-                 type= 2,
-                 mpdmed="med",
-                 caption = "Comparison of percent difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
-                 percent=TRUE)
-
-```
-
-\clearpage
-
-### Area 5ABCD
-
-```{r tab-mean-weight-recent-5abcd-2, results='asis'}
-mw.table(c(base.model.5abcd, sens.models.2), 
-         c(base.model.5abcd.name, sens.models.name.2), 
-         years=2010:2020,
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
-
-```
-
-```{r tab-param-est-biomass-5abcd-2, results='asis'}
-make.value.table.compare(c(base.model.5abcd, sens.models.2), 
-                 c(base.model.5abcd.name, sens.models.name.2), 
-                 years=2010:2021,
-                 type= 1,
-                 mpdmed="med",
-                 caption = "Comparison of recent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
-
-```
-
-\clearpage
-
-```{r tab-param-est-biomass-5abcd-per-2, results='asis'}
-make.value.table.compare(c(base.model.5abcd, sens.models.2), 
-                 c(base.model.5abcd.name, sens.models.name.2), 
-                 years=2010:2021,
-                 type= 1,
-                 mpdmed="med",
-                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
-                 percent=TRUE)
-
-```
-
-```{r tab-param-est-recruit-5abcd-2, results='asis'}
-make.value.table.compare(c(base.model.5abcd, sens.models.2), 
-                 c(base.model.5abcd.name, sens.models.name.2), 
-                 years=2010:2020,
-                 type= 2,
-                 mpdmed="med",
-                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
-                 percent=TRUE)
-
-```
-
-\clearpage
-
-# Figures
-
-## Short-term loss of commercial length data
-
-### Area 3CD
+## Area 3CD
 
 ```{r fig-base-mean-weight-3cd, fig.cap="Reference model MPD fit to the mean weight data for Area 3CD. For clarity, only MPD results are shown."}
 plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -380,7 +277,7 @@ r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.nam
 
 \clearpage
 
-### Area 5ABCD
+## Area 5ABCD
 
 ```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD. For clarity, only MPD results are shown"}
 plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -427,11 +324,164 @@ b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 
+
 \clearpage
 
-## Medium-term loss of commercial length data
+# (APPENDIX) Appendix {-} 
 
-### Area 3CD
+# Changes in commercial length sampling {#sec:AppendixA}
+
+## Area 3CD
+
+```{r get-length-samples-3cd}
+
+comm_samp <- dat$commercial_samples %>% 
+  dplyr::filter(major_stat_area_name %in% c("3C: S.W. VANCOUVER ISLAND","3D: N.W. VANCOUVER ISLAND"), 
+                year>1995) 
+
+summary_by_year <- comm_samp %>% 
+  select(year,sample_id,length) %>% 
+  group_by(year) %>%
+  summarize(nsamples=n_distinct(sample_id),
+            nlengths=sum(!is.na(length)),
+            meanlength=round(mean(length),2),
+            sdlength=round(sd(length),2),
+            selength=round(sdlength/sqrt(nlengths),2))
+
+ colnames(summary_by_year) <- c("Year", "Num samples", "Num lengths","Raw mean length", "SD length", "SE length")
+
+knitr::kable(summary_by_year,
+               caption = "Summary of commercial length samples since 1996 for Area 3CD. Mean lengths are unweighted by catch and are presented simply to visualise changes in sampling effort since 2015.",
+               longtable = TRUE, format = "pandoc",
+               align = get.align(ncol(summary_by_year))[-1],
+               booktabs = TRUE, linesep = "", escape = FALSE, row.names = FALSE) %>%
+    kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
+
+```
+
+```{r plot-length-samples-3cd, fig.cap="Summary of commercial length samples since 2012 for Area 3CD. Mean lengths are unweighted by catch and are presented simply to visualise changes in sampling effort since 2012."}
+
+g <- summary_by_year %>% 
+  dplyr::filter(Year>2011) %>% 
+  ggplot(aes(x=Year, y=`Raw mean length`))+
+  geom_point(size=3)+
+  geom_errorbar(aes(ymin=`Raw mean length`-`SE length`, ymax=`Raw mean length`+ `SE length`),  width=0.1)+
+  labs(x = "Year", y = "Raw mean weight (cm)")+
+  gfplot::theme_pbs()+
+  scale_color_viridis_d() +
+  theme(plot.title = element_text(face="bold", size=14),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.text.x = element_text(size=10))
+
+g
+
+```
+
+\clearpage
+
+## Area 5ABCD
+
+```{r get-length-samples-5abcd}
+
+comm_samp <- dat$commercial_samples %>% 
+  dplyr::filter(major_stat_area_name %in% c("5A: SOUTHERN Q.C. SOUND" ,"5B: NORTHERN Q.C. SOUND","5C: SOUTHERN HECATE STRAIT","5D: NORTHERN HECATE STRAIT"), 
+                year>1995) 
+
+summary_by_year <- comm_samp %>% 
+  select(year,sample_id,length) %>% 
+  group_by(year) %>%
+  summarize(nsamples=n_distinct(sample_id),
+            nlengths=sum(!is.na(length)),
+            meanlength=round(mean(length),2),
+            sdlength=round(sd(length),2),
+            selength=round(sdlength/sqrt(nlengths),2))
+
+ colnames(summary_by_year) <- c("Year", "Num samples", "Num lengths","Raw mean length", "SD length", "SE length")
+
+knitr::kable(summary_by_year,
+               caption = "Summary of commercial length samples since 1996 for Area 5ABCD. Mean lengths are unweighted by catch and are presented simply to visualise changes in sampling effort since 2015.",
+               longtable = TRUE, format = "pandoc",
+               align = get.align(ncol(summary_by_year))[-1],
+               booktabs = TRUE, linesep = "", escape = FALSE, row.names = FALSE) %>%
+    kableExtra::kable_styling(latex_options = c("hold_position", "repeat_header"))
+
+```
+
+```{r plot-length-samples-5abcd, fig.cap="Summary of commercial length samples since 2012 for Area 5ABCD. Mean lengths are unweighted by catch and are presented simply to visualise changes in sampling effort since 2012."}
+
+g <- summary_by_year %>% 
+  dplyr::filter(Year>2011) %>% 
+  ggplot(aes(x=Year, y=`Raw mean length`))+
+  geom_point(size=3)+
+  geom_errorbar(aes(ymin=`Raw mean length`-`SE length`, ymax=`Raw mean length`+ `SE length`),  width=0.1)+
+  labs(x = "Year", y = "Raw mean weight (cm)")+
+  gfplot::theme_pbs()+
+  scale_color_viridis_d() +
+  theme(plot.title = element_text(face="bold", size=14),
+        axis.title.x = element_text(size=12),
+        axis.title.y = element_text(size=12),
+        axis.text.y = element_text(size=12),
+        axis.text.x = element_text(size=10))
+
+g
+
+```
+
+
+\clearpage
+
+# Effects of medium-term loss of commercial length data {#sec:AppendixB}
+
+## Area 3CD
+
+```{r tab-mean-weight-recent-3cd-2, results='asis'}
+mw.table(c(base.model.3cd, sens.models.22), 
+         c(base.model.3cd.name, sens.models.name.22), 
+         years=2010:2020,
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+
+```{r tab-param-est-biomass-3cd-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+\clearpage
+
+```{r tab-param-est-biomass-3cd-per-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
+
+```{r tab-param-est-recruit-3cd-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 caption = "Comparison of percent difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
+\clearpage
+
 
 ```{r fig-base-mean-weight-3cd-sc-4, fig.cap="Scenario 4 model MPD fit to the mean weight data for Area 3CD (no data for 2014-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.22[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -457,7 +507,53 @@ r.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.nam
 
 \clearpage
 
-### Area 5ABCD
+## Area 5ABCD
+
+```{r tab-mean-weight-recent-5abcd-2, results='asis'}
+mw.table(c(base.model.5abcd, sens.models.2), 
+         c(base.model.5abcd.name, sens.models.name.2), 
+         years=2010:2020,
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+```{r tab-param-est-biomass-5abcd-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of recent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+\clearpage
+
+```{r tab-param-est-biomass-5abcd-per-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
+```{r tab-param-est-recruit-5abcd-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
+
+\clearpage
+
 
 ```{r fig-base-mean-weight-5abcd-sc-4, fig.cap="Scenario 4 model MPD fit to the mean weight data for Area 5ABCD (no data for 2014-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.2[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -479,33 +575,5 @@ b.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.
 
 ```{r fig-sens-recr-5abcd-m2, fig.cap="Sensitivity of recruitment estimates to the two medium-term treatments of the commercial mean weight index, Area 5ABCD."}
 r.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.name.2))
-```
-
-# APPENDIX
-
-## Look at 2017 and 2018 for Area 3CD
-
-```{r get-length-samples}
-
-comm_samp <- dat$commercial_samples %>% 
-  dplyr::filter(major_stat_area_name %in% c("3C: S.W. VANCOUVER ISLAND","3D: N.W. VANCOUVER ISLAND"), 
-                year>1996) 
-
-summary_by_year <- comm_samp %>% 
-  select(year,sample_id,length) %>% 
-  group_by(year) %>%
-  summarize(nsamples=n_distinct(sample_id),
-            nlengths=sum(!is.na(length)),
-            meanlength=mean(length),
-            sdlength=sd(length),
-            selength=sdlength/sqrt(nlengths))
-
-g <- ggplot(summary_by_year,aes(x=year, y=meanlength))+
-  geom_point(colour="blue")+
-  geom_errorbar(aes(ymin=meanlength-selength, ymax=meanlength+selength), colour="blue", width=0.2)
-
-g
- 
-
 ```
 

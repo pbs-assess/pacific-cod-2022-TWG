@@ -256,7 +256,6 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
 
 \clearpage
 
-
 ```{r tab-param-est-biomass-3cd-per-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
                  c(base.model.3cd.name, sens.models.name.22), 
@@ -282,9 +281,7 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
 
 \clearpage
 
-
 ### Area 5ABCD
-
 
 ```{r tab-mean-weight-recent-5abcd-2, results='asis'}
 mw.table(c(base.model.5abcd, sens.models.2), 
@@ -304,6 +301,8 @@ make.value.table.compare(c(base.model.5abcd, sens.models.2),
 
 ```
 
+\clearpage
+
 ```{r tab-param-est-biomass-5abcd-per-2, results='asis'}
 make.value.table.compare(c(base.model.5abcd, sens.models.2), 
                  c(base.model.5abcd.name, sens.models.name.2), 
@@ -314,8 +313,6 @@ make.value.table.compare(c(base.model.5abcd, sens.models.2),
                  percent=TRUE)
 
 ```
-
-\clearpage
 
 ```{r tab-param-est-recruit-5abcd-2, results='asis'}
 make.value.table.compare(c(base.model.5abcd, sens.models.2), 
@@ -483,3 +480,32 @@ b.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.
 ```{r fig-sens-recr-5abcd-m2, fig.cap="Sensitivity of recruitment estimates to the two medium-term treatments of the commercial mean weight index, Area 5ABCD."}
 r.plot(c(base.model.5abcd, sens.models.2), c(base.model.5abcd.name, sens.models.name.2))
 ```
+
+# APPENDIX
+
+## Look at 2017 and 2018 for Area 3CD
+
+```{r get-length-samples}
+
+comm_samp <- dat$commercial_samples %>% 
+  dplyr::filter(major_stat_area_name %in% c("3C: S.W. VANCOUVER ISLAND","3D: N.W. VANCOUVER ISLAND"), 
+                year>1996) 
+
+summary_by_year <- comm_samp %>% 
+  select(year,sample_id,length) %>% 
+  group_by(year) %>%
+  summarize(nsamples=n_distinct(sample_id),
+            nlengths=sum(!is.na(length)),
+            meanlength=mean(length),
+            sdlength=sd(length),
+            selength=sdlength/sqrt(nlengths))
+
+g <- ggplot(summary_by_year,aes(x=year, y=meanlength))+
+  geom_point(colour="blue")+
+  geom_errorbar(aes(ymin=meanlength-selength, ymax=meanlength+selength), colour="blue", width=0.2)
+
+g
+ 
+
+```
+

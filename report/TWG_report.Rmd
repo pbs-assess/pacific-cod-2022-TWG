@@ -34,7 +34,7 @@ source(file.path(here::here(), "R", "all.R")) #Loading the data is in this file 
 
 ```{r load-models}
 
-load.models.into.parent.env()
+#load.models.into.parent.env()
 
 ```
 
@@ -47,7 +47,7 @@ build(ovwrt.base = FALSE,
       burnin = 1000,
       thin = 1)
 
-#load.models.into.parent.env()
+load.models.into.parent.env()
 
 source(file.path(rootd.R, "custom-knitr-variables.R")) # Making catch data objects is in this file
 ```

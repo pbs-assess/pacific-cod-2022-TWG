@@ -67,7 +67,7 @@ The stock assessment is a delay-difference model, fit to commercial and survey i
 
 In general, even before the pandemic, there has been a decline in commercial sampling of Pacific cod since 2015 (Appendix A). In Area 3CD, only four samples were taken in 2017 (total 300 fish), no samples were taken in 2018, and only two samples were taken in 2019 (360 fish; Table \@ref(tab:get-length-samples-3cd)). The 2017 mean weight value was anomalously high (3.024 kg) and was not used in the 2020 stock assessment update [@dfo2021]. Unweighted mean lengths and standard errors are shown in Table \@ref(tab:get-length-samples-3cd) and Figure \@ref(fig:plot-length-samples-3cd). Similarly, commercial sampling also declined in Area 5ABCD (Table \@ref(tab:get-length-samples-5abcd) and Figure \@ref(fig:plot-length-samples-5abcd)).
 
-Here, we report on the potential impact of the loss of commercial sampling since 2019 on the 2022 assessment update, by looking at how the 2020 assessment [@dfo2021] would have been affected by the loss of three years of commercial length data. We compare results from the 2020 stock assessment with three alternative data treatments (scenarios) that attempt to deal with a hypothetical loss of commercial biological sampling by: i) using no commercial mean weight data for 2018-2020; ii) using the last observed mean weight observation for 2018-2020; and iii) using an average mean weight observation for 2018-2020.
+Here, we report on the potential impact of the loss of commercial sampling since 2019 on the 2022 assessment update, by looking at how the 2020 assessment [@dfo2021] would have been affected by the loss of three years of commercial length data. We compare results from the 2020 stock assessment with three alternative data treatments (scenarios) that attempt to deal with a hypothetical loss of commercial biological sampling by: i) using no commercial mean weight data for 2018-2020; ii) using the last observed mean weight observation for 2018-2020; and iii) using 3-year  average mean weight observation for 2018-2020.
 
 We caution that the true impact of missing commercial length data from 2020 to 2022 can never be fully evaluated, as these data will never exist. The direction of any assessment biases will depend on the magnitude of the last length observations relative to the true, unknown, lengths. However, this analysis can provide some guidance on the possible relative impacts of  alternative approaches for dealing with loss of the mean weight data. We also provide results of scenarios with longer ("medium-term") losses of mean weight data to evaluate the possible impacts of ongoing missing mean weight data for future assessments.
 
@@ -77,19 +77,17 @@ For each area (Area 3CD and Area 5ABCD), we evaluated three alternative treatmen
 
 The three treatments (scenarios) were:
 
-**NOTE ABOUT 3CD BASE: the 2017 value was anomalously high (3.024 kg) and was not used in the 2020 assessment. There was no 2018 value. So here for Scenario 1, we will delete data for 2019-2020. For Scenario 2 we will use the 2016 value for the years 2018:2020 (maintaining the missing data in 2017 but adding a data point in 2018). For Scenario 3, we will use the average 2014-2016 for 2018-2020 (again,adding a data point in 2018) **
+Sc 1. *No commercial mean weight data for 2018-2020*. For Area 3CD, this means there was no commercial mean weight index for the last four years of the assessment because there were already no data for 2017 and 2018 (Table @\ref(tab:tab-mean-weight-recent-3cd)). For Area 5ABCD, there was no commercial mean weight index for the last three years of the assessment (Table @\ref(tab:tab-mean-weight-recent-5abcd)).
 
-Sc 1. For 3CD, include no commercial mean weight index for the last four years of the assessment (the 2020 assessment had no data for 2017 and 2018). For 5ABCD, include no commercial mean weight index for the last four years of the assessment.
+Sc 2. *Use the last observed mean weight observation for 2018-2020* For Area 3CD, this means using the 2016 commercial mean weight index value for model years 2018-2020 (Table @\ref(tab:tab-mean-weight-recent-3cd)). This actually means adding a data point for 2018. For Area 5ABCD, this means using the 2017 commercial mean weight index value for model years 2018-2020 (Table @\ref(tab:tab-mean-weight-recent-5abcd)). 
 
-Sc 2. For 3CD, use the 2016 commercial mean weight index value for model years 2018, 2019 and 2020. For 5ABCD, use the 2017 commercial mean weight index value for model years 2018, 2019 and 2020. 
+Sc 3. *Use 3-year average mean weight observation for 2018-2020* For Area 3CD, this means using the 2014-2016 average of the commercial mean weight index for model years 2018-2020 (Table @\ref(tab:tab-mean-weight-recent-3cd)). As for Scenario 2, this means adding a data point for 2018. For Area 5ABCD, this means using the 2015-2017 average of the commercial mean weight index for model years 2018-2020 (Table @\ref(tab:tab-mean-weight-recent-5abcd)).
 
-Sc 3. For 3CD, use the 2014-2016 average of the commercial mean weight index for model years 2018, 2019 and 2020. For 5ABCD, use the 2015-2017 average of the commercial mean weight index for model years 2018, 2019 and 2020.
-   
-Resulting mean weight indices are shown in Figs XX.
+For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
 
-## Medium-term loss of commercial length data
+Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data on the 2020 stock assessment. See Appendix B for Methods and Results.
 
-ADD TEXT HERE
+
 
 # Results
 
@@ -432,6 +430,14 @@ g
 \clearpage
 
 # Effects of medium-term loss of commercial length data {#sec:AppendixB}
+
+Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data on the 2020 stock assessment. 
+
+We evaluated two scenarios for each stock:
+
+Sc 4. *No commercial mean weight data for 2014-2020*. See Tables @\ref(tab:tab-mean-weight-recent-3cd-2) and  @\ref(tab:tab-mean-weight-recent-5abcd-2)).
+
+Sc 5. *Use the last observed mean weight observation for 2014-2020* For both stocks, this means using the 2013 commercial mean weight index value for model years 2018-2020 (Tables @\ref(tab:tab-mean-weight-recent-3cd-2) and @\ref(tab:tab-mean-weight-recent-5abcd-2)). Note for Area 3CD, this  means adding data points for 2017 and 2018.
 
 ## Area 3CD
 

@@ -146,15 +146,27 @@ mw.table(c(base.model.3cd, sens.models.11),
 ```{r tab-param-est-biomass-3cd, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.11), 
                  c(base.model.3cd.name, sens.models.name.11), 
-                 years=2010:2020,
+                 years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 digits = 2,
                  caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
 ```
 
 \clearpage
+
+
+```{r tab-param-est-biomass-3cd-per, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.11), 
+                 c(base.model.3cd.name, sens.models.name.11), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
 
 ```{r tab-param-est-recruit-3cd, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.11), 
@@ -162,13 +174,12 @@ make.value.table.compare(c(base.model.3cd, sens.models.11),
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 digits = 2,
-                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.",
+                 percent=TRUE)
 
 ```
 
 \clearpage
-
 
 ### Area 5ABCD
 
@@ -184,15 +195,27 @@ mw.table(c(base.model.5abcd, sens.models.1),
 ```{r tab-param-est-biomass-5abcd, results='asis'}
 make.value.table.compare(c(base.model.5abcd, sens.models.1), 
                  c(base.model.5abcd.name, sens.models.name.1), 
-                 years=2010:2020,
+                 years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 digits = 2,
                  caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
 
 ```
 
 \clearpage
+
+
+```{r tab-param-est-biomass-5abcd-per, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.1), 
+                 c(base.model.5abcd.name, sens.models.name.1), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
 
 ```{r tab-param-est-recruit-5abcd, results='asis'}
 make.value.table.compare(c(base.model.5abcd, sens.models.1), 
@@ -200,8 +223,8 @@ make.value.table.compare(c(base.model.5abcd, sens.models.1),
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 digits = 2,
-                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.",
+                 percent=TRUE)
 
 ```
 
@@ -224,15 +247,27 @@ mw.table(c(base.model.3cd, sens.models.22),
 ```{r tab-param-est-biomass-3cd-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
                  c(base.model.3cd.name, sens.models.name.22), 
-                 years=2010:2020,
+                 years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 digits = 2,
                  caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
 
 ```
 
 \clearpage
+
+
+```{r tab-param-est-biomass-3cd-per-2, results='asis'}
+make.value.table.compare(c(base.model.3cd, sens.models.22), 
+                 c(base.model.3cd.name, sens.models.name.22), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
+
+```
+
 
 ```{r tab-param-est-recruit-3cd-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
@@ -240,8 +275,8 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 digits = 2,
-                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+                 caption = "Comparison of percent difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 3CD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
 
 ```
 
@@ -259,15 +294,24 @@ mw.table(c(base.model.5abcd, sens.models.2),
 
 ```
 
-
 ```{r tab-param-est-biomass-5abcd-2, results='asis'}
 make.value.table.compare(c(base.model.5abcd, sens.models.2), 
                  c(base.model.5abcd.name, sens.models.name.2), 
-                 years=2010:2020,
+                 years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 digits = 2,
-                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+                 caption = "Comparison of recent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+
+```
+
+```{r tab-param-est-biomass-5abcd-per-2, results='asis'}
+make.value.table.compare(c(base.model.5abcd, sens.models.2), 
+                 c(base.model.5abcd.name, sens.models.name.2), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
 
 ```
 
@@ -279,8 +323,8 @@ make.value.table.compare(c(base.model.5abcd, sens.models.2),
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 digits = 2,
-                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.")
+                 caption = "Comparison of recent median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 percent=TRUE)
 
 ```
 

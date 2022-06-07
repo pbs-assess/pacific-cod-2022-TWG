@@ -672,11 +672,11 @@ make.value.table <- function(model,
 # NO FRENCH
 make.value.table.compare <- function(models,
                                          model.names,
-                                         years=2010:2020,
+                                         years=2010:2021,
                                          type=1,
                                          mpdmed="med",
-                                         digits = 3,
-                                         caption = ""){
+                                         caption = "",
+                                         percent=FALSE){
 
   years<-years
   vars.list <- lapply(models,
@@ -697,21 +697,25 @@ make.value.table.compare <- function(models,
             }
 
             if(mpdmed=="med"){
-              tab <- f(t(out.dat[2,]), digits)
+              tab <- t(out.dat[2,])
             }else{
-              tab <- f(t(out.dat[4,]), digits)
+              tab <- t(out.dat[4,])
             }
-            tab <- t(tab)
+            tab <- t(tab) %>%
+              round(1)
             tab
   })
 
   tab <- do.call(cbind, lapply(vars.list, as.data.frame))
+  if(percent==TRUE){
+    tab <- 100*((tab-tab[,1])/tab[,1]) %>%
+      round(3)
+  }
   tab <- cbind(rownames(tab),tab)
   colnames(tab) <- c("Year",model.names)
   tab <- dplyr::filter(tab,Year %in% years)
 
-  colnames(tab) <- latex.bold(latex.perc(colnames(tab)))
-
+  #colnames(tab) <- latex.bold(latex.perc(colnames(tab)))
 
   knitr::kable(tab,
                caption = caption,

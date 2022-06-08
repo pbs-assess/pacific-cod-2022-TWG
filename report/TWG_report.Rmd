@@ -75,7 +75,7 @@ While this analysis can provide some guidance on the possible relative impacts o
 
 # Methods
 
-For each of Area 3CD and Area 5ABCD, we evaluated three alternative treatments of the commercial mean weight index, *assuming that no commercial length data had been available to calculate a mean weight index for 2018-2020*. For each scenario, we compared estimated mean weight, biomass and recruitment to estimates from the 2020 assessment [@dfo2021], which used all the available mean weight data. Except for the treatment of the final three years of the commercial mean weight index (2018-2020), all other model settings were identical to the reference case models.
+For each of Area 3CD and Area 5ABCD, we evaluated three alternative treatments of the commercial mean weight index, *assuming that no commercial length data had been available to calculate a mean weight index for 2018-2020*. For each scenario, we compared estimated mean weight, biomass and recruitment to estimates from the 2020 assessment [@dfo2021], which used all the available mean weight data. We also show impacts on the forecast 2021 biomass. Except for the treatment of the final three years of the commercial mean weight index (2018-2020), all other model settings were identical to the reference case models.
 
 The three treatments (scenarios) were:
 
@@ -113,6 +113,10 @@ Posterior biomass estimates from the Reference case model are shown in Figure \@
 
 As for Area 3CD, slightly lower estimates of 2019-2020 recruitment in Scenarios 2 and 3 compared to the Reference model (Table \@ref(tab:tab-est-recruit-5abcd)), are mostly likely driven by slightly higher mean weights in 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)), which would imply fewer small fish in the catch, all other things equal. Since Scenario 1 did not estimate mean weights, the higher estimates of 2018-2019 recruitment are likely driven by a slight increase in catches and the indices of abundance  [@dfo2020], compared to the Reference model. As for Area 3CD, recruitment estimates were more strongly influenced by the mean weight index than biomass estimates (Tables \@ref(tab:tab-est-biomass-5abcd-per) and \@ref(tab:tab-est-recruit-5abcd).
 
+## Effects of medium-term loss of commercial length data
+
+Compared to impacts of the 3-year data losses presented above, medium-term losses of commercial length data (since 2013) resulted in similar impacts on recent estimated and forecast biomass and recent estimated recruitment for Area 3CD. However, there were larger impacts for earlier years in the time series (post-2013). For Area 5ABCD, there were greater impacts on both recent and earlier estimates of biomass and recruitment, compared with the 3-year data losses presented above. See Appendix B for full details.
+
 # Conclusions and recommendations
 
 The choice of how to treat missing commercial length data for assessing Pacific cod stocks will impact conclusions about the strength of recruitment and biomass in future assessments. Impacts of loss of commercial length samples on projected 2021 biomass ranged from -18.2% to -14.1% for Area 3CD, and -6.7% to 9.1% for Area 5ABCD.
@@ -136,7 +140,7 @@ The scenarios for further discussion would be:
 
 *Scenario 3:* Use the average(2017:2019) mean weight index value for model years 2020-2022.
 
-The reduction and cessation of commercial sampling in the commercial trawl fishery will continue to impact the Pacific cod assessment, as well as assessments for other species. We strongly recommend that some commercial sampling be resumed, even at the dock, as these data provide the only direct information about recruitment strength for stocks assessed with delay-difference models. Continued absence of these data will lead to continued deterioration of the quality of the Pacific cod stock assessment.
+The reduction and cessation of commercial sampling in the commercial trawl fishery will continue to impact the Pacific cod assessment, as well as assessments for other species, and the impacts will become worse as time goes on, regardless of the choice of strategy for mitigating the data losses. We strongly recommend that some commercial sampling be resumed, even at the dock, as these data provide the only direct information about recruitment strength for stocks assessed with delay-difference models. Continued absence of these data will lead to continued deterioration of the quality of the Pacific cod stock assessment.
 
 # References {-}
 

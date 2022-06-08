@@ -113,9 +113,29 @@ Posterior biomass estimates from the Reference case model are shown in Figure \@
 
 As for Area 3CD, slightly lower estimates of 2019-2020 recruitment in Scenarios 2 and 3 compared to the Reference model (Table \@ref(tab:tab-est-recruit-5abcd)), are mostly likely driven by slightly higher mean weights in 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)), which would imply fewer small fish in the catch, all other things equal. Since Scenario 1 did not estimate mean weights, the higher estimates of 2018-2019 recruitment are likely driven by a slight increase in catches and the indices of abundance  [@dfo2020], compared to the Reference model. As for Area 3CD, recruitment estimates were more strongly influenced by the mean weight index than biomass estimates (Tables \@ref(tab:tab-est-biomass-5abcd-per) and \@ref(tab:tab-est-recruit-5abcd).
 
-# Conclusions
+# Conclusions and recommendations
 
-The choice of how to treat missing commercial length data for assessing Pacific cod stocks will impact conclusions about the strength of recruitment and biomass in future assessments. In the present analyses, the effects of different treatments (Scenarios 1-3) were stronger for Area 3CD than for Area 5ABCD, especially on recruitment estimates. This was because the last observed 2019 mean weight index value was much lower (~0.5 kg) than in the treatments that used earlier index values for 2018-2020. We note that the Area 3CD 2019 index value was calculated from only two samples (Appendix A), and may not have been representative of the mean weight in the overall catch. Indeed, the 2017 value had been removed from the 2020 assessment update [@dfo2021] because it too came from a very small sample size and was considered unrepresentative.
+The choice of how to treat missing commercial length data for assessing Pacific cod stocks will impact conclusions about the strength of recruitment and biomass in future assessments. Impacts of loss of commercial length samples on projected 2021 biomass ranged from -18.2% to -14.1% for Area 3CD, and -6.7% to 9.1% for Area 5ABCD.
+
+The effects of the alternative treatments (Scenarios 1-3) were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value was much lower (~0.5 kg) than the values used for 2018-2020 in Scenarios 2-3, which were based on earlier observed mean length data. We note that the 2019 mean weight index value for Area 3CD was calculated from only two samples (Appendix A), and may not have been representative of the mean weight in the overall catch. Indeed, the 2017 value had been removed from the 2020 assessment update [@dfo2021] because it too came from a very small sample size and was considered unrepresentative (too large). It could be argued that the 2019 value should also have been removed from the 2020 assessment update, although this would have left the assessment with no observed data since 2016, which is the situation which was examined here in Scenarios 1-3.
+
+For both stocks, the largest impacts on forecast biomass occurred in scenarios where there was no attempt to mitigate for missing mean length data (i.e., Scenario 1: no mean weight index for years with missing data). Either of the approaches used in Scenarios 2 or 3 represents an improvement over Scenario 1. However, the lack of samples in 2017-2019 for Area 3CD, and in 2018-2019 for Area 5ABCD (Appendix A) calls into question the appropriateness of Scenario 2 (using the last observed value). We therefore recommend using the approach in Scenario 3 (using a recent average of values) which includes data from larger sample sizes and may average out any anomalous values. Given the short life-span of Pacific cod, we acknowledge that neither Scenario 2 or Scenario 3 would be ideal, and may warrant further discussion by the Pacific cod Technical Working Group. 
+
+The scenarios would be as follows:
+
+**Area 3CD**
+
+*Scenario 2:* Use the 2019 mean weight index value for model years 2020-2022.
+
+*Scenario 3:* Use the average(2015:2019) mean weight index value for model years 2020-2022.
+
+**Area 5ABCD**
+
+*Scenario 2:* Use the 2019 mean weight index value for model years 2020-2022.
+
+*Scenario 3:* Use the average(2017:2019) mean weight index value for model years 2020-2022.
+
+The reduction and cessation of commercial sampling in the commercial trawl fishery will continue to impact the Pacific cod assessment, as well as assessments for other species. We strongly recommend that some commercial sampling be resumed, even at the dock, as these data provide the only direct information about recruitment strength for stocks assessed with delay-difference models. Continued absence of these data will lead to continued deterioration of the quality of the Pacific cod stock assessment.
 
 # References {-}
 

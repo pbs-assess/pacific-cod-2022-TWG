@@ -115,10 +115,11 @@ As for Area 3CD, slightly lower estimates of 2019-2020 recruitment in Scenarios 
 
 # Conclusions
 
-The choice of how to treat missing commercial length data for assessing Pacific cod stocks is expected to impact conclusions about   
+The choice of how to treat missing commercial length data for assessing Pacific cod stocks will impact conclusions about the strength of recruitment and biomass in future assessments. In the present analyses, the effects of different treatments (Scenarios 1-3) were stronger for Area 3CD than for Area 5ABCD, especially on recruitment estimates. This was because the last observed 2019 mean weight index value was much lower (~0.5 kg) than in the treatments that used earlier index values for 2018-2020. We note that the Area 3CD 2019 index value was calculated from only two samples (Appendix A), and may not have been representative of the mean weight in the overall catch. Indeed, the 2017 value had been removed from the 2020 assessment update [@dfo2021] because it too came from a very small sample size and was considered unrepresentative.
 
 # References {-}
 
+<!-- This allows appendices to appear after the references -->
 <div id="refs"></div>
 
 \clearpage

@@ -6,6 +6,7 @@ data/cache/*
 .RData
 .Ruserdata
 .Rapp.history
+*.zip
 *.pdf
 *.png
 *.rds

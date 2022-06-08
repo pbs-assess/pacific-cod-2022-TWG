@@ -119,15 +119,16 @@ The choice of how to treat missing commercial length data for assessing Pacific 
 
 The effects of the alternative treatments (Scenarios 1-3) were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value was much lower (~0.5 kg) than the values used for 2018-2020 in Scenarios 2-3, which were based on earlier observed mean length data. We note that the 2019 mean weight index value for Area 3CD was calculated from only two samples (Appendix A), and may not have been representative of the mean weight in the overall catch. Indeed, the 2017 value had been removed from the 2020 assessment update [@dfo2021] because it too came from a very small sample size and was considered unrepresentative (too large). It could be argued that the 2019 value should also have been removed from the 2020 assessment update, although this would have left the assessment with no observed data since 2016, which is the situation which was examined here in Scenarios 1-3.
 
-For both stocks, the largest impacts on forecast biomass occurred in scenarios where there was no attempt to mitigate for missing mean length data (i.e., Scenario 1: no mean weight index for years with missing data). Either of the approaches used in Scenarios 2 or 3 represents an improvement over Scenario 1. However, the lack of samples in 2017-2019 for Area 3CD, and in 2018-2019 for Area 5ABCD (Appendix A) calls into question the appropriateness of Scenario 2 (using the last observed value). We therefore recommend using the approach in Scenario 3 (using a recent average of values) which includes data from larger sample sizes and may average out any anomalous values. Given the short life-span of Pacific cod, we acknowledge that neither Scenario 2 or Scenario 3 would be ideal, and may warrant further discussion by the Pacific cod Technical Working Group. 
-
-The scenarios would be as follows:
+For both stocks, the largest impacts on forecast biomass occurred in scenarios where there was no attempt to mitigate for missing mean length data (i.e., Scenario 1: no mean weight index for years with missing data). Either of the approaches used in Scenarios 2 or 3 represents an improvement over Scenario 1. However, the lack of samples in 2017-2019 for Area 3CD, and in 2018-2019 for Area 5ABCD (Appendix A) calls into question the appropriateness of Scenario 2 (using the last observed value). We therefore recommend using the approach in Scenario 3 (using a recent average of values) which includes data from larger sample sizes and may average out any anomalous values. Given the short life-span of Pacific cod, we acknowledge that neither Scenario 2 or Scenario 3 is ideal, and may warrant further discussion by the Pacific cod Technical Working Group. 
+The scenarios for further discussion would be:
 
 **Area 3CD**
 
 *Scenario 2:* Use the 2019 mean weight index value for model years 2020-2022.
 
-*Scenario 3:* Use the average(2015:2019) mean weight index value for model years 2020-2022.
+*Scenario 3a:* Use the average(2015:2019) mean weight index value for model years 2020-2022 (excluding 2017, noting that there were no data in 2018). 
+
+*Scenario 3b* Use the average(2016:2019) mean weight index value for model years 2020-2022 (including 2017, noting that there were no data in 2018).
 
 **Area 5ABCD**
 
@@ -462,6 +463,8 @@ Sc 5. *Use the last observed mean weight observation for 2014-2020* For both sto
 
 ## Area 3CD
 
+Impacts on recent estimated and forecast biomass in Scenarios 4 and 5 were of similar magnitude to impacts in Scenarios 1 and 2, respectively (Tables \@ref(tab:tab-est-biomass-3cd-per-2) and \@ref(tab:tab-est-biomass-3cd-per)). However, differences were greater in some earlier years, especially comparing Scenario 5 to Scenario 2 (Tables \@ref(tab:tab-est-biomass-3cd-per-2) and \@ref(tab:tab-est-biomass-3cd-per)), and especially so for estimates of recruitment (Tables \@ref(tab:tab-est-recruit-3cd-2) and \@ref(tab:tab-est-recruit-3cd)).
+
 ```{r tab-mean-weight-recent-3cd-2, results='asis'}
 mw.table(c(base.model.3cd, sens.models.22), 
          c(base.model.3cd.name, sens.models.name.22), 
@@ -535,6 +538,8 @@ r.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.nam
 
 ## Area 5ABCD
 
+Impacts on recent estimated and forecast biomass were larger in Scenarios 4 and 5 than in Scenarios 1 and 2, respectively (Tables \@ref(tab:tab-est-biomass-5abcd-per-2) and \@ref(tab:tab-est-biomass-5abcd-per)). As for Area 3CD, impacts medium-term loss of commercial lengths were greater in earlier years,  (Tables \@ref(tab:tab-est-biomass-5abcd-per-2) and \@ref(tab:tab-est-biomass-5abcd-per)), and especially so for estimates of recruitment (Tables \@ref(tab:tab-est-recruit-5abcd-2) and \@ref(tab:tab-est-recruit-5abcd)).
+
 ```{r tab-mean-weight-recent-5abcd-2, results='asis'}
 mw.table(c(base.model.5abcd, sens.models.2), 
          c(base.model.5abcd.name, sens.models.name.2), 
@@ -561,7 +566,7 @@ make.value.table.compare(c(base.model.5abcd, sens.models.2),
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for a longer term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
+                 caption = "Comparison of percent difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses for medium-term loss of mean weight data, Area 5ABCD. Sc 4 = no mean weight index for 2014:2020; Sc 5 = 2013 mean weight value for 2018:2020.",
                  percent=TRUE)
 
 ```

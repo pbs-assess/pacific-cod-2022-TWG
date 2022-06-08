@@ -4,8 +4,9 @@ author: "Robyn Forrest, ..."
 date: "07/06/2022"
 link-citations: true
 bibliography: bib/refs.bib
+csl: csl/csas.csl 
 documentclass: article
-geometry: margin=2.2cm
+geometry: margin=2.3cm
 output:
   bookdown::pdf_document2:
     toc: yes
@@ -92,19 +93,21 @@ Given current uncertainty in future commercial sampling programs, we also evalua
 
 ## Area 3CD
 
-Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1-3 are shown in Figures \@ref(fig:fig-base-mean-weight-3cd) to \@ref(fig:fig-base-mean-weight-3cd-sc3). 
+Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1-3 are shown in Figures \@ref(fig:fig-base-mean-weight-3cd) to \@ref(fig:fig-base-mean-weight-3cd-sc3). As in previous assessments [@forrest2020], model fits in all scenarios were generally poor, with the models tending to underestimate observed mean weight, especially in the earlier part of the time series. This is likely attributable to underrepresentation of smaller and younger fish in the data prior to the 1997 introduction of at-sea observers, as well as other data sources (catch and indices of abundance) being more important drivers of model estimates. 
 
-Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd).
+The 2020 Reference model included the 2019 observed mean weight index value of 1.399 kg, which was also used for the model year 2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)). This value is lower than the 2016 value, or average 2014-2016 values, which were used for model years 2018-2020 in Scenarios 2 and 3, respectively (Table \@ref(tab:tab-mean-weight-recent-3cd)). Therefore the model-estimated mean weight for 2018-2020 was lower in the Reference model than in Scenarios 2 and 3 (Figures \@ref(fig:fig-base-mean-weight-3cd), \@ref(fig:fig-base-mean-weight-3cd-sc2) and \@ref(fig:fig-base-mean-weight-3cd-sc3)). Note that Scenario 1 did not include a mean weight index after 2016, and the model therefore did not estimate mean weight for 2017-2020 (Figure \@ref(fig:fig-base-mean-weight-3cd-sc1)).
 
-The three alternative treatments of the mean weight index all resulted in reduced estimates of biomass for 2019-2020 and reduced 2021 projection (Table \@ref(tab:tab-est-biomass-3cd); Figure \@ref(fig:fig-sens-biomass-3cd)). The percentage change for the 2021 biomass projection ranged from -18.2% in Scenario 1 to -14.1% in Scenario 3 (Table \@ref(tab:tab-est-biomass-3cd-per)), indicating that bias was greatest when there was no attempt to replace the missing data. Posterior estimates of recruitment were much lower in 2019-2020 in the three alternative scenarios compared to the Reference case, with percentage change ranging from -53.1% to -32.4% (Table \@ref(tab:tab-est-recruit-3cd); Figure \@ref(fig:fig-sens-recr-3cd)). 
+Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd). The three alternative treatments of the mean weight index all resulted in reduced estimates of biomass for 2019-2020 and a reduced 2021 projection (Table \@ref(tab:tab-est-biomass-3cd); Figure \@ref(fig:fig-sens-biomass-3cd)). The percentage change for the 2021 biomass projection ranged from -18.2% in Scenario 1 to -14.1% in Scenario 3 (Table \@ref(tab:tab-est-biomass-3cd-per)), indicating that bias was greatest when there was no attempt to replace the missing data (Scenario 1). Posterior estimates of recruitment were much lower in 2019-2020 in the three alternative scenarios compared to the Reference case, with percentage change ranging from -53.1% in Scenario 1 to -32.4% in Scenario 3 (Table \@ref(tab:tab-est-recruit-3cd); Figure \@ref(fig:fig-sens-recr-3cd)).
+
+In this case, the lower estimates of 2019-2020 recruitment in Scenarios 2 and 3, compared to the Reference model, are mostly likely driven by the higher mean weights in 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)), which would imply fewer small fish in the catch, all other things equal. In Scenario 1, in the absence of any information about recruitment from the mean weight index, the lower estimates of 2018-2019 recruitment are likely driven by the low 2018 index of abundance value and very low catches in 2018 and 2019 [@dfo2020]. 
 
 ## Area 5ABCD
 
-Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1-3 are shown in Figures \@ref(fig:fig-base-mean-weight-5abcd) to \@ref(fig:fig-base-mean-weight-5abcd-sc3). 
+Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1-3 are shown in Figures \@ref(fig:fig-base-mean-weight-5abcd) to \@ref(fig:fig-base-mean-weight-5abcd-sc3). As for Area 3CD and previous assessments [@forrest2015; @forrest2020], model fits in all scenarios tended to underestimate observed mean weight.
 
-Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd).
+In contrast to Area 3CD, mean weight index values for 2018-2020 in Scenarios 2-3 were more similar to the Reference model (Table \@ref(tab:tab-mean-weight-recent-5abcd)), resulting in more similar estimates of mean weight (Figures \@ref(fig:fig-base-mean-weight-5abcd), \@ref(fig:fig-base-mean-weight-5abcd-sc2) and \@ref(fig:fig-base-mean-weight-5abcd-sc3)). Scenario 1 did not include a mean weight index after 2017, and the model therefore did not estimate mean weight for 2018-2020 (Figure \@ref(fig:fig-base-mean-weight-5abcd-sc1)).
 
-Scenario 1 resulted in increased estimates of biomass for 2019-2020 and the 2021 projection, while Scenarios 2 and 3 resulted in decreases (Table \@ref(tab:tab-est-biomass-5abcd); Figure \@ref(fig:fig-sens-biomass-5abcd)). The percentage changes for the 2021 biomass projection were smaller than for Area 3CD, and ranged from -6.8% in Scenario 2 to 9.1% in Scenario 1 (Table \@ref(tab:tab-est-biomass-5abcd-per)). Posterior estimates of recruitment in 2019-2020 differed by year and scenario compared to the Reference case, with percentage change ranging from -13.3% to 66.6% (Table \@ref(tab:tab-est-recruit-5abcd); Figure \@ref(fig:fig-sens-recr-5abcd)).
+Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd). Scenario 1 resulted in increased estimates of biomass for 2019-2020 and the 2021 projection, while Scenarios 2 and 3 resulted in decreases in 2019-2020 biomass estimates and the 2021 projection  (Table \@ref(tab:tab-est-biomass-5abcd); Figure \@ref(fig:fig-sens-biomass-5abcd)). The percentage changes for the 2021 biomass projection were smaller than for Area 3CD, ranging from -6.8% in Scenario 2 to 9.1% in Scenario 1 (Table \@ref(tab:tab-est-biomass-5abcd-per)). Posterior estimates of recruitment in 2019-2020 differed by year and scenario compared to the Reference case, with percentage change ranging from -13.3% in Scenarios 2 and 3 to 66.6% in Scenario 1 (Table \@ref(tab:tab-est-recruit-5abcd); Figure \@ref(fig:fig-sens-recr-5abcd)).
 
 # Conclusions
 
@@ -213,8 +216,6 @@ make.value.table.compare(c(base.model.5abcd, sens.models.1),
 
 ```
 
-
-
 \clearpage
 
 # Figures {#sec:figures}
@@ -242,7 +243,7 @@ plot_grid(mw.plot(sens.models.11[[2]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
-```{r fig-base-mean-weight-3cd-sc3, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD (mean 2014:2016 index value used for 2018-2020). For clarity, only MPD results are shown."}
+```{r fig-base-mean-weight-3cd-sc3, fig.cap="Scenario 3 model MPD fit to the mean weight data for Area 3CD (mean 2014:2016 index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.11[[3]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.11[[3]], french=french),
           nrow = 1,

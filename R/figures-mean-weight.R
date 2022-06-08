@@ -12,8 +12,7 @@ mw.plot <- function(model,
   i <- cbind(yrs, obs, fit) %>% as.tibble() %>%
     mutate(lower = obs - cv,
            upper = obs + cv)
-    ## mutate(lower = obs - (obs * cv),
-    ##        upper = obs + (obs * cv))
+
   names(i) <- c("Year", "Annual mean weight (kg)", "Fit", "Lower", "Upper")
 
   p <- ggplot(i) +

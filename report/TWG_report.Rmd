@@ -58,6 +58,8 @@ if(!knitr:::is_latex_output())
   options(knitr.table.format = "pandoc")
 ```
 
+\clearpage
+
 # Context
 
 The last assessment for Pacific cod (*Gadus macrocephalus*) in British Columbia (BC) was completed in 2020 [@dfo2021].
@@ -124,6 +126,10 @@ The choice of how to treat missing commercial length data for assessing Pacific 
 The effects of the alternative treatments (Scenarios 1-3) were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value was much lower (~0.5 kg lower) than the values used for 2018-2020 in Scenarios 2-3, which were based on earlier observed mean length data. We note that the 2019 mean weight index value for Area 3CD was calculated from only two samples (Appendix A), and may not have been representative of the mean weight in the overall catch. Indeed, the 2017 value had been removed from the 2020 assessment [@dfo2021] because it too came from a very small sample size and was considered unrepresentative (too large). It could be argued that the 2019 value should also have been removed from the 2020 assessment update, although this would have left the assessment with no observed data since 2016, which is the situation which was examined here in Scenarios 1-3.
 
 For both stocks, the largest impacts on forecast biomass occurred in scenarios where there was no attempt to mitigate for missing mean length data (i.e., Scenario 1: no mean weight index for years with missing data). Either of the approaches used in Scenarios 2 or 3 represents an improvement over Scenario 1. However, the lack of samples since 2017 (Appendix A) calls into question the appropriateness of Scenario 2 (using the last observed value). We therefore recommend using the approach in Scenario 3 (using a recent average of values) which includes data from larger sample sizes and may average out any anomalous values. However, given the short life-span of Pacific cod, we acknowledge that neither Scenario 2 or Scenario 3 is ideal, and the choice of approach warrants further discussion by the Pacific cod Technical Working Group. 
+
+
+\clearpage
+
 The scenarios for further discussion would be:
 
 **Area 3CD**
@@ -260,12 +266,14 @@ plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
+
 ```{r fig-base-mean-weight-3cd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD (no data for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.11[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.11[[1]], french=french),
           nrow = 1,
           ncol = 2)
 ```
+
 
 ```{r fig-base-mean-weight-3cd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD (2016 mean weight index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.11[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -281,6 +289,7 @@ plot_grid(mw.plot(sens.models.11[[3]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
+
 ```{r fig-model-ref-biomass-3cd, fig.cap="Combined posterior biomass for the reference case model for Area 3CD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.3cd,
        base.model.3cd.name,
@@ -293,6 +302,7 @@ b.plot(base.model.3cd,
 ```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to the three treatments of the commercial mean weight index, Area 3CD."}
 b.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
+
 
 ```{r fig-sens-recr-3cd, fig.cap="Sensitivity of recruitment estimates to the three treatments of the commercial mean weight index, Area 3CD."}
 r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
@@ -316,6 +326,7 @@ plot_grid(mw.plot(sens.models.1[[1]], cv = 0.2, every = 10, last.yr = 2020, fren
           ncol = 2)
 ```
 
+
 ```{r fig-base-mean-weight-5abcd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 5ABCD (2017 mean weight index value used for 2018-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.1[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.1[[2]], french=french),
@@ -330,6 +341,7 @@ plot_grid(mw.plot(sens.models.1[[3]], cv = 0.2, every = 10, last.yr = 2020, fren
           ncol = 2)
 ```
 
+
 ```{r fig-model-ref-biomass-5abcd, fig.cap="Combined posterior biomass for the reference case model for Area 5ABCD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.5abcd,
        base.model.5abcd.name,
@@ -342,6 +354,7 @@ b.plot(base.model.5abcd,
 ```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the three treatments of the commercial mean weight index, Area 5ABCD."}
 b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
+
 
 ```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the three treatments of the commercial mean weight index, Area 5ABCD."}
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
@@ -477,6 +490,7 @@ mw.table(c(base.model.3cd, sens.models.22),
 
 ```
 
+\clearpage
 
 ```{r tab-est-biomass-3cd-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
@@ -488,7 +502,6 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
 
 ```
 
-\clearpage
 
 ```{r tab-est-biomass-3cd-per-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
@@ -501,6 +514,7 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
 
 ```
 
+\clearpage
 
 ```{r tab-est-recruit-3cd-2, results='asis'}
 make.value.table.compare(c(base.model.3cd, sens.models.22), 
@@ -515,13 +529,14 @@ make.value.table.compare(c(base.model.3cd, sens.models.22),
 
 \clearpage
 
-
 ```{r fig-base-mean-weight-3cd-sc-4, fig.cap="Scenario 4 model MPD fit to the mean weight data for Area 3CD (no data for 2014-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.22[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.22[[1]], french=french),
           nrow = 1,
           ncol = 2)
 ```
+
+
 
 ```{r fig-base-mean-weight-3cd-sc-5, fig.cap="Scenario 5 model MPD fit to the mean weight data for Area 3CD (2013 mean weight index value used for 2014-2020). For clarity, only MPD results are shown."}
 plot_grid(mw.plot(sens.models.22[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
@@ -530,9 +545,11 @@ plot_grid(mw.plot(sens.models.22[[2]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
+
 ```{r fig-sens-biomass-3cd-m1, fig.cap="Sensitivity of biomass estimates to the two medium-term treatments of the commercial mean weight index, Area 3CD."}
 b.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.name.22))
 ```
+
 
 ```{r fig-sens-recr-3cd-m2, fig.cap="Sensitivity of recruitment estimates to the two medium-term treatments of the commercial mean weight index, Area 3CD."}
 r.plot(c(base.model.3cd, sens.models.22), c(base.model.3cd.name, sens.models.name.22))

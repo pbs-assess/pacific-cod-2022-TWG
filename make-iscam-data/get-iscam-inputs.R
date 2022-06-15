@@ -8,57 +8,63 @@
 
 # TODO: There's a bug in cache_pbs_data since new return_all_lengths argument.
 # Pulling the data from GFBio won't currently work
-
-library(tidyverse)
-library(gfdata)
-library(gfplot)
+# library(lubridate)
+# library(tidyverse)
+# library(gfdata)
+# library(gfplot)
 library(here)
+french<-FALSE
 
 rootd <- here::here()
 rootd.R <- file.path(rootd, "R")
 rootd.data <- file.path(rootd, "data")
 
 # load necessary functions
-source(here('R/get-data-functions.R'))
-source(here('R/cpue-functions.R'))
-french <- FALSE
+source(here('R/all.R'))
+# source(here('R/get-data-functions.R'))
+# source(here('R/cpue-functions.R'))
 
 # 1. Get the data and save into pcod-cache folder
+# DAT IS NOW CREATED IN ALL.R
+
+
 # Note that return_all_lengths must be set to TRUE because some lengths since
 # 2016 were recorded as TOTAL_LENGTH instead of FORK_LENGTH.
 # Maria confirmed this would have been a recording error rather than measurement error (May 2022)
-dat.file <- here("data/pcod-cache/pacific-cod.rds")
-
-if(!file.exists(dat.file)){
-  gfdata::cache_pbs_data(species = "pacific cod",
-                         path = file.path(rootd.data,
-                                          "pcod-cache"),
-                         survey_sets = TRUE,
-                         unsorted_only = FALSE,
-                         return_all_lengths = TRUE)
-}
-dat <- readRDS(dat.file) #query done April 20,2022
+# dat.file <- here("data/pcod-cache/pacific-cod.rds")
+#
+# if(!file.exists(dat.file)){
+#   gfdata::cache_pbs_data(species = "pacific cod",
+#                          path = file.path(rootd.data,
+#                                           "pcod-cache"),
+#                          survey_sets = TRUE,
+#                          unsorted_only = FALSE,
+#                          return_all_lengths = TRUE)
+# }
+# dat <- readRDS(dat.file) #query done April 20,2022
 
 #test
-unique(dat$commercial_samples$length_type)
+#unique(dat$commercial_samples$length_type)
 
 # Need to update the commercial samples to use the return_all_lengths argument,
 # which is currently only implemented in get_commercial_samples()
 # Need it so that it doesn't just use fork length
 
 # April 22, 2022. Philina updated gfdata to include length type
-file.name <- here::here("data/generated/comm-samples-with-length-type.rds")
- if(!file.exists(file.name)){
-   comsamp_newgfdata <- gfdata::get_commercial_samples("pacific cod",
-                                                        unsorted_only = FALSE,
-                                                        return_all_lengths = TRUE)
-   saveRDS(comsamp_newgfdata,file.name)
- }else{
-   comsamp_newgfdata <- readRDS(file.name)
- }
-#
-# # Replace commercial_samples
- dat$commercial_samples <- comsamp_newgfdata
+# file.name <- here::here("data/generated/comm-samples-with-length-type.rds")
+#  if(!file.exists(file.name)){
+#    comsamp_newgfdata <- gfdata::get_commercial_samples("pacific cod",
+#                                                         unsorted_only = FALSE,
+#                                                         return_all_lengths = TRUE)
+#    saveRDS(comsamp_newgfdata,file.name)
+#  }else{
+#    comsamp_newgfdata <- readRDS(file.name)
+#  }
+# #
+# # # Replace commercial_samples
+#  dat$commercial_samples <- comsamp_newgfdata
+
+
 
 
 #=================================================================================
@@ -151,6 +157,7 @@ w3cd <- get.mean.weight(d,
                          include.usa = include.usa,
                          a = .ALPHA3,
                          b = .BETA3) %>%
+        dplyr::filter(year!=2017) %>%
         mutate(area="3CD")
 
 ## 5ABCD

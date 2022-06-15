@@ -8,6 +8,7 @@
 mw.table <- function(models,
                      model.names,
                      years=2010:2020,
+                     area="3CD",
                      caption = caption){
 
     years <- years
@@ -38,6 +39,9 @@ mw.table <- function(models,
     mean.wts <- do.call(cbind, lapply(mean.wts.list, as.data.frame))
     mean.wts <- cbind(years,mean.wts)
     colnames(mean.wts) <- c("Year",model.names)
+
+    filename <- here::here("report", paste0("MeanWeightTable_",area ,".csv"))
+    write_csv(mean.wts, filename)
 
     knitr::kable(mean.wts,
                   caption = caption,

@@ -83,7 +83,7 @@ The three treatments (scenarios) were:
 
 Sc 1. *No commercial mean weight data for 2018-2020*. For Area 3CD, this meant there was no commercial mean weight index for the last four years of the assessment because there were already no data for 2017 and 2018 (Table \@ref(tab:tab-mean-weight-recent-3cd)). For Area 5ABCD, there was no commercial mean weight index for the last three years of the assessment (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
 
-Sc 2. *Use the last observed mean weight observation for 2018-2020*. For Area 3CD, this meant using the 2016 commercial mean weight index value for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)). This actually meant adding a data point for 2018. For Area 5ABCD, this meant using the 2017 commercial mean weight index value for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)). 
+Sc 2. *Use the last observed mean weight observation for 2018-2020*. For Area 3CD, this meant using the 2016 commercial mean weight index value for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)). This actually meant adding a data point for 2018 because there was no commercial sampling that year (and therefore no index point in the Reference model). For Area 5ABCD, this meant using the 2017 commercial mean weight index value for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)). 
 
 Sc 3. *Use 3-year average mean weight observation for 2018-2020*. For Area 3CD, this meant using the 2014-2016 average of the commercial mean weight index for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)). As for Scenario 2, this meant adding a data point for 2018. For Area 5ABCD, this meant using the 2015-2017 average of the commercial mean weight index for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
 
@@ -162,7 +162,8 @@ The reduction and cessation of commercial sampling in the commercial trawl fishe
 ```{r tab-mean-weight-recent-3cd, results='asis'}
 mw.table(c(base.model.3cd, sens.models.11), 
          c(base.model.3cd.name, sens.models.name.11), 
-         years=2010:2020,
+         years=1956:2020,
+         area="3CD",
          caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
 ```
@@ -211,7 +212,8 @@ make.value.table.compare(c(base.model.3cd, sens.models.11),
 ```{r tab-mean-weight-recent-5abcd, results='asis'}
 mw.table(c(base.model.5abcd, sens.models.1), 
          c(base.model.5abcd.name, sens.models.name.1), 
-         years=2010:2020,
+         years=1956:2020,
+         area="5ABCD",
          caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2017 mean weight value for 2018:2020; Sc 3 = mean(2015:2017) mean weight value for 2018:2020.")
 
 ```

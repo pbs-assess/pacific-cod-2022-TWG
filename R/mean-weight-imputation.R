@@ -18,8 +18,8 @@ fit <- stan(
   data = stan_dat,
   chains = 4,
   iter = 2000,
-  seed = 294382,
-  control = list(adapt_delta = 0.9999, max_treedepth = 12)
+  seed = 10292,
+  control = list(adapt_delta = 0.9999999, max_treedepth = 12)
 )
 fit
 

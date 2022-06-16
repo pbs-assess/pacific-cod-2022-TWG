@@ -2,13 +2,20 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD-allyrs.csv"))
-#dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD-allyrs.csv"))
+area <- 2 #1=3cd 2=5abcd
+
+if(area==1){
+  dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD-allyrs.csv"))
+  maxyr <- 2017
+}else{
+  dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD-allyrs.csv"))
+  maxyr <- 2018
+}
+
 dat <- dat[,1:2]
 colnames(dat) <- c("year", "mean_weight")
-# TODO: make into a function with Area as argument
 
-dat <- dplyr::filter(dat, year < 2017, !is.na(mean_weight)) # not many samples
+dat <- dplyr::filter(dat, year < maxyr, !is.na(mean_weight)) # not many samples
 
 plot(dat$year, dat$mean_weight);abline(v = 1996)
 
@@ -153,13 +160,21 @@ filter(bind_rows(fake, post)) %>%
   geom_vline(xintercept = stan_dat$start_observer_effect, lty = 2) +
   geom_vline(xintercept = stan_dat$N, lty = 2)
 
+#========================================================
 # RF: now get values to use in models
-# Want 2018-2020 ... for 3CD have to skip 2017!
-# TODO: make robust to area, for now only good for 3CD
+# Want 2018-2020 but for 3CD have to skip 2017!
+if(area==1){
+  p1<-2
+  p2<-4
+}else{
+  p1<-1
+  p2<-3
+}
+
 obsyr <- dat$year
 obsnyr <- length(obsyr)
-projyr_ind <- (obsnyr+2):(obsnyr+4)
-projyr <- (obsyr[obsnyr]+2):(obsyr[obsnyr]+4)
+projyr_ind <- (obsnyr+p1):(obsnyr+p2)
+projyr <- (obsyr[obsnyr]+p1):(obsyr[obsnyr]+p2)
 
 allyr <- c(obsyr, (obsyr[obsnyr]+1):(obsyr[obsnyr]+10))
 
@@ -170,8 +185,11 @@ post_3yproj <- post %>%
   reshape2::dcast(year~iter) %>%
   mutate(year=projyr)
 
-write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_3CD.csv"))
-#write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_5ABCD.csv"))
+if(area==1){
+ write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_3CD.csv"))
+}else{
+  write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_5ABCD.csv"))
+}
 
 # For the shortcut approach, get mean and CV from 1000 samples
 means <- all %>%
@@ -196,8 +214,13 @@ means <- means %>%
   mutate(sd=sds, CV=CVs) %>%
   dplyr::filter(year %in% projyr)
 
-write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_3CD.csv"))
-#write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_5ABCD.csv"))
+
+if(area==1){
+  write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_3CD.csv"))
+}else{
+  write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_5ABCD.csv"))
+}
+
 
 
 

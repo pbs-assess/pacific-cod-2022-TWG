@@ -221,7 +221,7 @@ sens.models.name.33 <- c("Impute iter 1",
                          "Impute iter 8")
 
 
-avg.imp.models.3cd.name <- "Average of imputed models"
+avg.impute.model.3cd.name <- "Average of imputed models"
 
 ## -----------------------------------------------------------------------------
 

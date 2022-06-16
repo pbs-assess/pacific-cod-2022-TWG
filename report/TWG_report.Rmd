@@ -193,10 +193,10 @@ make.value.table.compare(c(base.model.3cd,
 ```{r tab-est-biomass-3cd-per, results='asis'}
 make.value.table.compare(c(base.model.3cd, 
                            sens.models.11,
-                           sens.models.33), 
+                           avg.impute.model.3cd), 
                  c(base.model.3cd.name, 
                    sens.models.name.11,
-                   sens.models.name.33), 
+                   avg.impute.model.3cd.name), 
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
@@ -340,7 +340,7 @@ r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.nam
 
 
 ```{r fig-sens-avg-impute-biomass-3cd, fig.cap="Sensitivity of biomass estimates to the eight individual imputed treatments of the commercial mean weight index, Area 3CD."}
-b.plot(c(avg.impute.model.3cd), c(avg.impute.model.3cd.name))
+b.plot(c(base.model.3cd,avg.impute.model.3cd), c(base.model.3cd.name,avg.impute.model.3cd.name))
 ```
 
 

@@ -2,9 +2,12 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-dat <- readr::read_csv("data/generated/all-commercial-mean-weight.csv")
+#dat <- readr::read_csv("data/generated/all-commercial-mean-weight.csv")
+#w3cd <- dplyr::filter(dat, area == "3CD")
 
-w3cd <- dplyr::filter(dat, area == "3CD")
+w3cd <- readr::read_csv(here::here("report/MeanWeightTable_3CD.csv"))
+w3cd <- w3cd[,1:2]
+colnames(w3cd) <- c("year", "mean_weight")
 
 diff(w3cd$year)
 # TODO missing some years!!

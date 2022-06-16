@@ -156,15 +156,16 @@ sens.models.name.2 <- c("Scenario 4",
 #                                       "0_3a_5ABCD_BASE_2020_impute8"))
 #
 #
-# sens.models.name.3 <- c("Impute iter 1",
-#                         "Impute iter 2",
-#                         "Impute iter 3",
-#                         "Impute iter 4",
-#                         "Impute iter 5",
-#                         "Impute iter 6",
-#                         "Impute iter 7",
-#                         "Impute iter 8")
+# sens.models.name.3 <- c("Impute 1",
+#                         "Impute 2",
+#                         "Impute 3",
+#                         "Impute 4",
+#                         "Impute 5",
+#                         "Impute 6",
+#                         "Impute 7",
+#                         "Impute 8")
 
+avg.impute.model.5abcd.name <- "Scenario 4"
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 11 (3CD) - individual imputation iterations
@@ -188,8 +189,8 @@ sens.models.dir.name.22 <- c(file.path(model.dir,
                              file.path(model.dir,
                                        "1_2c_3CD_BASE_2020_2013_wt"))
 
-sens.models.name.22 <- c("Scenario 4",
-                         "Scenario 5")
+sens.models.name.22 <- c("Scenario 6",
+                         "Scenario 7")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 33 (3CD)
@@ -211,17 +212,17 @@ sens.models.dir.name.33 <- c(file.path(model.dir,
                              file.path(model.dir,
                                         "1_3a_3CD_BASE_2020_impute8"))
 
-sens.models.name.33 <- c("Impute iter 1",
-                         "Impute iter 2",
-                         "Impute iter 3",
-                         "Impute iter 4",
-                         "Impute iter 5",
-                         "Impute iter 6",
-                         "Impute iter 7",
-                         "Impute iter 8")
+sens.models.name.33 <- c("Impute 1",
+                         "Impute 2",
+                         "Impute 3",
+                         "Impute 4",
+                         "Impute 5",
+                         "Impute 6",
+                         "Impute 7",
+                         "Impute 8")
 
 
-avg.impute.model.3cd.name <- "Average of imputed models"
+avg.impute.model.3cd.name <- "Scenario 4"
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 44 (3CD)
@@ -229,7 +230,7 @@ avg.impute.model.3cd.name <- "Average of imputed models"
 sens.models.dir.name.44 <- c(file.path(model.dir,
                                        "1_4a_3CD_BASE_2020_impute_shortcut"))
 
-sens.models.name.44 <- "Imputation shortcut"
+sens.models.name.44 <- "Scenario 5"
 
 ## -----------------------------------------------------------------------------
 

@@ -87,9 +87,17 @@ Sc 2. *Use the last observed mean weight observation for 2018-2020*. For Area 3C
 
 Sc 3. *Use 3-year average mean weight observation for 2018-2020*. For Area 3CD, this meant using the 2014-2016 average of the commercial mean weight index for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)). As for Scenario 2, this meant adding a data point for 2018. For Area 5ABCD, this meant using the 2015-2017 average of the commercial mean weight index for model years 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
 
-For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
+Sc 4. *Use multiple imputation approach using an AR1 model to impute mean weight index values for 2018-2020*
 
-Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data on the 2020 stock assessment. See Appendix B for Methods and Results.
+A state space AR1 model was fit to the observed mean weight index. The fitted model was used to impute mean weight values for ten years after the last observation, with 1,000 imputed datasets generated for each area (model details can be found in Appendix B). Of these we randomly selected eight replicates and extracted the imputed values for 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-5abcd)). This resulted in eight datasets with imputed mean weight index values, which were used to run eight versions of the model. Posterior samples from the eight models were then averaged to produce one averaged set of posterior results that were compared to the reference case model.
+
+Sc 5. *Shortcut imputation approach*
+
+The steps described for Scenario 4 follow the correct method for multiple imputation [@rubin1987], where *x* datasets are imputed, *x* datasets are analyzed in *x* assessment models, then model results are pooled. However, the approach may be too cumbersome for the 2022 assessment update because the advice is based on model averaged results from seven sensitivity models for each area. To follow Scenario 4 in the assessment would mean running each sensitivity case x times then model-averaging results within sensitivity cases, then model-averaging those average results across sensitivity cases. We therefore also present a shortcut approach, where we calculated the mean and CV of the 1,000 imputed mean weight values for 2018-2020 and used these values in a single sensitivity case (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
+
+For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. For the Reference models and Scenarios 1-3 and 5, posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in). For Scenario 4, posterior samples were drawn every 1,000 iterations from a chain of length 2 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
+
+Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data on the 2020 stock assessment. See Appendix C for Methods and Results.
 
 # Results
 
@@ -117,7 +125,7 @@ As for Area 3CD, lower estimates of 2020 recruitment in Scenarios 2 and 3 compar
 
 ## Effects of medium-term loss of commercial length data
 
-Compared to impacts of the 3-year data losses presented above, medium-term losses of commercial length data (since 2013) resulted in similar impacts on recent estimated and forecast biomass and recent estimated recruitment for Area 3CD. However, there were larger impacts for earlier years in the time series (post-2013). For Area 5ABCD, there were greater impacts on both recent and earlier estimates of biomass and recruitment, compared with the 3-year data losses presented above. See Appendix B for full details.
+Compared to impacts of the 3-year data losses presented above, medium-term losses of commercial length data (since 2013) resulted in similar impacts on recent estimated and forecast biomass and recent estimated recruitment for Area 3CD. However, there were larger impacts for earlier years in the time series (post-2013). For Area 5ABCD, there were greater impacts on both recent and earlier estimates of biomass and recruitment, compared with the 3-year data losses presented above. See Appendix C for full details.
 
 # Conclusions and recommendations
 
@@ -166,7 +174,7 @@ mw.table(c(base.model.3cd,
          c(base.model.3cd.name, 
            sens.models.name.11, 
            sens.models.name.33), 
-         years=2010:2020,
+         years=1956:2020,
          area="3CD",
          caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020.")
 
@@ -505,10 +513,16 @@ g
 
 ```
 
+\clearpage
+
+# Imputation of missing commercial mean weight data {#sec:AppendixB}
+
+
+
 
 \clearpage
 
-# Effects of medium-term loss of commercial length data {#sec:AppendixB}
+# Effects of medium-term loss of commercial length data {#sec:AppendixC}
 
 Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data on the 2020 stock assessment. 
 

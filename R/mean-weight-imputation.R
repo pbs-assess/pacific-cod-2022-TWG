@@ -2,13 +2,13 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-# dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD.csv"))
-dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD.csv"))
+dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD-allyrs.csv"))
+#dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD-allyrs.csv"))
 dat <- dat[,1:2]
 colnames(dat) <- c("year", "mean_weight")
 # TODO: make into a function with Area as argument
 
-dat <- dplyr::filter(dat, year < 2019, !is.na(mean_weight)) # not many samples
+dat <- dplyr::filter(dat, year < 2017, !is.na(mean_weight)) # not many samples
 
 plot(dat$year, dat$mean_weight);abline(v = 1996)
 

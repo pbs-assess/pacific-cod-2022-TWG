@@ -165,15 +165,16 @@ sens.models.name.2 <- c("Scenario 4",
 #                         "Impute iter 7",
 #                         "Impute iter 8")
 
+
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 11 (3CD) - individual imputation iterations
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.11 <- c(file.path(model.dir,
-                                      "1_1b_3CD_BASE_2020_no_wt_since_2016"),
-                            file.path(model.dir,
-                                      "1_1c_3CD_BASE_2020_2016_wt"),
-                            file.path(model.dir,
-                                      "1_1d_3CD_BASE_2020_mean_wt_2014-16"))
+                                       "1_1b_3CD_BASE_2020_no_wt_since_2016"),
+                             file.path(model.dir,
+                                       "1_1c_3CD_BASE_2020_2016_wt"),
+                             file.path(model.dir,
+                                       "1_1d_3CD_BASE_2020_mean_wt_2014-16"))
 
 sens.models.name.11 <- c("Scenario 1",
                          "Scenario 2",
@@ -194,34 +195,59 @@ sens.models.name.22 <- c("Scenario 4",
 ## Sensitivity models group 33 (3CD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.33 <- c(file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute1"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute2"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute3"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute4"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute5"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute6")
-                            # file.path(model.dir,
-                            #           "1_3a_3CD_BASE_2020_impute7"),
-                            # file.path(model.dir,
-                            #           "1_3a_3CD_BASE_2020_impute8")
-                            )
-
+                                       "1_3a_3CD_BASE_2020_impute1"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute2"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute3"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute4"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute5"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute6"),
+                             file.path(model.dir,
+                                        "1_3a_3CD_BASE_2020_impute7"),
+                             file.path(model.dir,
+                                        "1_3a_3CD_BASE_2020_impute8"))
 
 sens.models.name.33 <- c("Impute iter 1",
-                        "Impute iter 2",
-                        "Impute iter 3",
-                        "Impute iter 4",
-                        "Impute iter 5",
-                        "Impute iter 6"
-                        # "Impute iter 7",
-                        # "Impute iter 8"
-                        )
+                         "Impute iter 2",
+                         "Impute iter 3",
+                         "Impute iter 4",
+                         "Impute iter 5",
+                         "Impute iter 6",
+                         "Impute iter 7",
+                         "Impute iter 8")
 
+## -----------------------------------------------------------------------------
+## Imputed models to average (3CD)
+## -----------------------------------------------------------------------------
+imp.models.3cd.dir.name <- c(file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute1"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute2"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute3"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute4"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute5"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute6"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute7"),
+                             file.path(model.dir,
+                                       "1_3a_3CD_BASE_2020_impute8"))
+
+imp.models.3cd.name <- c("Impute iter 1",
+                            "Impute iter 2",
+                            "Impute iter 3",
+                            "Impute iter 4",
+                            "Impute iter 5",
+                            "Impute iter 6",
+                            "Impute iter 7",
+                            "Impute iter 8")
 
 ## -----------------------------------------------------------------------------
 
@@ -234,12 +260,12 @@ load.models.into.parent.env <- function(){
   sens.models.1 <<- load.models(sens.models.dir.name.1)
   sens.models.2 <<- load.models(sens.models.dir.name.2)
   #sens.models.3 <<- load.models(sens.models.dir.name.3)
-  #avg.model.5abcd <<- avg.models(sens.models.dir.name.3)
+  #avg.impute.model.5abcd <<-  avg.models(sens.models.3)
   base.model.3cd <<- load.models(base.model.3cd.dir.name)
   sens.models.11 <<- load.models(sens.models.dir.name.11)
   sens.models.22 <<- load.models(sens.models.dir.name.22)
   sens.models.33 <<- load.models(sens.models.dir.name.33)
-  avg.model.3cd <<- avg.models(sens.models.dir.name.33)
+  avg.impute.model.3cd <<-  avg.models(sens.models.33)
 }
 
 build <- function(ovwrt.base = FALSE,

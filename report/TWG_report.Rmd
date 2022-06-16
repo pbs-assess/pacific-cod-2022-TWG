@@ -1,6 +1,6 @@
 ---
 title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD and Area 5ABCD in 2022. *Do not circulate without permission from the authors*."
-author: "Robyn Forrest, ..."
+author: "Robyn Forrest and Sean Anderson"
 date: "07/06/2022"
 link-citations: true
 bibliography: bib/refs.bib

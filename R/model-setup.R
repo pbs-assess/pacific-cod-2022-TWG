@@ -194,9 +194,9 @@ sens.models.name.22 <- c("Scenario 4",
 ## Sensitivity models group 33 (3CD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.33 <- c(file.path(model.dir,
-                                      "0_3a_3CD_BASE_2020_impute1"),
+                                      "1_3a_3CD_BASE_2020_impute1"),
                             file.path(model.dir,
-                                      "0_3a_3CD_BASE_2020_impute2"),
+                                      "1_3a_3CD_BASE_2020_impute2"),
                             file.path(model.dir,
                                       "1_3a_3CD_BASE_2020_impute3"),
                             file.path(model.dir,
@@ -204,11 +204,12 @@ sens.models.dir.name.33 <- c(file.path(model.dir,
                             file.path(model.dir,
                                       "1_3a_3CD_BASE_2020_impute5"),
                             file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute6"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute7"),
-                            file.path(model.dir,
-                                      "1_3a_3CD_BASE_2020_impute8"))
+                                      "1_3a_3CD_BASE_2020_impute6")
+                            # file.path(model.dir,
+                            #           "1_3a_3CD_BASE_2020_impute7"),
+                            # file.path(model.dir,
+                            #           "1_3a_3CD_BASE_2020_impute8")
+                            )
 
 
 sens.models.name.33 <- c("Impute iter 1",
@@ -216,9 +217,10 @@ sens.models.name.33 <- c("Impute iter 1",
                         "Impute iter 3",
                         "Impute iter 4",
                         "Impute iter 5",
-                        "Impute iter 6",
-                        "Impute iter 7",
-                        "Impute iter 8")
+                        "Impute iter 6"
+                        # "Impute iter 7",
+                        # "Impute iter 8"
+                        )
 
 
 ## -----------------------------------------------------------------------------

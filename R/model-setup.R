@@ -224,6 +224,14 @@ sens.models.name.33 <- c("Impute iter 1",
 avg.impute.model.3cd.name <- "Average of imputed models"
 
 ## -----------------------------------------------------------------------------
+## Sensitivity models group 44 (3CD)
+## -----------------------------------------------------------------------------
+sens.models.dir.name.44 <- c(file.path(model.dir,
+                                       "1_4a_3CD_BASE_2020_impute_shortcut"))
+
+sens.models.name.44 <- "Imputation shortcut"
+
+## -----------------------------------------------------------------------------
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -240,6 +248,7 @@ load.models.into.parent.env <- function(){
   sens.models.22 <<- load.models(sens.models.dir.name.22)
   sens.models.33 <<- load.models(sens.models.dir.name.33)
   avg.impute.model.3cd <<-  avg.models(sens.models.33)
+  sens.models.44 <<- load.models(sens.models.dir.name.44)
 }
 
 build <- function(ovwrt.base = FALSE,
@@ -281,7 +290,8 @@ build <- function(ovwrt.base = FALSE,
                                #unlist(sens.models.dir.name.3),
                                unlist(sens.models.dir.name.11),
                                unlist(sens.models.dir.name.22),
-                               unlist(sens.models.dir.name.33))
+                               unlist(sens.models.dir.name.33),
+                               unlist(sens.models.dir.name.44))
   ## Sensitivity models
   for(model.nm in sens.models.names.list){
     create.rdata.file(model.nm,

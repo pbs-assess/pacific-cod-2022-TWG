@@ -222,14 +222,6 @@ sens.models.name.33 <- c("Impute iter 1",
 
 
 ## -----------------------------------------------------------------------------
-## Imputation models to average (3CD)
-## -----------------------------------------------------------------------------
-imp.models.3cd.dir.name <- sens.models.dir.name.33
-
-desc.models.3cd.name <- sens.models.name.33
-
-
-## -----------------------------------------------------------------------------
 
 ## This function must be called from within the first knitr code chunk
 ## in the document. It is defined here so that it is in the same place
@@ -240,10 +232,12 @@ load.models.into.parent.env <- function(){
   sens.models.1 <<- load.models(sens.models.dir.name.1)
   sens.models.2 <<- load.models(sens.models.dir.name.2)
   #sens.models.3 <<- load.models(sens.models.dir.name.3)
+  #avg.model.5abcd <<- avg.models(sens.models.dir.name.3)
   base.model.3cd <<- load.models(base.model.3cd.dir.name)
   sens.models.11 <<- load.models(sens.models.dir.name.11)
   sens.models.22 <<- load.models(sens.models.dir.name.22)
   sens.models.33 <<- load.models(sens.models.dir.name.33)
+  avg.model.3cd <<- avg.models(sens.models.dir.name.33)
 }
 
 build <- function(ovwrt.base = FALSE,

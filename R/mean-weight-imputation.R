@@ -9,10 +9,12 @@ w3cd <- readr::read_csv(here::here("report/MeanWeightTable_3CD.csv"))
 w3cd <- w3cd[,1:2]
 colnames(w3cd) <- c("year", "mean_weight")
 
+w3cd <- dplyr::filter(w3cd, year < 2019, !is.na(mean_weight)) # not many samples
+
 diff(w3cd$year)
 # TODO missing some years!!
 
-w3cd <- dplyr::filter(w3cd, year < 2019) # not many samples
+
 
 stan_dat <- list(N = length(w3cd$mean_weight), y = log(w3cd$mean_weight), rho_sd = 2, start_observer_effect = min(which(w3cd$year >= 1996)))
 

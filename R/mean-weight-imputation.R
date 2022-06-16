@@ -2,36 +2,45 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
+# dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD.csv"))
+dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD.csv"))
+dat <- dat[,1:2]
+colnames(dat) <- c("year", "mean_weight")
 # TODO: make into a function with Area as argument
 
-#dat <- readr::read_csv("data/generated/all-commercial-mean-weight.csv")
-#w3cd <- dplyr::filter(dat, area == "3CD")
+dat <- dplyr::filter(dat, year < 2019, !is.na(mean_weight)) # not many samples
 
-w3cd <- readr::read_csv(here::here("report/MeanWeightTable_3CD.csv"))
-w3cd <- w3cd[,1:2]
-colnames(w3cd) <- c("year", "mean_weight")
+plot(dat$year, dat$mean_weight);abline(v = 1996)
 
-w3cd <- dplyr::filter(w3cd, year < 2019, !is.na(mean_weight)) # not many samples
-
-diff(w3cd$year)
+diff(dat$year)
 # TODO missing some years!!
 
-stan_dat <- list(N = length(w3cd$mean_weight), y = log(w3cd$mean_weight), rho_sd = 2, start_observer_effect = min(which(w3cd$year >= 1996)))
+stan_dat <- list(
+  N = length(dat$mean_weight),
+  y = log(dat$mean_weight),
+  rho_sd = 0.5,
+  start_observer_effect = min(which(dat$year >= 1996)),
+  sigma_o_prior1 = c(log(0.2), 0.3),
+  sigma_o_prior2 = c(log(0.2), 0.3),
+  sigma_p_prior = c(log(0.1), 0.3)
+)
 
 fit <- stan(
   "R/ar1ss.stan",
   data = stan_dat,
   chains = 4,
   iter = 2000,
-  seed = 10292,
-  control = list(adapt_delta = 0.9999999, max_treedepth = 12)
+  seed = 92823929,
+  pars = c("rho1", "rho2", "sigma_p", "sigma_o1", "sigma_o2",
+    "y_init", "observer_effect", "y_true"),
+  control = list(adapt_delta = 0.99, max_treedepth = 10)
 )
 fit
 
 p <- extract(fit)
 matplot(t(p$y_true), type = "l", col = "#00000010", lty = 1)
-yrs <- seq_along(w3cd$mean_weight)
-points(yrs, log(w3cd$mean_weight), col = "red")
+yrs <- seq_along(dat$mean_weight)
+points(yrs, log(dat$mean_weight), col = "red")
 
 rho1 <- p$rho1
 rho2 <- p$rho2
@@ -55,8 +64,8 @@ for (i in 1:SAMPS) {
 }
 
 matplot(y_obs, type = "l", col = "#00000010", lty = 1)
-yrs <- seq_along(w3cd$mean_weight)
-points(yrs, log(w3cd$mean_weight), col = "red")
+yrs <- seq_along(dat$mean_weight)
+points(yrs, log(dat$mean_weight), col = "red")
 
 calc_post <- function(y0, rho2, sigma_p, sigma_o2, alpha, obs_effect, N) {
   y_true <- numeric(length = N)
@@ -64,7 +73,7 @@ calc_post <- function(y0, rho2, sigma_p, sigma_o2, alpha, obs_effect, N) {
     if (i == 1) {
       y_true[i] <- y0
     } else {
-      y_true[i] <- obs_effect + alpha + rho2 * y_true[i - 1] + rnorm(1, 0, sigma_p)
+      y_true[i] <- alpha + rho2 * y_true[i - 1] + rnorm(1, 0, sigma_p)
     }
   }
   rnorm(length(y_true), y_true, sigma_o2)
@@ -79,7 +88,8 @@ for (i in 1:SAMPS) {
     # rho = 1,
     sigma_p = p$sigma_p[i],
     sigma_o2 = p$sigma_o2[i],
-    alpha = p$alpha[i],
+    # alpha = p$alpha[i],
+    alpha = 0,
     obs_effect = p$observer_effect[i],
     N = 10
   )
@@ -93,10 +103,10 @@ library(ggplot2)
 pp <- reshape2::melt(all) %>%
   rename(year = Var1, iter = Var2)
 
-w3cd$numeric_year <- 1:nrow(w3cd)
+dat$numeric_year <- 1:nrow(dat)
 # ggplot(pp, aes(year, value, group = iter)) +
 #   geom_line(alpha = 0.1) +
-#   geom_point(data = w3cd,
+#   geom_point(data = dat,
 #     mapping = aes(numeric_year, mean_weight),
 #     inherit.aes = FALSE, colour = "red")
 
@@ -115,17 +125,17 @@ pp %>%
   geom_ribbon(alpha = 0.2) +
   geom_ribbon(aes(ymin = exp(lwr2), ymax = exp(upr2)), alpha = 0.2) +
   geom_point(
-    data = w3cd,
+    data = dat,
     mapping = aes(numeric_year, mean_weight),
     inherit.aes = FALSE, colour = "red"
   ) +
   geom_line(
-    data = w3cd,
+    data = dat,
     mapping = aes(numeric_year, mean_weight),
     inherit.aes = FALSE, colour = "red", lwd = 0.2, alpha = 0.9
   )
 
-fake <- data.frame(year = w3cd$numeric_year, value = log(w3cd$mean_weight), iter = NA, real_data = TRUE)
+fake <- data.frame(year = dat$numeric_year, value = log(dat$mean_weight), iter = NA, real_data = TRUE)
 post <- subset(pp, iter %in% 1:8) %>% mutate(real_data = FALSE)
 
 # fake$iter <- 4
@@ -142,7 +152,7 @@ filter(bind_rows(fake, post)) %>%
 
 # RF: now get values to use in models
 # Want 2018-2020 ... for 3CD have to skip 2017!
-obsyr <- w3cd$year
+obsyr <- dat$year
 obsnyr <- length(obsyr)
 projyr_ind <- (obsnyr+2):(obsnyr+4)
 projyr <- (obsyr[obsnyr]+2):(obsyr[obsnyr]+4)
@@ -155,6 +165,3 @@ post_3yproj <- post %>%
   mutate(year=projyr)
 
 write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_3CD.csv"))
-
-
-

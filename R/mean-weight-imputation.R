@@ -6,6 +6,7 @@ options(mc.cores = parallel::detectCores())
 dat <- readr::read_csv(here::here("report/MeanWeightTable_5ABCD.csv"))
 dat <- dat[,1:2]
 colnames(dat) <- c("year", "mean_weight")
+# TODO: make into a function with Area as argument
 
 dat <- dplyr::filter(dat, year < 2019, !is.na(mean_weight)) # not many samples
 
@@ -148,3 +149,19 @@ filter(bind_rows(fake, post)) %>%
   scale_colour_manual(values = c("TRUE" = "red", "FALSE" = "black")) +
   geom_vline(xintercept = stan_dat$start_observer_effect, lty = 2) +
   geom_vline(xintercept = stan_dat$N, lty = 2)
+
+# RF: now get values to use in models
+# Want 2018-2020 ... for 3CD have to skip 2017!
+obsyr <- dat$year
+obsnyr <- length(obsyr)
+projyr_ind <- (obsnyr+2):(obsnyr+4)
+projyr <- (obsyr[obsnyr]+2):(obsyr[obsnyr]+4)
+
+post_3yproj <- post %>%
+  mutate(mean_weight=exp(value)) %>%
+  select(-real_data, -value) %>%
+  dplyr::filter(year %in% projyr_ind) %>%
+  reshape2::dcast(year~iter) %>%
+  mutate(year=projyr)
+
+write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_3CD.csv"))

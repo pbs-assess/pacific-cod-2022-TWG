@@ -135,8 +135,11 @@ pp %>%
     inherit.aes = FALSE, colour = "red", lwd = 0.2, alpha = 0.9
   )
 
+# RF: take a random sample
+rand <- sample(1:SAMPS,8,replace=F)
+
 fake <- data.frame(year = dat$numeric_year, value = log(dat$mean_weight), iter = NA, real_data = TRUE)
-post <- subset(pp, iter %in% 1:8) %>% mutate(real_data = FALSE)
+post <- subset(pp, iter %in% rand) %>% mutate(real_data = FALSE)
 
 # fake$iter <- 4
 # post$iter[post$iter == 4] <- 9
@@ -152,10 +155,13 @@ filter(bind_rows(fake, post)) %>%
 
 # RF: now get values to use in models
 # Want 2018-2020 ... for 3CD have to skip 2017!
+# TODO: make robust to area, for now only good for 3CD
 obsyr <- dat$year
 obsnyr <- length(obsyr)
 projyr_ind <- (obsnyr+2):(obsnyr+4)
 projyr <- (obsyr[obsnyr]+2):(obsyr[obsnyr]+4)
+
+allyr <- c(obsyr, (obsyr[obsnyr]+1):(obsyr[obsnyr]+10))
 
 post_3yproj <- post %>%
   mutate(mean_weight=exp(value)) %>%
@@ -165,3 +171,33 @@ post_3yproj <- post %>%
   mutate(year=projyr)
 
 write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_3CD.csv"))
+#write.csv(post_3yproj,here::here("data/generated/imputed_mw_2018-2020_5ABCD.csv"))
+
+# For the shortcut approach, get mean and CV from 1000 samples
+means <- all %>%
+  exp() %>%
+  as.data.frame() %>%
+  mutate(mean = rowMeans(select(., 1:SAMPS))) %>%
+  mutate(year=allyr) %>%
+  select(year,mean)
+
+sds <- apply(exp(all),1,sd)
+CVs <- sds/means$mean
+
+test1 <- mean(exp(all[1,]))
+test2 <- means$mean[1]
+test1 == test2
+
+test1 <- sd(exp(all[1,]))
+test2 <- sds[1]
+test1 == test2
+
+means <- means %>%
+  mutate(sd=sds, CV=CVs) %>%
+  dplyr::filter(year %in% projyr)
+
+write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_3CD.csv"))
+#write.csv(means,here::here("data/generated/shortcut_mw_2018-2020_5ABCD.csv"))
+
+
+

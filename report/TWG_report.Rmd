@@ -195,6 +195,7 @@ mw.table(c(sens.models.33),
 
 ```
 
+\clearpage
 
 ```{r tab-est-biomass-3cd, results='asis'}
 make.value.table.compare(c(base.model.3cd, 
@@ -211,9 +212,6 @@ make.value.table.compare(c(base.model.3cd,
                  caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020; Sc 4 = Model-averaged result from eight replicate models with imputed mean weight values; Sc 5 = Use average imputed mean weight values in a single model for 2018:2020.")
 
 ```
-
-\clearpage
-
 
 ```{r tab-est-biomass-3cd-per, results='asis'}
 make.value.table.compare(c(base.model.3cd, 
@@ -372,14 +370,16 @@ r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.nam
 b.plot(c(base.model.3cd, sens.models.33), c(base.model.3cd.name, sens.models.name.33))
 ```
 
-```{r fig-sens-biomass-3cd-impute-avg, fig.cap="Reference model posterior biomass estimates compared to model-averaged estimates from the eight replicate models with imputed mean weight values, Area 3CD."}
+```{r fig-sens-biomass-3cd-impute-avg, fig.cap="Reference model posterior biomass estimates compared to model-averaged estimates from the eight replicate models with imputed mean weight values (Scenario 4), Area 3CD."}
 b.plot(c(base.model.3cd,avg.impute.model.3cd), c(base.model.3cd.name,avg.impute.model.3cd.name))
 ```
+
 
 ```{r fig-sens-biomass-3cd-shortcut, fig.cap="Sensitivity of biomass estimates to the shortcut imputed treatments of the commercial mean weight index (Scenario 5), Area 3CD."}
 b.plot(c(base.model.3cd,sens.models.44), c(base.model.3cd.name,sens.models.name.44))
 ```
 
+\clearpage
 
 ## Area 5ABCD
 

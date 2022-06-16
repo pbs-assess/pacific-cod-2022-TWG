@@ -220,6 +220,15 @@ sens.models.name.33 <- c("Impute iter 1",
                         "Impute iter 7",
                         "Impute iter 8")
 
+
+## -----------------------------------------------------------------------------
+## Imputation models to average (3CD)
+## -----------------------------------------------------------------------------
+imp.models.3cd.dir.name <- sens.models.dir.name.33
+
+desc.models.3cd.name <- sens.models.name.33
+
+
 ## -----------------------------------------------------------------------------
 
 ## This function must be called from within the first knitr code chunk

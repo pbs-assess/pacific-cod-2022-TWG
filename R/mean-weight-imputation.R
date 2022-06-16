@@ -2,6 +2,8 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
+# TODO: make into a function with Area as argument
+
 #dat <- readr::read_csv("data/generated/all-commercial-mean-weight.csv")
 #w3cd <- dplyr::filter(dat, area == "3CD")
 

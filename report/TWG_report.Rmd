@@ -128,8 +128,6 @@ The effects of the alternative treatments (Scenarios 1-3) were stronger for Area
 
 For both stocks, the largest impacts on forecast biomass occurred in scenarios where there was no attempt to mitigate for missing mean length data (i.e., Scenario 1: no mean weight index for years with missing data). Either of the approaches used in Scenarios 2 or 3 represents an improvement over Scenario 1. However, the lack of samples since 2017 (Appendix A) calls into question the appropriateness of Scenario 2 (using the last observed value). We therefore suggest using the approach in Scenario 3 (using a recent average of values) which includes data from larger sample sizes and may average out any anomalous values. However, given the short life-span of Pacific cod, we acknowledge that neither Scenario 2 or Scenario 3 is ideal, and the choice of approach warrants further discussion by the Pacific cod Technical Working Group.
 
-\clearpage
-
 The scenarios for further discussion would be:
 
 **Area 3CD**

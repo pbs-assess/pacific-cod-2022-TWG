@@ -2,7 +2,7 @@ library(rstan)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
-area <- 2 #1=3cd 2=5abcd
+area <- 1 #1=3cd 2=5abcd
 
 if(area==1){
   dat <- readr::read_csv(here::here("report/MeanWeightTable_3CD-allyrs.csv"))

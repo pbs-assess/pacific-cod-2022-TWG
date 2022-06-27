@@ -25,6 +25,12 @@ source(here::here("R/all.R"))
 
 dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
 
+# survsamps <- list()
+# survsamps$survey_samples <- dat$survey_samples
+# survsamps$survey_sets <- dat$survey_sets
+# saveRDS(survsamps, "data/pcod-cache/survey-sets-and-samples.rds")
+# test <- readRDS("data/pcod-cache/survey-sets-and-samples.rds")
+
 catch_weight_summary <- dat$survey_sets %>%
   select(c(year, fishing_event_id, sample_id, catch_weight)) %>%
   filter(!is.na(sample_id))
@@ -50,7 +56,7 @@ Mean_wt_samples <- lengthwt_raw %>%
   group_by(year, sample_id) %>%
   summarize(mean_weight_calc=mean(weight_calc),
             mean_weight_obs = mean(weight, na.rm=TRUE),
-            catch_weight=catch_weight)
+            catch_weight=catch_weight[1])
 
 Annual_mean_wt_weighted_calc <- Mean_wt_samples %>%
   group_by(year) %>%

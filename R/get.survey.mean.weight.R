@@ -12,18 +12,35 @@
 # length-stratified for most years of the survey!!
 
 french <- FALSE
-source(here::here("R/all.R"))
+# source(here::here("R/all.R"))
+
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+
+# AREA <- "3CD"
+AREA <- "5ABCD"
+
+TYPE <- "weighted"
+# TYPE <- "raw"
 
 # L-W parameters
 #3CD
-.ALPHA3 <- 7.65616e-06
-.BETA3 <- 3.08
+if (AREA == "3CD") {
+  .ALPHA <- 7.65616e-06
+  .BETA <- 3.08
+} else {
+  #5ABCD
+  .ALPHA <- 6.722839e-06
+  .BETA <- 3.11
+}
 
-#5ABCD
-.ALPHA5 <- 6.722839e-06
-.BETA5 <- 3.11
 
-dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
+if (AREA == "3CD") SURVEY <- c("SYN WCVI")
+if (AREA == "5ABCD") SURVEY <- c("SYN QCS", "SYN HS")
+
+# dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
+dat <- readRDS("~/Downloads/survey-sets-and-samples.rds")
 
 # survsamps <- list()
 # survsamps$survey_samples <- dat$survey_samples
@@ -38,11 +55,11 @@ catch_weight_summary <- dat$survey_sets %>%
 # get survey lengths (unweighted)
 # weight_calc=.ALPHA3*length^.BETA3 is Eq C.5 in the 2018 assessment
 lengthwt_raw <- dat$survey_samples %>%
-  filter(survey_abbrev %in% c("SYN WCVI"),
+  filter(survey_abbrev %in% SURVEY,
          usability_code %in% c(0, 1, 2, 6),
          !is.na(length)) %>%
   select(year,fishing_event_id, sample_id,length,weight) %>%
-  mutate(weight_calc=.ALPHA3*length^.BETA3, weight=weight/1000) %>%
+  mutate(weight_calc=.ALPHA*length^.BETA, weight=weight/1000) %>%
   left_join(catch_weight_summary)
 
 # Now weight by catch
@@ -88,7 +105,7 @@ g <- lengthwt_raw %>%
   theme(axis.title.x = element_text(size=14))+
   theme(axis.title.y = element_text(size=14))+
   labs(title = "WCVI", y = "Calculated weight from length", x = "Measured weight")
-print(g)
+# print(g)
 
 # Plot annual mean weights
 # raw
@@ -106,3 +123,66 @@ g <- Annual_mean_wt_weighted %>%
   geom_line(aes(x=year, y=mean_weight, colour=measurement_type, linetype=measurement_type), size=1.5)+
   ylim(0,2.1)
 g
+
+cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))
+cmw <- dplyr::filter(cmw, area == AREA) %>%
+  rename(commercial_mw = mean_weight) %>%
+  select(-area)
+
+if (AREA == "5ABCD") {
+  cmw$year <- cmw$year
+}
+
+if (TYPE == "weighted") {
+  dat <- Annual_mean_wt_weighted %>%
+    select(-weighted_mean_weight_obs) %>%
+    rename(survey_mw = weighted_mean_weight_calc) %>%
+    full_join(cmw) %>%
+    arrange(year) %>%
+    filter(year >= 2000)
+  # # View(dat)
+} else {
+  dat <- Annual_mean_wt_raw %>%
+    select(-mean_weight_obs) %>%
+    rename(survey_mw = mean_weight_calc) %>%
+    full_join(cmw) %>%
+    arrange(year) %>%
+    filter(year >= 2000)
+  # View(dat)
+}
+
+if (AREA == "5ABCD") {
+  # dat <- filter(dat, year != 2007)
+}
+
+g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
+  filter(!is.na(value)) %>%
+  ggplot(aes(year, value, colour = name)) +
+  geom_vline(xintercept = 2000:2021, lty = 1, col = "grey80") +
+  geom_point() +
+  geom_line() +
+  ggtitle(paste(AREA, TYPE))+
+  theme_light()
+# print(g1)
+
+r <- range(log(c(dat$survey_mw, dat$commercial_mw)), na.rm = TRUE)
+
+g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
+  geom_point() +
+  # stat_smooth(method = "lm", se = FALSE) +
+  stat_smooth(method=function(formula,data,weights=weight) MASS::rlm(formula,
+    data,
+    weights=weight,
+    method="MM"),
+    fullrange=TRUE, se = FALSE) +
+  ggrepel::geom_text_repel(aes(label = year), size = 4) +
+  geom_abline(intercept = 0, slope = 1) +
+  coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
+  ggtitle(paste(AREA, TYPE))+
+  theme_light()
+
+# print(g)
+gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
+print(gg)
+
+

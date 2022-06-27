@@ -36,6 +36,7 @@ catch_weight_summary <- dat$survey_sets %>%
   filter(!is.na(sample_id))
 
 # get survey lengths (unweighted)
+# weight_calc=.ALPHA3*length^.BETA3 is Eq C.5 in the 2018 assessment
 lengthwt_raw <- dat$survey_samples %>%
   filter(survey_abbrev %in% c("SYN WCVI"),
          usability_code %in% c(0, 1, 2, 6),
@@ -44,29 +45,35 @@ lengthwt_raw <- dat$survey_samples %>%
   mutate(weight_calc=.ALPHA3*length^.BETA3, weight=weight/1000) %>%
   left_join(catch_weight_summary)
 
-# Get the annual mean weight (unweighted by catch weight)
-Annual_mean_wt_raw <- lengthwt_raw %>%
-  group_by(year) %>%
-  summarize(mean_weight_calc=mean(weight_calc),
-            mean_weight_obs = mean(weight, na.rm=TRUE))
-
 # Now weight by catch
 # get the mean weight in the samples, with the catch weight from the fishing event
+# Equivalent to Eq C.6 in the 2018 assessment
 Mean_wt_samples <- lengthwt_raw %>%
   group_by(year, sample_id) %>%
   summarize(mean_weight_calc=mean(weight_calc),
             mean_weight_obs = mean(weight, na.rm=TRUE),
             catch_weight=catch_weight[1])
 
+# There is no equivalent to Eq C.7, which weights by sequential quarter
+
+#Equivalent to Eq C.8 in the 2018 assessment
 Annual_mean_wt_weighted_calc <- Mean_wt_samples %>%
   group_by(year) %>%
   summarize(weighted_mean_weight_calc=sum(mean_weight_calc*catch_weight)/sum(catch_weight))
 
+# Do the same but for the observed mean weights
 Annual_mean_wt_weighted <- Mean_wt_samples %>%
+ group_by(year) %>%
+ filter(!is.na(mean_weight_obs)) %>%
+ summarize(weighted_mean_weight_obs=sum(mean_weight_obs*catch_weight)/sum(catch_weight)) %>%
+ left_join(Annual_mean_wt_weighted_calc)
+
+# Now do an unweighted version
+# Get the annual mean weight (unweighted by catch weight)
+Annual_mean_wt_raw <- lengthwt_raw %>%
   group_by(year) %>%
-  filter(!is.na(mean_weight_obs)) %>%
-  summarize(weighted_mean_weight_obs=sum(mean_weight_obs*catch_weight)/sum(catch_weight)) %>%
-  left_join(Annual_mean_wt_weighted_calc)
+  summarize(mean_weight_calc=mean(weight_calc),
+            mean_weight_obs = mean(weight, na.rm=TRUE))
 
 
 # plot measured weight against calculated weight

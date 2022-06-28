@@ -17,9 +17,10 @@ french <- FALSE
 library(dplyr)
 library(ggplot2)
 library(reshape2)
+library(here)
 
-# AREA <- "3CD"
-AREA <- "5ABCD"
+AREA <- "3CD"
+# AREA <- "5ABCD"
 
 TYPE <- "weighted"
 # TYPE <- "raw"
@@ -39,8 +40,9 @@ if (AREA == "3CD") {
 if (AREA == "3CD") SURVEY <- c("SYN WCVI")
 if (AREA == "5ABCD") SURVEY <- c("SYN QCS", "SYN HS")
 
-# dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
-dat <- readRDS("~/Downloads/survey-sets-and-samples.rds")
+#dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
+dat <-  readRDS(here("data/pcod-cache/survey-sets-and-samples.rds"))
+#dat <- readRDS("~/Downloads/survey-sets-and-samples.rds")
 
 # survsamps <- list()
 # survsamps$survey_samples <- dat$survey_samples
@@ -49,7 +51,7 @@ dat <- readRDS("~/Downloads/survey-sets-and-samples.rds")
 # test <- readRDS("data/pcod-cache/survey-sets-and-samples.rds")
 
 catch_weight_summary <- dat$survey_sets %>%
-  select(c(year, fishing_event_id, sample_id, catch_weight)) %>%
+  select(c(year, fishing_event_id, sample_id, grouping_code,density_kgpm2, catch_weight)) %>%
   filter(!is.na(sample_id))
 
 # get survey lengths (unweighted)
@@ -58,7 +60,7 @@ lengthwt_raw <- dat$survey_samples %>%
   filter(survey_abbrev %in% SURVEY,
          usability_code %in% c(0, 1, 2, 6),
          !is.na(length)) %>%
-  select(year,fishing_event_id, sample_id,length,weight) %>%
+  select(year,fishing_event_id, sample_id,grouping_code,length,weight) %>%
   mutate(weight_calc=.ALPHA*length^.BETA, weight=weight/1000) %>%
   left_join(catch_weight_summary)
 
@@ -66,12 +68,16 @@ lengthwt_raw <- dat$survey_samples %>%
 # get the mean weight in the samples, with the catch weight from the fishing event
 # Equivalent to Eq C.6 in the 2018 assessment
 Mean_wt_samples <- lengthwt_raw %>%
-  group_by(year, sample_id) %>%
+  group_by(year, sample_id, grouping_code) %>%
   summarize(mean_weight_calc=mean(weight_calc),
             mean_weight_obs = mean(weight, na.rm=TRUE),
             catch_weight=catch_weight[1])
 
-# There is no equivalent to Eq C.7, which weights by sequential quarter
+# now weight by depth stratum. Sort of the equivalent of Eq C.7 in the 2018 assessment,
+# which weighted by sequential quarter
+stratum_wts <- Mean_wt_samples %>%
+  group_by(year, grouping_code) %>%
+  summarize(stratum_sample_wt=sum(mean_weight_calc))
 
 #Equivalent to Eq C.8 in the 2018 assessment
 Annual_mean_wt_weighted_calc <- Mean_wt_samples %>%
@@ -85,13 +91,13 @@ Annual_mean_wt_weighted <- Mean_wt_samples %>%
  summarize(weighted_mean_weight_obs=sum(mean_weight_obs*catch_weight)/sum(catch_weight)) %>%
  left_join(Annual_mean_wt_weighted_calc)
 
-# Now do an unweighted version
-# Get the annual mean weight (unweighted by catch weight)
-Annual_mean_wt_raw <- lengthwt_raw %>%
-  group_by(year) %>%
-  summarize(mean_weight_calc=mean(weight_calc),
-            mean_weight_obs = mean(weight, na.rm=TRUE))
-
+# # Now do an unweighted version
+# # Get the annual mean weight (unweighted by catch weight)
+# Annual_mean_wt_raw <- lengthwt_raw %>%
+#   group_by(year) %>%
+#   summarize(mean_weight_calc=mean(weight_calc),
+#             mean_weight_obs = mean(weight, na.rm=TRUE))
+#
 
 # plot measured weight against calculated weight
 # raw
@@ -123,6 +129,11 @@ g <- Annual_mean_wt_weighted %>%
   geom_line(aes(x=year, y=mean_weight, colour=measurement_type, linetype=measurement_type), size=1.5)+
   ylim(0,2.1)
 g
+
+
+
+
+# Sean's code
 
 cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))
 cmw <- dplyr::filter(cmw, area == AREA) %>%

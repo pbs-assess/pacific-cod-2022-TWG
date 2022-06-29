@@ -19,8 +19,8 @@ library(ggplot2)
 library(reshape2)
 library(here)
 
-AREA <- "3CD"
-# AREA <- "5ABCD"
+# AREA <- "3CD"
+AREA <- "5ABCD"
 
 TYPE <- "weighted"
 # TYPE <- "raw"
@@ -70,34 +70,37 @@ lengthwt_raw <- dat$survey_samples %>%
 Mean_wt_samples <- lengthwt_raw %>%
   group_by(year, sample_id, grouping_code) %>%
   summarize(mean_weight_calc=mean(weight_calc),
-            mean_weight_obs = mean(weight, na.rm=TRUE),
+            sum_weight_calc=sum(weight_calc),
             catch_weight=catch_weight[1])
 
 # now weight by depth stratum. Sort of the equivalent of Eq C.7 in the 2018 assessment,
 # which weighted by sequential quarter
-stratum_wts <- Mean_wt_samples %>%
+# only do calculated mean weight ... not enough weight obs per strata
+
+# From Appendix C of 2018 assessment
+# The mean weight (Ws) for each stratum [sequential quarter] was then calculated,
+# weighted by the sample weight of Pacifc Cod (Sj ) in each SampleID (j).
+# If the sample weight was recorded as data, it is used.
+# Otherwise, the sum of the calculated weights from the sample is used
+# Ws = Sum(Wjs*Sjs)/Sum(Sjs)
+# Each Sum is over Ks, which is the number of sample ids in each stratum
+# for sampleid j and stratum s
+
+Mean_weight_stratum <- Mean_wt_samples %>%
   group_by(year, grouping_code) %>%
-  summarize(stratum_sample_wt=sum(mean_weight_calc))
+  summarize(stratum_mean_wt=sum(mean_weight_calc*sum_weight_calc)/sum(sum_weight_calc),
+            stratum_catch_wt=sum(catch_weight))
 
 #Equivalent to Eq C.8 in the 2018 assessment
-Annual_mean_wt_weighted_calc <- Mean_wt_samples %>%
+Annual_mean_wt_weighted <- Mean_weight_stratum %>%
   group_by(year) %>%
-  summarize(weighted_mean_weight_calc=sum(mean_weight_calc*catch_weight)/sum(catch_weight))
+  summarize(annual_mean_weight=sum(stratum_mean_wt*stratum_catch_wt)/sum(stratum_catch_wt))
 
-# Do the same but for the observed mean weights
-Annual_mean_wt_weighted <- Mean_wt_samples %>%
- group_by(year) %>%
- filter(!is.na(mean_weight_obs)) %>%
- summarize(weighted_mean_weight_obs=sum(mean_weight_obs*catch_weight)/sum(catch_weight)) %>%
- left_join(Annual_mean_wt_weighted_calc)
-
-# # Now do an unweighted version
-# # Get the annual mean weight (unweighted by catch weight)
-# Annual_mean_wt_raw <- lengthwt_raw %>%
-#   group_by(year) %>%
-#   summarize(mean_weight_calc=mean(weight_calc),
-#             mean_weight_obs = mean(weight, na.rm=TRUE))
-#
+# Now do an unweighted version
+# Get the annual mean weight (unweighted by catch weight)
+Annual_mean_wt_raw <- lengthwt_raw %>%
+  group_by(year) %>%
+  summarize(annual_mean_weight=mean(weight_calc))
 
 # plot measured weight against calculated weight
 # raw
@@ -110,31 +113,30 @@ g <- lengthwt_raw %>%
   theme(axis.text.y = element_text(size=12))+
   theme(axis.title.x = element_text(size=14))+
   theme(axis.title.y = element_text(size=14))+
-  labs(title = "WCVI", y = "Calculated weight from length", x = "Measured weight")
+  labs(title = paste(AREA), y = "Calculated weight from length", x = "Measured weight")
 # print(g)
 
 # Plot annual mean weights
-# raw
 g <- Annual_mean_wt_raw %>%
+  rename(raw=annual_mean_weight) %>%
+  left_join(Annual_mean_wt_weighted) %>%
+  rename(weighted=annual_mean_weight) %>%
   melt(id.vars="year", variable.name="measurement_type", value.name="mean_weight") %>%
   ggplot()+
-  geom_line(aes(x=year, y=mean_weight, colour=measurement_type, linetype=measurement_type), size=1.5)+
-  ylim(0,2.1)
+  geom_line(aes(x=year, y=mean_weight, colour=measurement_type,
+                linetype=measurement_type), size=1.5)+
+  ylim(0,2.5)+
+  gfplot::theme_pbs()+
+  theme(axis.text.x = element_text(size=12))+
+  theme(axis.text.y = element_text(size=12))+
+  theme(axis.title.x = element_text(size=14))+
+  theme(axis.title.y = element_text(size=14))+
+  theme(legend.text = element_text(size=12))+
+  theme(legend.title = element_text(size=13))+
+  labs(title = paste(AREA), y = "Mean weight", x = "Year")
 g
-
-# catch weighted
-g <- Annual_mean_wt_weighted %>%
-  melt(id.vars="year", variable.name="measurement_type", value.name="mean_weight") %>%
-  ggplot()+
-  geom_line(aes(x=year, y=mean_weight, colour=measurement_type, linetype=measurement_type), size=1.5)+
-  ylim(0,2.1)
-g
-
-
-
 
 # Sean's code
-
 cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))
 cmw <- dplyr::filter(cmw, area == AREA) %>%
   rename(commercial_mw = mean_weight) %>%
@@ -146,16 +148,14 @@ if (AREA == "5ABCD") {
 
 if (TYPE == "weighted") {
   dat <- Annual_mean_wt_weighted %>%
-    select(-weighted_mean_weight_obs) %>%
-    rename(survey_mw = weighted_mean_weight_calc) %>%
+    rename(survey_mw = annual_mean_weight) %>%
     full_join(cmw) %>%
     arrange(year) %>%
     filter(year >= 2000)
   # # View(dat)
 } else {
   dat <- Annual_mean_wt_raw %>%
-    select(-mean_weight_obs) %>%
-    rename(survey_mw = mean_weight_calc) %>%
+    rename(survey_mw = annual_mean_weight) %>%
     full_join(cmw) %>%
     arrange(year) %>%
     filter(year >= 2000)
@@ -174,7 +174,7 @@ g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
   geom_line() +
   ggtitle(paste(AREA, TYPE))+
   theme_light()
-# print(g1)
+print(g1)
 
 r <- range(log(c(dat$survey_mw, dat$commercial_mw)), na.rm = TRUE)
 

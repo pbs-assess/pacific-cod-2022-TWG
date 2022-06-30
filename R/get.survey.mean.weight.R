@@ -17,6 +17,8 @@ french <- FALSE
 library(dplyr)
 library(ggplot2)
 library(reshape2)
+library(RColorBrewer)
+library(ggsci)
 library(here)
 
 dir <- here("report/figures")
@@ -121,7 +123,8 @@ for(AREA in AREAS){
     theme(axis.title.x = element_text(size=14))+
     theme(axis.title.y = element_text(size=14))+
     labs(title = paste(AREA), y = "Calculated weight from length", x = "Measured weight")
-  ggsave(file.path(figdir,paste0("Measured_v_Calc_weights_",AREA,".png")))
+  ggsave(file.path(figdir,paste0("Measured_v_Calc_weights_",
+                                 AREA,".png")))
 
   # Plot annual mean weights
   g <- Annual_mean_wt_raw %>%
@@ -134,6 +137,8 @@ for(AREA in AREAS){
                   linetype=measurement_type), size=1.5)+
     ylim(0,2.5)+
     gfplot::theme_pbs()+
+    scale_color_aaas()+
+    theme(title = element_text(size=12, face="bold"))+
     theme(axis.text.x = element_text(size=12))+
     theme(axis.text.y = element_text(size=12))+
     theme(axis.title.x = element_text(size=14))+
@@ -141,7 +146,8 @@ for(AREA in AREAS){
     theme(legend.text = element_text(size=12))+
     theme(legend.title = element_text(size=13))+
     labs(title = paste(AREA), y = "Mean weight", x = "Year")
-  g
+  ggsave(file.path(figdir,paste0("Weighted_v_Raw_weights_",
+                                 AREA,".png")))
 
   # Now fit a linear model to predict commercial mw from survey mw
   # Follow Sean's advice
@@ -155,48 +161,58 @@ for(AREA in AREAS){
   }
 
   if (TYPE == "weighted") {
-    dat <- Annual_mean_wt_weighted %>%
+    dat1 <- Annual_mean_wt_weighted %>%
       rename(survey_mw = annual_mean_weight) %>%
       full_join(cmw) %>%
       arrange(year) %>%
       filter(year >= 2000)
-    # # View(dat)
+    # # View(dat1)
   } else {
-    dat <- Annual_mean_wt_raw %>%
+    dat1 <- Annual_mean_wt_raw %>%
       rename(survey_mw = annual_mean_weight) %>%
       full_join(cmw) %>%
       arrange(year) %>%
       filter(year >= 2000)
-    # View(dat)
+    # View(dat1)
   }
 
-  g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
+  g <- tidyr::pivot_longer(dat1, cols = 2:3) %>%
     filter(!is.na(value)) %>%
     ggplot(aes(year, value, colour = name)) +
     geom_vline(xintercept = 2000:2021, lty = 1, col = "grey80") +
-    geom_point() +
-    geom_line() +
+    geom_point(size=1.4) +
+    geom_line(size=1.4) +
     ggtitle(paste(AREA, TYPE))+
-    theme_light()
-  print(g1)
+    theme_light()+
+    ylim(0,3.2)+
+    scale_color_aaas()+
+    theme(title = element_text(size=12, face="bold"))+
+    theme(axis.text.x = element_text(size=12))+
+    theme(axis.text.y = element_text(size=12))+
+    theme(axis.title.x = element_text(size=14))+
+    theme(axis.title.y = element_text(size=14))+
+    theme(legend.text = element_text(size=12))+
+    theme(legend.title = element_text(size=13))+
+    labs(title = paste(AREA), y = "Mean weight", x = "Year")
+  ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
+                                 AREA,".png")))
 
-  r <- range(log(c(dat$survey_mw, dat$commercial_mw)), na.rm = TRUE)
+  r <- range(log(c(dat1$survey_mw, dat1$commercial_mw)), na.rm = TRUE)
 
-  g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
+  g <- ggplot(dat1, aes(log(survey_mw), log(commercial_mw))) +
     geom_point() +
-    # stat_smooth(method = "lm", se = FALSE) +
-    stat_smooth(method=function(formula,data,weights=weight) MASS::rlm(formula,
-      data,
-      weights=weight,
-      method="MM"),
-      fullrange=TRUE, se = FALSE) +
+    geom_smooth(method=glm,
+                data=dat1,
+                formula=commercial_mw ~ log(survey_mw),
+                method.args = list(family = Gamma(link = "log")),
+                fullrange=TRUE, se = FALSE)+
     ggrepel::geom_text_repel(aes(label = year), size = 4) +
     geom_abline(intercept = 0, slope = 1) +
     coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
     ggtitle(paste(AREA, TYPE))+
     theme_light()
 
-  # print(g)
+ print(g)
   gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
   print(gg)
 
@@ -204,10 +220,10 @@ for(AREA in AREAS){
   # predict commercial mw from regression
   GLM <- glm(commercial_mw ~ log(survey_mw),
              family = Gamma(link = "log"),
-             data = dat)
+             data = dat1)
   summary(GLM)
 
-  newdata <- dat %>%
+  newdata <- dat1 %>%
     dplyr::filter(!is.na(survey_mw)) %>%
     as.data.frame()
 
@@ -235,9 +251,9 @@ for(AREA in AREAS){
   ###########################################################
   # 5ABCD without 2007
   if (AREA == "5ABCD") {
-    dat <- filter(dat, year != 2007)
+    dat1 <- filter(dat1, year != 2007)
 
-  g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
+  g1 <- tidyr::pivot_longer(dat1, cols = 2:3) %>%
     filter(!is.na(value)) %>%
     ggplot(aes(year, value, colour = name)) +
     geom_vline(xintercept = 2000:2021, lty = 1, col = "grey80") +
@@ -247,9 +263,9 @@ for(AREA in AREAS){
     theme_light()
   print(g1)
 
-  r <- range(log(c(dat$survey_mw, dat$commercial_mw)), na.rm = TRUE)
+  r <- range(log(c(dat1$survey_mw, dat1$commercial_mw)), na.rm = TRUE)
 
-  g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
+  g <- ggplot(dat1, aes(log(survey_mw), log(commercial_mw))) +
     geom_point() +
     # stat_smooth(method = "lm", se = FALSE) +
     stat_smooth(method=function(formula,data,weights=weight)
@@ -268,10 +284,10 @@ for(AREA in AREAS){
   # predict commercial mw from regression
   GLM <- glm(commercial_mw ~ log(survey_mw),
              family = Gamma(link = "log"),
-             data = dat)
+             data = dat1)
   summary(GLM)
 
-  newdata <- dat %>%
+  newdata <- dat1 %>%
     dplyr::filter(!is.na(survey_mw)) %>%
     as.data.frame()
 

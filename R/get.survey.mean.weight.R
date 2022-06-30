@@ -162,10 +162,6 @@ if (TYPE == "weighted") {
   # View(dat)
 }
 
-if (AREA == "5ABCD") {
-  # dat <- filter(dat, year != 2007)
-}
-
 g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
   filter(!is.na(value)) %>%
   ggplot(aes(year, value, colour = name)) +
@@ -196,4 +192,35 @@ g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
 gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
 print(gg)
 
+# 5ABCD without 2007
+if (AREA == "5ABCD") {
+  dat <- filter(dat, year != 2007)
+}
 
+g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
+  filter(!is.na(value)) %>%
+  ggplot(aes(year, value, colour = name)) +
+  geom_vline(xintercept = 2000:2021, lty = 1, col = "grey80") +
+  geom_point() +
+  geom_line() +
+  ggtitle(paste(AREA, TYPE))+
+  theme_light()
+print(g1)
+
+r <- range(log(c(dat$survey_mw, dat$commercial_mw)), na.rm = TRUE)
+
+g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
+  geom_point() +
+  # stat_smooth(method = "lm", se = FALSE) +
+  stat_smooth(method=function(formula,data,weights=weight)
+  MASS::rlm(formula, data, weights=weight, method="MM"),
+  fullrange=TRUE, se = FALSE) +
+  ggrepel::geom_text_repel(aes(label = year), size = 4) +
+  geom_abline(intercept = 0, slope = 1) +
+  coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
+  ggtitle(paste(AREA, TYPE))+
+  theme_light()
+
+print(g)
+gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
+print(gg)

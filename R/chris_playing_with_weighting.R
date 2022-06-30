@@ -94,8 +94,8 @@ Mean_weight_stratum_with_sample_id <- Mean_wt_samples |>
               sum(mean_weight_calc * sum_weight_calc) /
               sum(sum_weight_calc),
             stratum_catch_wt = sum(catch_weight)) |>
-  ungroup() |>
-  select(-sample_id)
+  ungroup() #|>
+  #select(-sample_id)
 
 Mean_weight_stratum <- Mean_wt_samples %>%
   group_by(year, grouping_code) %>%
@@ -106,11 +106,11 @@ Mean_weight_stratum <- Mean_wt_samples %>%
   ungroup()
 
 #Equivalent to Eq C.8 in the 2018 assessment
-Annual_mean_wt_weighted_with_sample_id <- Mean_weight_stratum_with_sample_id %>%
-  group_by(year) %>%
-  summarize(annual_mean_weight =
-              sum(stratum_mean_wt * stratum_catch_wt) /
-              sum(stratum_catch_wt))
+# Annual_mean_wt_weighted_with_sample_id <- Mean_weight_stratum_with_sample_id %>%
+#   group_by(year) %>%
+#   summarize(annual_mean_weight =
+#               sum(stratum_mean_wt * stratum_catch_wt) /
+#               sum(stratum_catch_wt))
 
 Annual_mean_wt_weighted <- Mean_weight_stratum %>%
   group_by(year) %>%
@@ -139,26 +139,26 @@ g <- lengthwt_raw %>%
 # print(g)
 
 # Plot annual mean weights
-g <- Annual_mean_wt_raw %>%
-  rename(raw=annual_mean_weight) %>%
-  left_join(Annual_mean_wt_weighted) %>%
-  rename(weighted=annual_mean_weight) %>%
-  left_join(Annual_mean_wt_weighted_with_sample_id) %>%
-  rename(weighted_sample_id=annual_mean_weight) %>%
-  melt(id.vars="year", variable.name="measurement_type", value.name="mean_weight") %>%
-  ggplot()+
-  geom_line(aes(x=year, y=mean_weight, colour=measurement_type,
-                linetype=measurement_type), size=1.5)+
-  ylim(0,2.5)+
-  gfplot::theme_pbs()+
-  theme(axis.text.x = element_text(size=12))+
-  theme(axis.text.y = element_text(size=12))+
-  theme(axis.title.x = element_text(size=14))+
-  theme(axis.title.y = element_text(size=14))+
-  theme(legend.text = element_text(size=12))+
-  theme(legend.title = element_text(size=13))+
-  labs(title = paste(AREA), y = "Mean weight", x = "Year")
-g
+# g <- Annual_mean_wt_raw %>%
+#   rename(raw=annual_mean_weight) %>%
+#   left_join(Annual_mean_wt_weighted) %>%
+#   rename(weighted=annual_mean_weight) %>%
+#   left_join(Annual_mean_wt_weighted_with_sample_id) %>%
+#   rename(weighted_sample_id=annual_mean_weight) %>%
+#   melt(id.vars="year", variable.name="measurement_type", value.name="mean_weight") %>%
+#   ggplot()+
+#   geom_line(aes(x=year, y=mean_weight, colour=measurement_type,
+#                 linetype=measurement_type), size=1.5)+
+#   ylim(0,2.5)+
+#   gfplot::theme_pbs()+
+#   theme(axis.text.x = element_text(size=12))+
+#   theme(axis.text.y = element_text(size=12))+
+#   theme(axis.title.x = element_text(size=14))+
+#   theme(axis.title.y = element_text(size=14))+
+#   theme(legend.text = element_text(size=12))+
+#   theme(legend.title = element_text(size=13))+
+#   labs(title = paste(AREA), y = "Mean weight", x = "Year")
+# g
 
 # Sean's code
 # cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))

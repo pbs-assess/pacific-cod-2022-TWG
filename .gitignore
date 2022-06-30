@@ -51,6 +51,7 @@ retrospectives*/
 retrospectives/
 data/results/
 data/Results/
+report/figures/
 report/sr.Rmd
 cpue-comp-*
 index/resdoc.tex
@@ -80,3 +81,5 @@ report-french/_book
 report/_book
 data/
 NOAA_queries/Files_for_Steve/
+nul
+

@@ -19,8 +19,8 @@ library(ggplot2)
 library(reshape2)
 library(here)
 
-# AREA <- "3CD"
-AREA <- "5ABCD"
+AREA <- "3CD"
+# AREA <- "5ABCD"
 
 TYPE <- "weighted"
 # TYPE <- "raw"
@@ -220,7 +220,7 @@ gg1 <- comparedata %>%
   theme(legend.text = element_text(size=12))+
   theme(legend.title = element_text(size=13))+
   ylim(0,3.5)+
-  labs(title = paste(AREA, "with 2007"), y = "Mean weight", x = "Year")
+  labs(title = paste(AREA), y = "Mean weight", x = "Year")
 gg1
 
 

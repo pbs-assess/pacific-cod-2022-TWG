@@ -192,6 +192,39 @@ g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
 gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
 print(gg)
 
+# predict commercial mw from regression
+RLM <- MASS::rlm(commercial_mw~survey_mw,
+                 method="MM",
+                 dat)
+summary(RLM)
+
+newdata <- dat %>%
+  dplyr::filter(!is.na(survey_mw)) %>%
+  #select(year,survey_mw) %>%
+  as.data.frame()
+
+pred_commercial_mw <- predict.lm(RLM, newdata)
+
+comparedata <- newdata %>%
+  cbind(pred_commercial_mw)
+
+gg1 <- comparedata %>%
+  melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
+  ggplot()+
+  geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1.5)+
+  gfplot::theme_pbs()+
+  theme(axis.text.x = element_text(size=12))+
+  theme(axis.text.y = element_text(size=12))+
+  theme(axis.title.x = element_text(size=14))+
+  theme(axis.title.y = element_text(size=14))+
+  theme(legend.text = element_text(size=12))+
+  theme(legend.title = element_text(size=13))+
+  ylim(0,3.5)+
+  labs(title = paste(AREA, "with 2007"), y = "Mean weight", x = "Year")
+gg1
+
+
+###########################################################
 # 5ABCD without 2007
 if (AREA == "5ABCD") {
   dat <- filter(dat, year != 2007)
@@ -241,11 +274,10 @@ pred_commercial_mw <- predict.lm(RLM, newdata)
 comparedata <- newdata %>%
   cbind(pred_commercial_mw)
 
-g <- comparedata %>%
-  dplyr::select(-survey_mw) %>%
+gg2 <- comparedata %>%
   melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
   ggplot()+
-  geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=2)+
+  geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1.5)+
   gfplot::theme_pbs()+
   theme(axis.text.x = element_text(size=12))+
   theme(axis.text.y = element_text(size=12))+
@@ -253,8 +285,9 @@ g <- comparedata %>%
   theme(axis.title.y = element_text(size=14))+
   theme(legend.text = element_text(size=12))+
   theme(legend.title = element_text(size=13))+
-  labs(title = paste(AREA), y = "Commercial mean weight", x = "Year")
-g
+  ylim(0,3.5)+
+  labs(title = paste(AREA, "no 2007"), y = "Mean weight", x = "Year")
+gg2
 
-
+cowplot::plot_grid(gg1, gg2, ncol = 1, align = "hv")
 

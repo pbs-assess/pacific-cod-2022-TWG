@@ -228,7 +228,6 @@ gg1
 # 5ABCD without 2007
 if (AREA == "5ABCD") {
   dat <- filter(dat, year != 2007)
-}
 
 g1 <- tidyr::pivot_longer(dat, cols = 2:3) %>%
   filter(!is.na(value)) %>%
@@ -291,3 +290,4 @@ gg2
 
 cowplot::plot_grid(gg1, gg2, ncol = 1, align = "hv")
 
+}

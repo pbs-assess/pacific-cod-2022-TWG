@@ -19,7 +19,12 @@ library(ggplot2)
 library(reshape2)
 library(here)
 
-figdir <- here("report/figures")
+dir <- here("report/figures")
+dir3cd <- file.path(dir,"3cd")
+dir5abcd <- file.path(dir,"5abcd")
+if(!file.exists(dir)) dir.create(dir)
+if(!file.exists(dir3cd)) dir.create(dir3cd)
+if(!file.exists(dir5abcd)) dir.create(dir5abcd)
 
 AREAS <- c("3CD","5ABCD")
 
@@ -33,16 +38,16 @@ for(AREA in AREAS){
   if (AREA == "3CD") {
     .ALPHA <- 7.65616e-06
     .BETA <- 3.08
+    SURVEY <- c("SYN WCVI")
+    figdir <- dir3cd
   } else {
     #5ABCD
     .ALPHA <- 6.722839e-06
     .BETA <- 3.11
+    SURVEY <- c("SYN QCS", "SYN HS")
+    figdir <- dir5abcd
   }
 
-  if (AREA == "3CD") SURVEY <- c("SYN WCVI")
-  if (AREA == "5ABCD") SURVEY <- c("SYN QCS", "SYN HS")
-
-  #dat <-  readRDS(here("data/pcod-cache/pacific-cod.rds"))
   dat <-  readRDS(here("data/pcod-cache/survey-sets-and-samples.rds"))
   #dat <- readRDS("~/Downloads/survey-sets-and-samples.rds")
 
@@ -116,7 +121,7 @@ for(AREA in AREAS){
     theme(axis.title.x = element_text(size=14))+
     theme(axis.title.y = element_text(size=14))+
     labs(title = paste(AREA), y = "Calculated weight from length", x = "Measured weight")
-  # print(g)
+  ggsave(file.path(figdir,paste0("Measured_v_Calc_weights_",AREA,".png")))
 
   # Plot annual mean weights
   g <- Annual_mean_wt_raw %>%

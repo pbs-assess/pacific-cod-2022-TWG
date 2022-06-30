@@ -36,7 +36,6 @@ if (AREA == "3CD") {
   .BETA <- 3.11
 }
 
-
 if (AREA == "3CD") SURVEY <- c("SYN WCVI")
 if (AREA == "5ABCD") SURVEY <- c("SYN QCS", "SYN HS")
 
@@ -136,7 +135,8 @@ g <- Annual_mean_wt_raw %>%
   labs(title = paste(AREA), y = "Mean weight", x = "Year")
 g
 
-# Sean's code
+# Now fit a linear model to predict commercial mw from survey mw
+# Follow Sean's advice
 cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))
 cmw <- dplyr::filter(cmw, area == AREA) %>%
   rename(commercial_mw = mean_weight) %>%
@@ -192,18 +192,18 @@ g <- ggplot(dat, aes(log(survey_mw), log(commercial_mw))) +
 gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
 print(gg)
 
+####################################################
 # predict commercial mw from regression
-RLM <- MASS::rlm(commercial_mw~survey_mw,
-                 method="MM",
-                 dat)
-summary(RLM)
+GLM <- glm(commercial_mw ~ log(survey_mw),
+           family = Gamma(link = "log"),
+           data = dat)
+summary(GLM)
 
 newdata <- dat %>%
   dplyr::filter(!is.na(survey_mw)) %>%
-  #select(year,survey_mw) %>%
   as.data.frame()
 
-pred_commercial_mw <- predict.lm(RLM, newdata)
+pred_commercial_mw <- predict(GLM, newdata, type="response")
 
 comparedata <- newdata %>%
   cbind(pred_commercial_mw)

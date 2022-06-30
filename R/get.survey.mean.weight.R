@@ -19,8 +19,8 @@ library(ggplot2)
 library(reshape2)
 library(here)
 
-AREA <- "3CD"
-# AREA <- "5ABCD"
+#AREA <- "3CD"
+AREA <- "5ABCD"
 
 TYPE <- "weighted"
 # TYPE <- "raw"
@@ -258,17 +258,16 @@ gg <- cowplot::plot_grid(g1, g, nrow = 1, align = "hv")
 print(gg)
 
 # predict commercial mw from regression
-RLM <- MASS::rlm(commercial_mw~survey_mw,
-           method="MM",
-           dat)
-summary(RLM)
+GLM <- glm(commercial_mw ~ log(survey_mw),
+           family = Gamma(link = "log"),
+           data = dat)
+summary(GLM)
 
 newdata <- dat %>%
   dplyr::filter(!is.na(survey_mw)) %>%
-  #select(year,survey_mw) %>%
   as.data.frame()
 
-pred_commercial_mw <- predict.lm(RLM, newdata)
+pred_commercial_mw <- predict(GLM, newdata, type="response")
 
 comparedata <- newdata %>%
   cbind(pred_commercial_mw)

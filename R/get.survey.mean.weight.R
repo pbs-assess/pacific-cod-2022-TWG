@@ -28,7 +28,7 @@ if(!file.exists(dir)) dir.create(dir)
 if(!file.exists(dir3cd)) dir.create(dir3cd)
 if(!file.exists(dir5abcd)) dir.create(dir5abcd)
 
-AREAS <- c("3CD","5ABCD")
+AREAS <- c("5ABCD","3CD")
 
 TYPE <- "weighted"
 # TYPE <- "raw"
@@ -145,10 +145,11 @@ for(AREA in AREAS){
     theme(axis.title.y = element_text(size=14))+
     theme(legend.text = element_text(size=12))+
     theme(legend.title = element_text(size=13))+
-    labs(title = paste(AREA), y = "Mean weight", x = "Year")
+    labs(title = paste(AREA), y = "Survey mean weight", x = "Year")
   ggsave(file.path(figdir,paste0("Weighted_v_Raw_weights_",
                                  AREA,".png")))
 
+########################################
   # Now fit a linear model to predict commercial mw from survey mw
   # Follow Sean's advice
   cmw <- readr::read_csv(here::here("data/generated/all-commercial-mean-weight.csv"))
@@ -210,7 +211,7 @@ for(AREA in AREAS){
     #             se = FALSE)+
     ggrepel::geom_text_repel(aes(label = year), size = 4) +
     geom_abline(intercept = 0, slope = 1) +
-    coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
+    #coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
     ggtitle(paste(AREA, TYPE))+
     gfplot::theme_pbs()+
     theme(title = element_text(size=12, face="bold"))+
@@ -220,7 +221,8 @@ for(AREA in AREAS){
     theme(axis.title.y = element_text(size=14))+
     theme(legend.text = element_text(size=12))+
     theme(legend.title = element_text(size=13))+
-    labs(title = paste(AREA), x = "Ln survey mean weight", x = "Ln comm mean weight")
+    ylim(0,1.2)+xlim(0,1.2)+
+    labs(title = paste(AREA), x = "Ln survey mean weight", y = "Ln comm mean weight")
   ggsave(file.path(figdir,paste0("lnSurvey_v_lnCom_with_lm_fit_",
                                  AREA,".png")))
 
@@ -244,7 +246,6 @@ for(AREA in AREAS){
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
     ggplot()+
     geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1.5)+
-    #gfplot::theme_pbs()+
     theme_light()+
     scale_color_aaas()+
     theme(title = element_text(size=12, face="bold"))+
@@ -260,11 +261,18 @@ for(AREA in AREAS){
   ggsave(file.path(figdir,paste0("Compare_obs_v_predicted_",
                                  AREA,".png")))
 
-
   ###########################################################
-  # 5ABCD without 2007
+  # 5ABCD without 2007 or 3CD without 2017
+  # Removing 2017 for 3CD doesn't do anything
+  # because there is no survey in 2017, so not in the regression
+
   if (AREA == "5ABCD") {
-    dat1 <- filter(dat1, year != 2007)
+    outyear <- 2007
+    dat1 <- filter(dat1, year != outyear)
+  } else{
+    outyear <- 2017
+    dat1 <- filter(dat1, year != outyear)
+  }
 
     g <- tidyr::pivot_longer(dat1, cols = 2:3) %>%
       filter(!is.na(value)) %>%
@@ -283,9 +291,9 @@ for(AREA in AREAS){
       theme(axis.title.y = element_text(size=14))+
       theme(legend.text = element_text(size=12))+
       theme(legend.title = element_text(size=13))+
-      labs(title =  paste(AREA, "no 2007"), y = "Mean weight", x = "Year")
+      labs(title =  paste(AREA, "no", outyear), y = "Mean weight", x = "Year")
     ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
-                                   AREA,"_NO_2007.png")))
+                                   AREA,"_NO_", outyear,".png")))
 
 
   r <- range(log(c(dat1$survey_mw, dat1$commercial_mw)), na.rm = TRUE)
@@ -296,12 +304,12 @@ for(AREA in AREAS){
     stat_smooth(method = "lm", se = FALSE)+
     # geom_smooth(method=glm,
     #             data=dat1,
-    #             formula=commercial_mw ~ log(survey_mw),
     #             method.args = list(family = Gamma(link = "log")),
     #             se = FALSE)+
+    # scale_y_continuous(trans = "log")+
     ggrepel::geom_text_repel(aes(label = year), size = 4) +
     geom_abline(intercept = 0, slope = 1) +
-    coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
+    #coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
     ggtitle(paste(AREA, TYPE))+
     gfplot::theme_pbs()+
     theme(title = element_text(size=12, face="bold"))+
@@ -311,9 +319,10 @@ for(AREA in AREAS){
     theme(axis.title.y = element_text(size=14))+
     theme(legend.text = element_text(size=12))+
     theme(legend.title = element_text(size=13))+
-    labs(title =  paste(AREA, "no 2007"), x = "Ln survey mean weight", x = "Ln comm mean weight")
+    ylim(0,1.2)+xlim(0,1.2)+
+    labs(title =  paste(AREA,"no", outyear), x = "Ln survey mean weight", y = "Ln comm mean weight")
   ggsave(file.path(figdir,paste0("lnSurvey_v_lnCom_with_fit_",
-                                 AREA,"_NO_2007.png")))
+                                 AREA,"_NO_", outyear,".png")))
 
 
   # predict commercial mw from regression
@@ -347,7 +356,7 @@ for(AREA in AREAS){
     theme(legend.title = element_text(size=13))+
     theme(legend.position = "right")+
     ylim(0,3.5)+
-    labs(title = paste(AREA, "no 2007"), y = "Mean weight", x = "Year")
+    labs(title = paste(AREA,"no", outyear), y = "Mean weight", x = "Year")
 
 
   # plot on a grid
@@ -358,5 +367,4 @@ for(AREA in AREAS){
   ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
                                  AREA,"_all_compare.png")))
 
-  }
 } # End AREA loop

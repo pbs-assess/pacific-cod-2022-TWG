@@ -103,134 +103,21 @@ if(verbose){
 ## Sensitivity models group 1 (5ABCD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.1 <- c(file.path(model.dir,
-                                     "0_1b_5ABCD_BASE_2020_no_wt_since_2017"),
+                                     "0_1b_5ABCD_SurveyMnWt_interp_2018"),
                             file.path(model.dir,
-                                      "0_1c_5ABCD_BASE_2020_2017_wt"),
-                            file.path(model.dir,
-                                      "0_1d_5ABCD_BASE_2020_mean_wt_2015-17"))
+                                      "0_1c_5ABCD_SurveyMnWt_no_interp"))
 
 sens.models.name.1 <- c("Scenario 1",
-                        "Scenario 2",
-                        "Scenario 3")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 2 (5ABCD)
-## -----------------------------------------------------------------------------
-sens.models.dir.name.2 <- c(file.path(model.dir,
-                                      "0_2b_5ABCD_BASE_2020_no_wt_since_2013"),
-                            file.path(model.dir,
-                                      "0_2c_5ABCD_BASE_2020_2013_wt"))
-
-sens.models.name.2 <- c("Scenario 4",
-                        "Scenario 5")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 2 (5ABCD)
-## -----------------------------------------------------------------------------
-sens.models.dir.name.2 <- c(file.path(model.dir,
-                                      "0_2b_5ABCD_BASE_2020_no_wt_since_2013"),
-                            file.path(model.dir,
-                                      "0_2c_5ABCD_BASE_2020_2013_wt"))
-
-sens.models.name.2 <- c("Scenario 4",
-                        "Scenario 5")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 3 (5ABCD) - individual imputation iterations
-## -----------------------------------------------------------------------------
-# sens.models.dir.name.3 <- c(file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute1"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute2"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute3"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute4"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute5"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute6"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute7"),
-#                             file.path(model.dir,
-#                                       "0_3a_5ABCD_BASE_2020_impute8"))
-#
-#
-# sens.models.name.3 <- c("Impute 1",
-#                         "Impute 2",
-#                         "Impute 3",
-#                         "Impute 4",
-#                         "Impute 5",
-#                         "Impute 6",
-#                         "Impute 7",
-#                         "Impute 8")
-
-avg.impute.model.5abcd.name <- "Scenario 4"
+                        "Scenario 2")
 
 ## -----------------------------------------------------------------------------
 ## Sensitivity models group 11 (3CD) - individual imputation iterations
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.11 <- c(file.path(model.dir,
-                                       "1_1b_3CD_BASE_2020_no_wt_since_2016"),
-                             file.path(model.dir,
-                                       "1_1c_3CD_BASE_2020_2016_wt"),
-                             file.path(model.dir,
-                                       "1_1d_3CD_BASE_2020_mean_wt_2014-16"))
+                                       "1_1b_3CD_SurveyMnWt_2018_only"))
 
-sens.models.name.11 <- c("Scenario 1",
-                         "Scenario 2",
-                         "Scenario 3")
+sens.models.name.11 <- c("Scenario 1")
 
-## -----------------------------------------------------------------------------
-## Sensitivity models group 22 (3CD)
-## -----------------------------------------------------------------------------
-sens.models.dir.name.22 <- c(file.path(model.dir,
-                                       "1_2b_3CD_BASE_2020_no_wt_since_2013"),
-                             file.path(model.dir,
-                                       "1_2c_3CD_BASE_2020_2013_wt"))
-
-sens.models.name.22 <- c("Scenario 6",
-                         "Scenario 7")
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 33 (3CD)
-## -----------------------------------------------------------------------------
-sens.models.dir.name.33 <- c(file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute1"),
-                             file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute2"),
-                             file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute3"),
-                             file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute4"),
-                             file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute5"),
-                             file.path(model.dir,
-                                       "1_3a_3CD_BASE_2020_impute6"),
-                             file.path(model.dir,
-                                        "1_3a_3CD_BASE_2020_impute7"),
-                             file.path(model.dir,
-                                        "1_3a_3CD_BASE_2020_impute8"))
-
-sens.models.name.33 <- c("Impute 1",
-                         "Impute 2",
-                         "Impute 3",
-                         "Impute 4",
-                         "Impute 5",
-                         "Impute 6",
-                         "Impute 7",
-                         "Impute 8")
-
-
-avg.impute.model.3cd.name <- "Scenario 4"
-
-## -----------------------------------------------------------------------------
-## Sensitivity models group 44 (3CD)
-## -----------------------------------------------------------------------------
-sens.models.dir.name.44 <- c(file.path(model.dir,
-                                       "1_4a_3CD_BASE_2020_impute_shortcut"))
-
-sens.models.name.44 <- "Scenario 5"
 
 ## -----------------------------------------------------------------------------
 
@@ -241,15 +128,8 @@ sens.models.name.44 <- "Scenario 5"
 load.models.into.parent.env <- function(){
   base.model.5abcd <<- load.models(base.model.5abcd.dir.name)
   sens.models.1 <<- load.models(sens.models.dir.name.1)
-  sens.models.2 <<- load.models(sens.models.dir.name.2)
-  #sens.models.3 <<- load.models(sens.models.dir.name.3)
-  #avg.impute.model.5abcd <<-  avg.models(sens.models.3)
   base.model.3cd <<- load.models(base.model.3cd.dir.name)
   sens.models.11 <<- load.models(sens.models.dir.name.11)
-  sens.models.22 <<- load.models(sens.models.dir.name.22)
-  sens.models.33 <<- load.models(sens.models.dir.name.33)
-  avg.impute.model.3cd <<-  avg.models(sens.models.33)
-  sens.models.44 <<- load.models(sens.models.dir.name.44)
 }
 
 build <- function(ovwrt.base = FALSE,
@@ -287,12 +167,7 @@ build <- function(ovwrt.base = FALSE,
   ## Sensitivity models need to be unlisted from their groups
   ##  and placed into a single list for the for loop below to work right
   sens.models.names.list <- c( unlist(sens.models.dir.name.1),
-                               unlist(sens.models.dir.name.2),
-                               #unlist(sens.models.dir.name.3),
-                               unlist(sens.models.dir.name.11),
-                               unlist(sens.models.dir.name.22),
-                               unlist(sens.models.dir.name.33),
-                               unlist(sens.models.dir.name.44))
+                               unlist(sens.models.dir.name.11))
   ## Sensitivity models
   for(model.nm in sens.models.names.list){
     create.rdata.file(model.nm,

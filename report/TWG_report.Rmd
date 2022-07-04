@@ -165,7 +165,7 @@ mw.table(c(base.model.3cd,
            sens.models.name.11), 
          years=2010:2020,
          area="3CD",
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = no mean weight index for 2018:2020; Sc 2 = 2016 mean weight value for 2018:2020; Sc 3 = mean(2014:2016) mean weight value for 2018:2020; Sc 5 = Use average imputed mean weight values for 2018:2020.")
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. .")
 
 ```
 

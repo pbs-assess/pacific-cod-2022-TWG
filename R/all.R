@@ -62,7 +62,7 @@ source(file.path(rootd.R, "get-age-sample.R"))
 source(file.path(rootd.R, "get-data-functions.R"))
 source(file.path(rootd.R, "cpue-functions.R"))
 source(file.path(rootd.R, "tables-mean-weight.R"))
-#source(file.path(rootd.R, "get.survey.mean.weight.R"))
+source(file.path(rootd.R, "get.survey.mean.weight.R"))
 
 ## # Load the raw data
 dat.file <- file.path(rootd.data,

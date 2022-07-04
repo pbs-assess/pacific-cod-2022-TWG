@@ -1,6 +1,6 @@
 ---
 title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD and Area 5ABCD in 2022. Part 2: using the survey mean weight index to predict the commercial mean weight index. *Do not circulate without permission from the authors*."
-author: "Robyn Forrest and Sean Anderson"
+author: "Robyn Forrest, Sean Anderson and Chris Grandin"
 date: "07/06/2022"
 link-citations: true
 bibliography: bib/refs.bib
@@ -64,6 +64,8 @@ if(!knitr:::is_latex_output())
 
 This is the second report exploring methods for mitigating the loss of commercial sampling in the groundfish bottom trawl fishery. As for the first report (presented to the Technical Working Group (TWG) on June 27, 2022), we take the approach of evaluating how the 2020 assessment [@dfo2021] could have been affected by the loss of three years of commercial length data. We compare results from the 2020 stock assessment with an alternative treatment of the mean weight index for the years 2018-2020 by using a survey mean weight index to predict the commercial index, *assuming there had been no commercial sampling in the years 2018-2020*.
 
+We use the survey mean weight index to predict the commercial mean weight index so that we can have a continuous mean weight index for the entire model period, beginning in 1956.
+
 # Methods
 
 For each of Area 3CD and Area 5ABCD, we followed these steps (details provided below):
@@ -118,19 +120,26 @@ where $N_s$ is the number of samples in depth stratum $s$.
 
 where $N$ is the number of depth strata surveyed in that year.
 
-## Step 2. Linear regression of commercial mean weight on survey mean weight
+## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
 
-We used a simple generalized linear regression (GLM), to estimate model fit of log  commercial mean weights ($y_t$) in year $t$ to log survey mean weights ($W_t$) from Step 1:
+We used a simple generalized linear regression (GLM) with a Gamma log link function, to estimate model fit of log  commercial mean weights ($y_t$) in year $t$ to log survey mean weights ($W_t$) from Step 1:
 
-\begin{equation}
-{y_t} \sim \mathrm{Gamma}(\theta_i), log(\theta_i) = \beta_0 + \beta_1 log(W_t)
-\end{equation}
+\begin{align}
+{y_t} \sim \mathrm{Gamma}(\phi / \mu_t, \phi), \\
+\log(\mu_t) = \beta_0 + \beta_1 \log(W_t) 
+\end{align}
 
-## Step 3. Predict commercial mean weight from survey mean weight
+where the \phi parameter predicts the rate and shape of the Gamma distribution.
 
-
+We then used the `predict` function in R to predict survey mean weights from commercial mean weights
 
 ## Steps 4 and 5. Update model data files and run models
+
+We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the observed mean weight values, as used in the 2020 reference model. Using this approach, we note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
+
+For Area 3CD, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for Area 3CD, for the 2018-2020 period of interest, we can only update the commercial mean weight index in 2018 (**Scenario 1**). Values are provided in Table \@ref(tab:tab-mean-weight-recent-3cd).
+
+For Area 5ABCD, there was a synoptic surveys in 2019. Therefore we present two alternative treatments of the commercial mean weight data for 2018-2020. In **Scenario 1**, we updated 2019 with the 2019 predicted commercial mean weight, and interpolated between the 2017 and 2019 predicted commercial mean weights to obtain mean weight value for 2018. In **Scenario 2**, we update only 2019 with the predicted commercial mean weight. Values are provided in Table \@ref(tab:tab-mean-weight-recent-5abcd).
 
 For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
 
@@ -138,7 +147,12 @@ Given current uncertainty in future commercial sampling programs, we also evalua
 
 # Results
 
+
+
+
 ## Area 3CD
+
+
 
 <!--
 Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1-3 are shown in Figures \@ref(fig:fig-base-mean-weight-3cd) to \@ref(fig:fig-base-mean-weight-3cd-sc3). As in previous assessments [@forrest2020], model fits to the mean weight index in all scenarios were generally poor, with the models tending to underestimate observed mean weight, especially in the earlier part of the time series. This is likely attributable to underrepresentation of smaller and younger fish in the data prior to the 1997 introduction of at-sea observers, as well as other data sources (catch and indices of abundance) being more important drivers of model estimates. 
@@ -202,4 +216,40 @@ The reduction and cessation of commercial sampling in the commercial trawl fishe
 
 # Tables {#sec:tables}
 
-## Area 3CD
+## Step 1. Survey mean weight index
+
+### Area 3CD
+
+
+```{r tab-mean-weight-recent-3cd, results='asis'}
+
+mw.table(c(base.model.3cd, 
+           sens.models.11), 
+         c(base.model.3cd.name, 
+           sens.models.name.11), 
+         years=2010:2020,
+         area="3CD",
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = Use predicted commercial mean weight index value for 2018.")
+
+```
+
+### Area 5ABCD
+
+
+```{r tab-mean-weight-recent-5abcd, results='asis'}
+mw.table(c(base.model.5abcd, 
+           sens.models.1), 
+         c(base.model.5abcd.name, 
+           sens.models.name.1), 
+         years=2010:2020,
+         area="5ABCD",
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = Use predicted commercial mean weight index value for 2019 and use interpolated value for 2018; Sc 2 = Use predicted commercial mean weight index value for 2019.")
+
+```
+
+
+
+```
+
+
+

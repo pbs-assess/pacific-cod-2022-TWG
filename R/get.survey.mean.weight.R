@@ -228,6 +228,12 @@ for(AREA in AREAS){
 
   ####################################################
   # predict commercial mw from regression
+  if(AREA=="3CD"){
+    nosurvyr <- c(2017,2019,2020)
+  }else{
+    nosurvyr <- c(2018,2020)
+  }
+
   GLM <- glm(commercial_mw ~ log(survey_mw),
              family = Gamma(link = "log"),
              data = dat1)
@@ -242,10 +248,20 @@ for(AREA in AREAS){
   comparedata <- newdata %>%
     cbind(pred_commercial_mw)
 
-  g1 <- comparedata %>%
+  comparedata_allyrs  <-
+    rbind(cbind(nosurvyr,
+                rep(NA,length(nosurvyr)),
+                rep(NA,length(nosurvyr)),
+                rep(NA,length(nosurvyr)))) %>%
+    `colnames<-`(colnames(comparedata)) %>%
+    rbind(comparedata) %>%
+    arrange(year)
+
+  g1 <- comparedata_allyrs %>%
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
     ggplot()+
-    geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1.5)+
+    geom_point(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), size=2)+
+    geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=0.75, lty=2)+
     theme_light()+
     scale_color_aaas()+
     theme(title = element_text(size=12, face="bold"))+
@@ -257,9 +273,45 @@ for(AREA in AREAS){
     theme(legend.title = element_text(size=13))+
     theme(legend.position = "right")+
     ylim(0,3.5)+
+    scale_x_continuous(breaks=seq(min(comparedata_allyrs$year),max(comparedata_allyrs$year), by=2))+
     labs(title = paste(AREA), y = "Mean weight", x = "Year")
+  g1
   ggsave(file.path(figdir,paste0("Compare_obs_v_predicted_",
                                  AREA,".png")))
+
+  # Now need to interpolate for years with no survey data
+  # Only need to do this for years without comm samples
+  comparedata_interpolate <- comparedata_allyrs %>%
+    select(year,pred_commercial_mw) %>%
+    filter(year<2021)
+
+  if(AREA=="3CD"){
+    #Interpolate between 2016 and 2018
+    # For this 2022 TWG exercise, no point in showing 3CD
+    # Because no survey obs after 2018
+    interpolate <- comparedata_interpolate %>%
+      filter(year%in%2016:2018) %>%
+      approx(xout=2017)
+    #Add interpolated value to dataframe
+    comparedata_interpolate[which(comparedata_interpolate$year==2017),2]<-interpolate$y
+  }else{
+    #Interpolate between 2016 and 2018
+    interpolate <- comparedata_interpolate %>%
+      filter(year%in%2017:2019) %>%
+      approx(xout=2018)
+    #Add interpolated value to dataframe
+    comparedata_interpolate[which(comparedata_interpolate$year==2018),2]<-interpolate$y
+  }
+
+
+  # write out the values
+  readr::write_csv(comparedata_allyrs,
+            file.path(figdir,paste0("Comm_v_Survey_weights_",
+            AREA,"_all_compare.csv")))
+
+  readr::write_csv(comparedata_interpolate,
+                   file.path(figdir,paste0("Pred_comm_weight_with_interpolation_",
+                                           AREA,".csv")))
 
   ###########################################################
   # 5ABCD without 2007 or 3CD without 2017
@@ -366,5 +418,10 @@ for(AREA in AREAS){
   cowplot::plot_grid(g1, g2, nrow = 2, align = "hv")
   ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
                                  AREA,"_all_compare.png")))
+
+  # write out the values
+  readr::write_csv(comparedata,
+            file.path(figdir,paste0("Comm_v_Survey_weights_",
+                      paste(AREA,"no", outyear),"_all_compare.csv")))
 
 } # End AREA loop

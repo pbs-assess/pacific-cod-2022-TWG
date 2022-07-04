@@ -129,7 +129,7 @@ We used a simple generalized linear regression (GLM) with a Gamma log link funct
 \log(\mu_t) = \beta_0 + \beta_1 \log(W_t) 
 \end{align}
 
-where the \phi parameter predicts the rate and shape of the Gamma distribution.
+where the $\phi$ parameter predicts the rate and shape of the Gamma distribution.
 
 We then used the `predict` function in R to predict survey mean weights from commercial mean weights
 
@@ -137,9 +137,9 @@ We then used the `predict` function in R to predict survey mean weights from com
 
 We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the observed mean weight values, as used in the 2020 reference model. Using this approach, we note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
 
-For Area 3CD, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for Area 3CD, for the 2018-2020 period of interest, we can only update the commercial mean weight index in 2018 (**Scenario 1**). Values are provided in Table \@ref(tab:tab-mean-weight-recent-3cd).
+For Area 3CD, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for Area 3CD, for the 2018-2020 period of interest, we can only update the commercial mean weight index in 2018 (**Scenario 1**). 
 
-For Area 5ABCD, there was a synoptic surveys in 2019. Therefore we present two alternative treatments of the commercial mean weight data for 2018-2020. In **Scenario 1**, we updated 2019 with the 2019 predicted commercial mean weight, and interpolated between the 2017 and 2019 predicted commercial mean weights to obtain mean weight value for 2018. In **Scenario 2**, we update only 2019 with the predicted commercial mean weight. Values are provided in Table \@ref(tab:tab-mean-weight-recent-5abcd).
+For Area 5ABCD, there was a synoptic surveys in 2019. Therefore we present two alternative treatments of the commercial mean weight data for 2018-2020. In **Scenario 1**, we updated 2019 with the 2019 predicted commercial mean weight, and interpolated between the 2017 and 2019 predicted commercial mean weights to obtain mean weight value for 2018. In **Scenario 2**, we update only 2019 with the predicted commercial mean weight. 
 
 For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
 
@@ -147,10 +147,20 @@ Given current uncertainty in future commercial sampling programs, we also evalua
 
 # Results
 
+## Step 1. Survey mean weight index
 
 
 
-## Area 3CD
+## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
+
+
+## Steps 4 and 5. Update model data files and run models
+
+Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd).
+
+
+
+
 
 
 
@@ -214,11 +224,7 @@ The reduction and cessation of commercial sampling in the commercial trawl fishe
 
 \clearpage
 
-# Tables {#sec:tables}
-
-## Step 1. Survey mean weight index
-
-### Area 3CD
+# Tables
 
 
 ```{r tab-mean-weight-recent-3cd, results='asis'}
@@ -233,9 +239,6 @@ mw.table(c(base.model.3cd,
 
 ```
 
-### Area 5ABCD
-
-
 ```{r tab-mean-weight-recent-5abcd, results='asis'}
 mw.table(c(base.model.5abcd, 
            sens.models.1), 
@@ -247,9 +250,44 @@ mw.table(c(base.model.5abcd,
 
 ```
 
+\clearpage
 
+# Figures
+
+```{r fig-meas_v_calc_weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 3CD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/Measured_v_Calc_weights_3CD.png"))
 
 ```
 
+```{r fig-meas_v_calc_weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 5ABCD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/Measured_v_Calc_weights_5ABCD.png"))
+
+```
+
+\clearpage
+
+
+```{r fig-comm_vs_survey_weights-3cd, fig.cap="Commercial mean weights vs survey mean weights, excluding the 2017 commercial mean weight, Area 3CD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD_NO_2017.png"))
+
+```
+
+
+```{r fig-comm_vs_survey_weights-3cd-b, fig.cap="Commercial mean weights vs survey mean weights, including the 2017 commercial mean weight, Area 3CD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD.png"))
+
+```
+
+\clearpage
+
+```{r fig-comm_vs_survey_weights-5abcd, fig.cap="Commercial mean weights vs survey mean weights, excluding the 2007 commercial mean weight, Area 5ABCD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD_NO_2007.png"))
+
+```
+
+```{r fig-comm_vs_survey_weights-5abcd-b, fig.cap="Commercial mean weights vs survey mean weights, including the 2007 commercial mean weight, Area 5ABCD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD.png"))
+
+```
 
 

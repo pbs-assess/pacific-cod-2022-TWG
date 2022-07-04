@@ -70,7 +70,7 @@ For each of Area 3CD and Area 5ABCD, we followed these steps (details provided b
 
 Step 1. Develop a survey mean weight index, weighted by depth-stratum and catch weight;
 
-Step 2. Perform a linear regression of log(survey mean weight) on log(commercial mean weight);
+Step 2. Perform a linear regression of log(commercial mean weight) on log(survey mean weight);
 
 Step 3. Predict commercial mean weight from survey mean weight;
 
@@ -78,7 +78,7 @@ Step 4. Update model data files with predicted commercial mean weight index valu
 
 Step 5. Run the models and evaluate sensitivity of model results to the updated commercial mean weight indices.
 
-## Step 1
+## Step 1. Survey mean weight index
 
 We followed the steps in Appendix C of @forrest2020, which described the methodology for weighting the commercial length samples to produce a commercial mean weight index, weighted by sequential quarter and catch weight. For the survey, we replaced weighting by sequential quarter with weighting by depth stratum.
 
@@ -102,15 +102,35 @@ where $\alpha$ and $\alpha$ are constant length-weight parameters.
 
 where $N_{j,s}$ is the number of weights $w_{i,j,s}$ in sample ID $j$ and depth stratum $s$.
 
-3. 
+3. Calculate the mean weight ($W_s$) for each depth stratum $s$, weighted by the sample weights $S$:
 
-## Step 2
+\begin{equation}
+{W_s} = \frac{{\sum\limits_{j=1}^{{N_s}} {{W_{j,s}S_{j,s}}}}}{{\sum\limits_{j=1}^{{N_s}} {{S_{j,s}}}}}
+\end{equation}
+
+where $N_s$ is the number of samples in depth stratum $s$.
+
+4. Calculate the annual survey mean weight ($W$), weighted by the catch $C_s$ in each stratum $s$:
+
+\begin{equation}
+{W} = \frac{{\sum\limits_{s=1}^{{N}} {{W_sC_s}}}}{{\sum\limits_{s=1}^{{N}} {{C_s}}}}
+\end{equation}
+
+where $N$ is the number of depth strata surveyed in that year.
+
+## Step 2. Linear regression of commercial mean weight on survey mean weight
+
+We used a simple generalized linear regression (GLM), to estimate model fit of log  commercial mean weights ($y_t$) in year $t$ to log survey mean weights ($W_t$) from Step 1:
+
+\begin{equation}
+{y_t} \sim \mathrm{Gamma}(\theta_i), log(\theta_i) = \beta_0 + \beta_1 log(W_t)
+\end{equation}
+
+## Step 3. Predict commercial mean weight from survey mean weight
 
 
-## Step 3
 
-
-## Step 4
+## Steps 4 and 5. Update model data files and run models
 
 For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
 

@@ -73,8 +73,8 @@ for(AREA in AREAS){
     mutate(weight_calc=.ALPHA*length^.BETA, weight=weight/1000) %>%
     left_join(catch_weight_summary)
 
-  # Now weight by catch
-  # get the mean weight in the samples, with the catch weight from the fishing event
+# Now weight by catch
+  # 1. get the mean weight in the samples, with the catch weight from the fishing event
   # Equivalent to Eq C.6 in the 2018 assessment
   Mean_wt_samples <- lengthwt_raw %>%
     group_by(year, sample_id, grouping_code) %>%

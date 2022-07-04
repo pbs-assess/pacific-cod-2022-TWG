@@ -254,40 +254,51 @@ mw.table(c(base.model.5abcd,
 
 # Figures
 
-```{r fig-meas_v_calc_weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 3CD", out.width="4in"}
+```{r fig-meas-vs-calc-weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 3CD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/Measured_v_Calc_weights_3CD.png"))
 
 ```
 
-```{r fig-meas_v_calc_weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 5ABCD", out.width="4in"}
+```{r fig-meas-vs-calc-weights-5abcd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 5ABCD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/Measured_v_Calc_weights_5ABCD.png"))
 
 ```
 
 \clearpage
 
-
-```{r fig-comm_vs_survey_weights-3cd, fig.cap="Commercial mean weights vs survey mean weights, excluding the 2017 commercial mean weight, Area 3CD", out.width="4in"}
-knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD_NO_2017.png"))
+```{r fig-comm-vs-survey-weights-3cd, fig.cap="Commercial mean weights and survey mean weights, Area 3CD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD.png"))
 
 ```
 
-
-```{r fig-comm_vs_survey_weights-3cd-b, fig.cap="Commercial mean weights vs survey mean weights, including the 2017 commercial mean weight, Area 3CD", out.width="4in"}
-knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD.png"))
+```{r fig-comm-vs-survey-weights-3cd-2, fig.cap="log commercial mean weights vs log survey mean weights, Area 3CD. The blue line shows linear fit.", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/lnSurvey_v_lnCom_with_lm_fit_3CD.png"))
 
 ```
 
 \clearpage
 
-```{r fig-comm_vs_survey_weights-5abcd, fig.cap="Commercial mean weights vs survey mean weights, excluding the 2007 commercial mean weight, Area 5ABCD", out.width="4in"}
-knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD_NO_2007.png"))
-
-```
-
-```{r fig-comm_vs_survey_weights-5abcd-b, fig.cap="Commercial mean weights vs survey mean weights, including the 2007 commercial mean weight, Area 5ABCD", out.width="4in"}
+```{r fig-comm-vs-survey-weights-5abcd, fig.cap="Commercial mean weights and survey mean weights, Area 5ABCD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD.png"))
 
 ```
 
+```{r fig-comm-vs-survey-weights-5abcd-2, fig.cap="log commercial mean weights vs log survey mean weights, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_lm_fit_5ABCD.png"))
 
+```
+
+```{r fig-comm-vs-survey-weights-5abcd-2b, fig.cap="log commercial mean weights vs log survey mean weights, excluding the lowest value in 2007, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_lm_fit_5ABCD_NO_2007.png"))
+
+```
+
+\clearpage
+
+```{r all-mean-weight-series-3cd, fig.cap="Commercial mean weights vs survey mean weights, Area 3CD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/3cd/Compare_obs_v_predicted_3CD.png"))
+```
+
+```{r all-mean-weight-series-5abcd, fig.cap="Commercial mean weights vs survey mean weights, Area 5ABCD", out.width="4in"}
+knitr::include_graphics(here::here("report/figures/5abcd/Compare_obs_v_predicted_5ABCD.png"))
+```

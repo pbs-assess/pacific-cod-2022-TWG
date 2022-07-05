@@ -226,6 +226,13 @@ The reduction and cessation of commercial sampling in the commercial trawl fishe
 
 # Tables
 
+<!--
+
+TODO: Don't show these tables because there is a small discrepancy between the model files and these numbers for pre-2019 years. This is because we only updated the end of the time series in 2020 and
+used the old (2018) number for the rest of the time series. The differences are small but for the 
+next assessment we should update the whole time series. 
+See C:\GitHub\pacific-cod-2020\data\results\AnnualMeanWeight_3CD_compare2018.xlsx
+
 ```{r tab-compare-all-mean-weight-3cd}
 
 caption <- "Values for survey mean weight index, observed commercial mean weight index and predicted mean weight index, Area 3CD."
@@ -256,6 +263,7 @@ knitr::kable(tab,
 
 ```
 
+-->
 
 \clearpage
 
@@ -280,8 +288,6 @@ mw.table(c(base.model.5abcd,
          caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = Use predicted commercial mean weight index value for 2019 and use interpolated value for 2018; Sc 2 = Use predicted commercial mean weight index value for 2019.")
 
 ```
-
-
 
 
 \clearpage
@@ -334,4 +340,86 @@ knitr::include_graphics(here::here("report/figures/5abcd/Compare_obs_v_predicted
 
 \clearpage
 
+
+```{r fig-base-mean-weight-3cd, fig.cap="Reference model MPD fit to the mean weight data for Area 3CD."}
+plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(base.model.3cd[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+
+```{r fig-base-mean-weight-3cd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD (use 2018 predicted commercial mean weight value)."}
+plot_grid(mw.plot(sens.models.11[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.11[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+\clearpage
+
+
+```{r fig-model-ref-biomass-3cd, fig.cap="Posterior biomass for the reference case model for Area 3CD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
+b.plot(base.model.3cd,
+       base.model.3cd.name,
+       depl = FALSE,
+       add.hist.ref = TRUE,
+       lrp = c(1986, 1986),
+       usr = c(1956, 2004), french=french)
+```
+
+\clearpage
+
+```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to Scenario 1: use 2018 predicted commercial mean weight value, Area 3CD."}
+b.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
+```
+
+```{r fig-sens-recr-3cd, fig.cap="Sensitivity of recruitment estimates to Scenario 1: use 2018 predicted commercial mean weight value, Area 3CD."}
+r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
+```
+
+\clearpage
+
+
+```{r fig-base-mean-weight-5abcd, fig.cap="Reference model MPD fit to the mean weight data for Area 5ABCD."}
+plot_grid(mw.plot(base.model.5abcd[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(base.model.5abcd[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-5abcd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 5ABCD (use 2019 predicted commercial mean weight value)."}
+plot_grid(mw.plot(sens.models.1[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.1[[1]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+```{r fig-base-mean-weight-5abcd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 5ABCD (use 2019 predicted commercial mean weight value and interpolate 2018 value)."}
+plot_grid(mw.plot(sens.models.1[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.1[[2]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
+
+\clearpage
+
+
+```{r fig-model-ref-biomass-5abcd, fig.cap="Posterior biomass for the reference case model for Area 5ABCD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
+b.plot(base.model.5abcd,
+       base.model.5abcd.name,
+       depl = FALSE,
+       add.hist.ref = TRUE,
+       lrp = c(2000, 2000),
+       usr = c(1956, 2004), french=french)
+```
+
+```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
+b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
+```
+
+
+```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
+r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
+```
 

@@ -1,7 +1,7 @@
 ---
 title: "Evaluation of the loss of commercial length samples for Pacific Cod for Area 3CD and Area 5ABCD in 2022. Part 2: using the survey mean weight index to predict the commercial mean weight index. *Do not circulate without permission from the authors*."
 author: "Robyn Forrest, Sean Anderson and Chris Grandin"
-date: "07/06/2022"
+date: "July 5 2022"
 link-citations: true
 bibliography: bib/refs.bib
 csl: csl/csas.csl 
@@ -84,7 +84,7 @@ Step 5. Run the models and evaluate sensitivity of model results to the updated 
 
 We followed the steps in Appendix C of @forrest2020, which described the methodology for weighting the commercial length samples to produce a commercial mean weight index, weighted by sequential quarter and catch weight. For the survey, we replaced weighting by sequential quarter with weighting by depth stratum.
 
-The calculation of the survey annual mean weight index was done in the following steps. For simplicity, we have dropped year subscripts.
+The calculation of the survey annual mean weight index was done in the following steps. For simplicity, we have dropped year subscripts. Note that for Area 5ABCD, data from the QCS and HS surveys were pooled.
 
 1. For each specimen $i$, in each Sample ID $j$, in each depth stratum $s$, convert individual length ($l_{i,j,s}$)  to weight ($w_{i,j,s}$):
 
@@ -151,7 +151,7 @@ Comparison between the survey mean weight index, calculated from Equation 4, and
 
 ## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
 
-For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), green and blue series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), red series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no 2020 survey due to the COVID-19 pandemic.
+For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), green and blue series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), red series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no scheduled survey in 2019 but there were commercial samples. There was no survey or commercial sampling in 2020, due to the COVID-19 pandemic.
 
 For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all-mean-weight-series-5abcd), green series) followed the observed survey and commercial mean weight series (Figure \@ref(fig:all-mean-weight-series-5abcd), red and blue series) but did not capture the scale of interannual variation in the observed series.
 
@@ -165,31 +165,31 @@ Maximum posterior density (MPD) model fits to the commercial mean weight index f
 
 Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd). Compared to this model, Scenarios 1 and 2 resulted in reduced estimates of biomass for 2019-2020 and a reduced 2021 forecast (Table \@ref(tab:tab-est-biomass-3cd); Figure \@ref(fig:fig-sens-biomass-3cd)). The percentage change for the median 2021 forecast biomass ranged from -24.5% in Scenario 1 to -15.8% in Scenario 2 (Table \@ref(tab:tab-est-biomass-3cd-per)). Median posterior estimates of recruitment were much lower in 2019-2020 in Scenarios 1 and 2 compared to the Reference case, with the percentage change ranging from -53.9% in Scenario 1 to -27.8% in Scenario 2 (Table \@ref(tab:tab-est-recruit-3cd); Figure \@ref(fig:fig-sens-recr-3cd)). We note that biases were larger in Scenario 1, where interpolation was applied, than in Scenario 2, where it was not.
 
-The lower estimates of 2019-2020 recruitment in Scenarios 1 and 2, compared to the Reference model, are mostly likely driven by the higher mean weights in 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)), which would imply fewer small fish in the catch, all other things equal. 
+The lower estimates of 2019-2020 recruitment in Scenarios 1 and 2, compared to the Reference model, especially in Scenario 1, are mostly likely driven by the higher mean weights in 2018-2020 (Table \@ref(tab:tab-mean-weight-recent-3cd)), which would imply fewer small fish in the catch, all other things equal. 
 
 Clearly from Tables \@ref(tab:tab-est-biomass-3cd-per) and \@ref(tab:tab-est-recruit-3cd), recruitment estimates are more strongly influenced by the mean weight index than biomass estimates, which are more directly influenced by catch and indices of abundance. However, given the short lifespan of Pacific cod in BC (~10-11 years) and the assumed early age of maturity in the models (2 years), changes in estimates of recruitment are expected to impact estimates of biomass relatively quickly.  
 
 ### Area 5ABCD
 
-Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1 and 2 are shown in Figures \@ref(fig:fig-base-mean-weight-5abcd) to \@ref(fig:fig-base-mean-weight-5abcd-sc3). As for Area 3CD and previous assessments [@forrest2015; @forrest2020], model fits in all scenarios tended to underestimate observed mean weight. In contrast to Area 3CD, mean weight index values for 2018-2020 in Scenarios 2-3 were more similar to the Reference model (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
+Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1 and 2 are shown in Figures \@ref(fig:fig-base-mean-weight-5abcd) to \@ref(fig:fig-base-mean-weight-5abcd-sc2). As for Area 3CD and previous assessments [@forrest2015; @forrest2020], model fits in all scenarios tended to underestimate observed mean weight. In contrast to Area 3CD, mean weight index values for 2018-2020 in Scenarios 1 and 2 were more similar to the Reference model (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
 
 Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-5abcd). Scenario 1 resulted in decreased estimates of biomass for 2019-2020 and the 2021 forecast, while Scenarios 2 resulted in very slight decreases in 2019-2020 biomass estimates and a very slight increase in the 2021 forecast  (Table \@ref(tab:tab-est-biomass-5abcd); Figure \@ref(fig:fig-sens-biomass-5abcd)). The percentage changes for the 2021 biomass forecast ranged from -6.6% in Scenario 1 to 0.4% in Scenario 2 (Table \@ref(tab:tab-est-biomass-5abcd-per)). As for Area 3CD, biases were larger in Scenario 1, where interpolation was applied
 
-Posterior estimates of recruitment in 2019-2020 differed by year and scenario compared to the Reference case, with the percentage change ranging from -12.2% in Scenario 2 to 9.9%, also in Scenario 2 (Table \@ref(tab:tab-est-recruit-5abcd); Figure \@ref(fig:fig-sens-recr-5abcd)).
-
-As for Area 3CD, recruitment estimates were more strongly influenced by the mean weight index than biomass estimates (Tables \@ref(tab:tab-est-biomass-5abcd-per) and \@ref(tab:tab-est-recruit-5abcd)).
+Posterior estimates of recruitment in 2019-2020 differed by year and scenario compared to the Reference case, with the percentage change ranging from -12.2% in Scenario 2 to 9.9%, also in Scenario 2 (Table \@ref(tab:tab-est-recruit-5abcd); Figure \@ref(fig:fig-sens-recr-5abcd)). As for Area 3CD, recruitment estimates were more strongly influenced by the mean weight index than biomass estimates (Tables \@ref(tab:tab-est-biomass-5abcd-per) and \@ref(tab:tab-est-recruit-5abcd)).
 
 # Conclusions and recommendations
 
-We were able to derive a survey mean weight index for each area, weighted by sample weights and catches in depth strata. We were able to derive a predicted commercial mean weight index from the survey mean weight index. 
+We were able to derive a catch-weighted survey mean weight index for each area. We were able to derive a predicted commercial mean weight index from the survey mean weight index. 
 
-The effects of the two alternative treatments were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2.
+The effects of the two alternative treatments in each Area were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2.
 
-The results of this exercise highlight obvious differences in selectivity between the commercial fishery and synoptic surveys, especially in Area 5ABCD, where the survey catches much smaller fish. This represents a violation of the assumptions of the delay-difference model, which assumes knife-edged selectivity in both the survey and fishery. However, violation of this assumption is probably less consequential than the assumption of the same knife-edged maturity. As long as the relative selectivities in the survey and fishery remain approximately constant, calibration exercises such as this may be an acceptable approach to continue the time series of the commercial mean weight index, although this should be evaluated through simulation-testing. It should also be acknowledged that the surveys are biennial. Simple linear interpolation may be applied to fill in missing values, altough we note that biases were larger in both areas when interpolation was applied.
+The results of this exercise highlight obvious differences in selectivity between the commercial fishery and synoptic surveys, especially in Area 5ABCD, where the survey catches much smaller fish. This represents a violation of the assumptions of the delay-difference model, which assumes knife-edged selectivity in both the survey and fishery. However, violation of this assumption is probably less consequential than the assumption of the same knife-edged maturity. As long as the relative selectivities in the survey and fishery remain approximately constant, calibration exercises such as this may be an acceptable approach to continue the time series of the commercial mean weight index, although this should be evaluated through simulation-testing. 
+
+It should also be acknowledged that the surveys are biennial. Simple linear interpolation may be applied to fill in missing values, although we note that biases were larger in both areas when interpolation was applied.
 
 The decision point at this juncture is whether to proceed with a 2022 assessment update for Pacific Cod. The following considerations will inform this decision:
 
-1. Whether the development of the survey mean weight index and the predicted commercial mean weight index require more work, including possible simulation-testing;
+1. Whether development of the survey mean weight indices and the predicted commercial mean weight indices requires more work, including possible simulation-testing;
 
 2. If no to (1), whether the work presented here requires full peer review through CSAS;
 

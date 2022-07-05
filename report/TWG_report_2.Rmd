@@ -226,9 +226,26 @@ The reduction and cessation of commercial sampling in the commercial trawl fishe
 
 # Tables
 
+```{r tab-compare-all-mean-weight-3cd, tab.cap="Values for survey mean weight index, observed commercial mean weight index and predicted mean weight index, Area 3CD. Note that the 2019 observed commercial mean weight value is not shown because this analysis assumes there was no commercial sampling in the years 2018-2020."}
+
+tab <- readr::read_csv(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD_all_compare.csv"))
+tab[,2:4]<- round(tab[,2:4],3)
+knitr::kable(tab)
+
+```
+
+```{r tab-compare-all-mean-weight-5abcd, tab.cap="Values for survey mean weight index, observed commercial mean weight index and predicted mean weight index, Area 5ABCD."}
+
+tab <- readr::read_csv(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD_all_compare.csv"))
+tab[,2:4]<- round(tab[,2:4],3)
+knitr::kable(tab)
+
+```
+
+
+\clearpage
 
 ```{r tab-mean-weight-recent-3cd, results='asis'}
-
 mw.table(c(base.model.3cd, 
            sens.models.11), 
          c(base.model.3cd.name, 
@@ -250,6 +267,9 @@ mw.table(c(base.model.5abcd,
 
 ```
 
+
+
+
 \clearpage
 
 # Figures
@@ -266,39 +286,38 @@ knitr::include_graphics(here::here("report/figures/5abcd/Measured_v_Calc_weights
 
 \clearpage
 
-```{r fig-comm-vs-survey-weights-3cd, fig.cap="Commercial mean weights and survey mean weights, Area 3CD", out.width="4in"}
+```{r fig-comm-vs-survey-weights-3cd, fig.cap="Commercial mean weight index and survey mean weight index, Area 3CD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD.png"))
 
 ```
 
-```{r fig-comm-vs-survey-weights-3cd-2, fig.cap="log commercial mean weights vs log survey mean weights, Area 3CD. The blue line shows linear fit.", out.width="4in"}
+```{r fig-comm-vs-survey-weights-3cd-2, fig.cap="log commercial mean weight index vs log survey mean weight index, Area 3CD. The blue line shows linear fit.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/lnSurvey_v_lnCom_with_lm_fit_3CD.png"))
 
 ```
 
 \clearpage
 
-```{r fig-comm-vs-survey-weights-5abcd, fig.cap="Commercial mean weights and survey mean weights, Area 5ABCD", out.width="4in"}
+```{r fig-comm-vs-survey-weights-5abcd, fig.cap="Commercial mean weight index and survey mean weight index, Area 5ABCD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD.png"))
 
 ```
 
-```{r fig-comm-vs-survey-weights-5abcd-2, fig.cap="log commercial mean weights vs log survey mean weights, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
+```{r fig-comm-vs-survey-weights-5abcd-2, fig.cap="log commercial mean weight index vs log survey mean weight index, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_lm_fit_5ABCD.png"))
-
-```
-
-```{r fig-comm-vs-survey-weights-5abcd-2b, fig.cap="log commercial mean weights vs log survey mean weights, excluding the lowest value in 2007, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
-knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_lm_fit_5ABCD_NO_2007.png"))
 
 ```
 
 \clearpage
 
-```{r all-mean-weight-series-3cd, fig.cap="Commercial mean weights vs survey mean weights, Area 3CD", out.width="4in"}
+```{r all-mean-weight-series-3cd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 3CD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/Compare_obs_v_predicted_3CD.png"))
 ```
 
-```{r all-mean-weight-series-5abcd, fig.cap="Commercial mean weights vs survey mean weights, Area 5ABCD", out.width="4in"}
+```{r all-mean-weight-series-5abcd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 5ABCD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/Compare_obs_v_predicted_5ABCD.png"))
 ```
+
+\clearpage
+
+

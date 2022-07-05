@@ -255,7 +255,8 @@ for(AREA in AREAS){
                 rep(NA,length(nosurvyr)))) %>%
     `colnames<-`(colnames(comparedata)) %>%
     rbind(comparedata) %>%
-    arrange(year)
+    arrange(year) %>%
+    filter(year<2021)
 
   g1 <- comparedata_allyrs %>%
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
@@ -265,7 +266,7 @@ for(AREA in AREAS){
     theme_light()+
     scale_color_aaas()+
     theme(title = element_text(size=12, face="bold"))+
-    theme(axis.text.x = element_text(size=12))+
+    theme(axis.text.x = element_text(size=10))+
     theme(axis.text.y = element_text(size=12))+
     theme(axis.title.x = element_text(size=14))+
     theme(axis.title.y = element_text(size=14))+
@@ -303,8 +304,10 @@ for(AREA in AREAS){
     comparedata_interpolate[which(comparedata_interpolate$year==2018),2]<-interpolate$y
   }
 
-
   # write out the values
+  comparedata_allyrs <- comparedata_allyrs %>%
+    `colnames<-`(c("Year","Survey mean weight","Obs comm mean weight", "Pred comm mean weight"))
+
   readr::write_csv(comparedata_allyrs,
             file.path(figdir,paste0("Comm_v_Survey_weights_",
             AREA,"_all_compare.csv")))
@@ -312,116 +315,5 @@ for(AREA in AREAS){
   readr::write_csv(comparedata_interpolate,
                    file.path(figdir,paste0("Pred_comm_weight_with_interpolation_",
                                            AREA,".csv")))
-
-  ###########################################################
-  # 5ABCD without 2007 or 3CD without 2017
-  # Removing 2017 for 3CD doesn't do anything
-  # because there is no survey in 2017, so not in the regression
-
-  if (AREA == "5ABCD") {
-    outyear <- 2007
-    dat1 <- filter(dat1, year != outyear)
-  } else{
-    outyear <- 2017
-    dat1 <- filter(dat1, year != outyear)
-  }
-
-    g <- tidyr::pivot_longer(dat1, cols = 2:3) %>%
-      filter(!is.na(value)) %>%
-      ggplot(aes(year, value, colour = name)) +
-      geom_vline(xintercept = 2000:2021, lty = 1, col = "grey80") +
-      geom_point(size=1.4) +
-      geom_line(size=1.4) +
-      ggtitle(paste(AREA, TYPE))+
-      theme_light()+
-      ylim(0,3.2)+
-      scale_color_aaas()+
-      theme(title = element_text(size=12, face="bold"))+
-      theme(axis.text.x = element_text(size=12))+
-      theme(axis.text.y = element_text(size=12))+
-      theme(axis.title.x = element_text(size=14))+
-      theme(axis.title.y = element_text(size=14))+
-      theme(legend.text = element_text(size=12))+
-      theme(legend.title = element_text(size=13))+
-      labs(title =  paste(AREA, "no", outyear), y = "Mean weight", x = "Year")
-    ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
-                                   AREA,"_NO_", outyear,".png")))
-
-
-  r <- range(log(c(dat1$survey_mw, dat1$commercial_mw)), na.rm = TRUE)
-
-  # TODO: Fit not working with glm
-  g <- ggplot(dat1, aes(log(survey_mw), log(commercial_mw))) +
-    geom_point() +
-    stat_smooth(method = "lm", se = FALSE)+
-    # geom_smooth(method=glm,
-    #             data=dat1,
-    #             method.args = list(family = Gamma(link = "log")),
-    #             se = FALSE)+
-    # scale_y_continuous(trans = "log")+
-    ggrepel::geom_text_repel(aes(label = year), size = 4) +
-    geom_abline(intercept = 0, slope = 1) +
-    #coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
-    ggtitle(paste(AREA, TYPE))+
-    gfplot::theme_pbs()+
-    theme(title = element_text(size=12, face="bold"))+
-    theme(axis.text.x = element_text(size=12))+
-    theme(axis.text.y = element_text(size=12))+
-    theme(axis.title.x = element_text(size=14))+
-    theme(axis.title.y = element_text(size=14))+
-    theme(legend.text = element_text(size=12))+
-    theme(legend.title = element_text(size=13))+
-    ylim(0,1.2)+xlim(0,1.2)+
-    labs(title =  paste(AREA,"no", outyear), x = "Ln survey mean weight", y = "Ln comm mean weight")
-  ggsave(file.path(figdir,paste0("lnSurvey_v_lnCom_with_fit_",
-                                 AREA,"_NO_", outyear,".png")))
-
-
-  # predict commercial mw from regression
-  GLM <- glm(commercial_mw ~ log(survey_mw),
-             family = Gamma(link = "log"),
-             data = dat1)
-  summary(GLM)
-
-  newdata <- dat1 %>%
-    dplyr::filter(!is.na(survey_mw)) %>%
-    as.data.frame()
-
-  pred_commercial_mw <- predict(GLM, newdata, type="response")
-
-  comparedata <- newdata %>%
-    cbind(pred_commercial_mw)
-
-  g2 <- comparedata %>%
-    melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
-    ggplot()+
-    geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1.5)+
-    #gfplot::theme_pbs()+
-    theme_light()+
-    scale_color_aaas()+
-    theme(title = element_text(size=12, face="bold"))+
-    theme(axis.text.x = element_text(size=12))+
-    theme(axis.text.y = element_text(size=12))+
-    theme(axis.title.x = element_text(size=14))+
-    theme(axis.title.y = element_text(size=14))+
-    theme(legend.text = element_text(size=12))+
-    theme(legend.title = element_text(size=13))+
-    theme(legend.position = "right")+
-    ylim(0,3.5)+
-    labs(title = paste(AREA,"no", outyear), y = "Mean weight", x = "Year")
-
-
-  # plot on a grid
-  # g1 <- g1 +
-  #   theme(legend.position="none")
-
-  cowplot::plot_grid(g1, g2, nrow = 2, align = "hv")
-  ggsave(file.path(figdir,paste0("Comm_v_Survey_weights_",
-                                 AREA,"_all_compare.png")))
-
-  # write out the values
-  readr::write_csv(comparedata,
-            file.path(figdir,paste0("Comm_v_Survey_weights_",
-                      paste(AREA,"no", outyear),"_all_compare.csv")))
 
 } # End AREA loop

@@ -129,7 +129,7 @@ We used a simple generalized linear regression (GLM) with a Gamma log link funct
 \log(\mu_t) = \beta_0 + \beta_1 \log(W_t) 
 \end{align}
 
-where the $\phi$ parameter predicts the rate and shape of the Gamma distribution.
+where the $\phi$ parameter contributes to both the rate and shape of the Gamma distribution.
 
 We then used the `predict` function in R to predict survey mean weights from commercial mean weights
 
@@ -137,9 +137,9 @@ We then used the `predict` function in R to predict survey mean weights from com
 
 We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the observed mean weight values, as used in the 2020 reference model. Using this approach, we note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
 
-For Area 3CD, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for Area 3CD, for the 2018-2020 period of interest, we can only update the commercial mean weight index in 2018 (**Scenario 1**). 
+For **Area 3CD**, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for Area 3CD, for the 2018-2020 period of interest, we can only update the commercial mean weight index in 2018 (**Scenario 1**). 
 
-For Area 5ABCD, there was a synoptic surveys in 2019. Therefore we present two alternative treatments of the commercial mean weight data for 2018-2020. In **Scenario 1**, we updated 2019 with the 2019 predicted commercial mean weight, and interpolated between the 2017 and 2019 predicted commercial mean weights to obtain mean weight value for 2018. In **Scenario 2**, we update only 2019 with the predicted commercial mean weight. 
+For **Area 5ABCD**, there was a synoptic surveys in 2019. Therefore we present two alternative treatments of the commercial mean weight data for 2018-2020. In **Scenario 1**, we updated 2019 with the 2019 predicted commercial mean weight, and interpolated between the 2017 and 2019 predicted commercial mean weights to obtain mean weight value for 2018. In **Scenario 2**, we update only 2019 with the predicted commercial mean weight. 
 
 For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
 
@@ -149,10 +149,15 @@ Given current uncertainty in future commercial sampling programs, we also evalua
 
 ## Step 1. Survey mean weight index
 
+Specimen weights were calculated from length data and length weight parameters using Equation 1. Specimen weights were also measured directly on the surveys. We chose to use the calculated weights, as this resulted in more samples. Using the directly-measured weights resulted in some depth strata without specimen weights. The relationship between measured and calculated weights was approximately linear (Figures \@ref(fig:fig-meas-vs-calc-weights-3cd) and \@ref(fig:fig-meas-vs-calc-weights-5abcd)).
 
+Comparison between the survey mean weight index, calculated from Equation 4, and the observed commercial mean weight index is shown in Figures \@ref(fig:fig-comm-vs-survey-weights-3cd) and \@ref(fig:fig-comm-vs-survey-weights-3cd-2) for Area 3CD and in Figures \@ref(fig:fig-comm-vs-survey-weights-5abcd) and \@ref(fig:fig-comm-vs-survey-weights-5abcd-2) for Area 5ABCD. 
 
 ## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
 
+For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), green and blue series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), red series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no 2020 survey due to the COVID-19 pandemic.
+
+For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all-mean-weight-series-5abcd), green series) followed the observed survey and commercial mean weight series (Figure \@ref(fig:all-mean-weight-series-5abcd), red and blue series) but did not capture the scale of interannual variation in the observed series.
 
 ## Steps 4 and 5. Update model data files and run models
 
@@ -389,6 +394,8 @@ make.value.table.compare(c(base.model.5abcd,
 
 ```
 
+\clearpage
+
 # Figures
 
 ```{r fig-meas-vs-calc-weights-3cd, fig.cap="Measured vs calculated weights from the WCVI survey, all years all depth strata, Area 3CD", out.width="4in"}
@@ -408,7 +415,7 @@ knitr::include_graphics(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD
 
 ```
 
-```{r fig-comm-vs-survey-weights-3cd-2, fig.cap="log commercial mean weight index vs log survey mean weight index, Area 3CD. The blue line shows linear fit.", out.width="4in"}
+```{r fig-comm-vs-survey-weights-3cd-2, fig.cap="Log commercial mean weight index vs log survey mean weight index, Area 3CD. The blue line shows linear fit.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/lnSurvey_v_lnCom_with_lm_fit_3CD.png"))
 
 ```
@@ -420,14 +427,14 @@ knitr::include_graphics(here::here("report/figures/5abcd/Comm_v_Survey_weights_5
 
 ```
 
-```{r fig-comm-vs-survey-weights-5abcd-2, fig.cap="log commercial mean weight index vs log survey mean weight index, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
+```{r fig-comm-vs-survey-weights-5abcd-2, fig.cap="Log commercial mean weight index vs log survey mean weight index, Area 5ABCD. The blue line shows linear fit.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_lm_fit_5ABCD.png"))
 
 ```
 
 \clearpage
 
-```{r all-mean-weight-series-3cd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 3CD", out.width="4in"}
+```{r all-mean-weight-series-3cd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 3CD.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/Compare_obs_v_predicted_3CD.png"))
 ```
 

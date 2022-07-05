@@ -161,8 +161,6 @@ For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all
 
 ## Steps 4 and 5. Update model data files and run models
 
-Recall that this analysis assumes no collection of commercial samples from 2018-2020. For each area, we updated the model data files with available *predicted* commercial mean weight values for the years 2018-2020 (Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd)). We used the original values from the 2020 assessment for years prior to 2018. Note that for Area 3CD, the only available predicted commercial mean weight value was in 2018 and there are therefore no values for 2019 and 2020 as we did not wish to extrapolate beyond the data. 
-
 Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd). 
 
 
@@ -299,7 +297,7 @@ mw.table(c(base.model.3cd,
            sens.models.name.11), 
          years=2010:2020,
          area="3CD",
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc 1 = Use predicted commercial mean weight index value for 2018.")
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018.")
 
 ```
 
@@ -310,12 +308,11 @@ mw.table(c(base.model.5abcd,
            sens.models.name.1), 
          years=2010:2020,
          area="5ABCD",
-         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc 1 = Use predicted commercial mean weight index value for 2019 and use interpolated value for 2018; Sc 2 = Use predicted commercial mean weight index value for 2019.")
+         caption="Comparison of mean weight values used in the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019.")
 
 ```
 
 \clearpage
-
 
 ```{r tab-est-biomass-3cd, results='asis'}
 make.value.table.compare(c(base.model.3cd, 
@@ -325,7 +322,7 @@ make.value.table.compare(c(base.model.3cd,
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value.")
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018.")
 
 ```
 
@@ -337,7 +334,7 @@ make.value.table.compare(c(base.model.3cd,
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value..",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018.",
                  percent=TRUE)
 
 ```
@@ -353,7 +350,7 @@ make.value.table.compare(c(base.model.3cd,
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value.",
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018.",
                  percent=TRUE)
 
 ```
@@ -369,7 +366,7 @@ make.value.table.compare(c(base.model.5abcd,
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.")
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019.")
 
 ```
 
@@ -383,7 +380,7 @@ make.value.table.compare(c(base.model.5abcd,
                  years=2010:2021,
                  type= 1,
                  mpdmed="med",
-                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019.",
                  percent=TRUE)
 
 ```
@@ -396,7 +393,7 @@ make.value.table.compare(c(base.model.5abcd,
                  years=2010:2020,
                  type= 2,
                  mpdmed="med",
-                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.",
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019.",
                  percent=TRUE)
 
 ```
@@ -459,16 +456,21 @@ plot_grid(mw.plot(base.model.3cd[[1]], cv = 0.2, every = 10, last.yr = 2020, fre
           ncol = 2)
 ```
 
-
-```{r fig-base-mean-weight-3cd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD (use 2018 predicted commercial mean weight value)."}
+```{r fig-base-mean-weight-3cd-sc1, fig.cap="Scenario 1 model MPD fit to the mean weight data for Area 3CD."}
 plot_grid(mw.plot(sens.models.11[[1]], cv = 0.2, every = 10, last.yr = 2020, french=french),
           mw.compare.plot(sens.models.11[[1]], french=french),
           nrow = 1,
           ncol = 2)
 ```
 
-\clearpage
+```{r fig-base-mean-weight-3cd-sc2, fig.cap="Scenario 2 model MPD fit to the mean weight data for Area 3CD."}
+plot_grid(mw.plot(sens.models.11[[2]], cv = 0.2, every = 10, last.yr = 2020, french=french),
+          mw.compare.plot(sens.models.11[[2]], french=french),
+          nrow = 1,
+          ncol = 2)
+```
 
+\clearpage
 
 ```{r fig-model-ref-biomass-3cd, fig.cap="Posterior biomass for the reference case model for Area 3CD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.3cd,
@@ -481,11 +483,11 @@ b.plot(base.model.3cd,
 
 \clearpage
 
-```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to Scenario 1: use 2018 predicted commercial mean weight value, Area 3CD."}
+```{r fig-sens-biomass-3cd, fig.cap="Sensitivity of biomass estimates to model scenarios, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018."}
 b.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
 
-```{r fig-sens-recr-3cd, fig.cap="Sensitivity of recruitment estimates to Scenario 1: use 2018 predicted commercial mean weight value, Area 3CD."}
+```{r fig-sens-recr-3cd, fig.cap="Sensitivity of recruitment estimates to model scenarios, Area 3CD. Scenario 1 = Use predicted commercial mean weight index value for 2018, and interpolated values for 2019 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2018."}
 r.plot(c(base.model.3cd, sens.models.11), c(base.model.3cd.name, sens.models.name.11))
 ```
 
@@ -515,7 +517,6 @@ plot_grid(mw.plot(sens.models.1[[2]], cv = 0.2, every = 10, last.yr = 2020, fren
 
 \clearpage
 
-
 ```{r fig-model-ref-biomass-5abcd, fig.cap="Posterior biomass for the reference case model for Area 5ABCD. Thick solid line shows the posterior median and the grey shaded region represents the 95\\% credible interval. Green dashed line shows the median USR; red dashed line shows the median LRP. Red and green shaded intervals represent the 95\\% credible interval of the LRP and USR, respectively."}
 b.plot(base.model.5abcd,
        base.model.5abcd.name,
@@ -525,11 +526,11 @@ b.plot(base.model.5abcd,
        usr = c(1956, 2004), french=french)
 ```
 
-```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
+```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the model scenarios, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019."}
 b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 
-```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
+```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the model scenarios, Area 5ABCD. Scenario 1 = Use predicted commercial mean weight index value for 2019, and interpolated values for 2018 and 2020; Scenario 2 = Use only the predicted commercial mean weight index value for 2019."}
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
 

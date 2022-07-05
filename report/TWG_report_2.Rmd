@@ -84,9 +84,7 @@ Step 5. Run the models and evaluate sensitivity of model results to the updated 
 
 We followed the steps in Appendix C of @forrest2020, which described the methodology for weighting the commercial length samples to produce a commercial mean weight index, weighted by sequential quarter and catch weight. For the survey, we replaced weighting by sequential quarter with weighting by depth stratum.
 
-The calculation of the survey annual mean weight index was done in the following steps. The same steps were used in both Areas 3CD and 5ABCD. 
-
-The values of the length-weight parameters used are for Area 3CD: `r paste0("$\\alpha = ", .ALPHA3, "$")` and `r paste0("$\\beta = ", .BETA3, "$")`; for Area 5ABCD: `r paste0("$\\alpha = ", .ALPHA, "$")` and `r paste0("$\\beta = ", .BETA, "$")`.
+The calculation of the survey annual mean weight index was done in the following steps.
 
 1. For each specimen $i$, in each Sample ID $j$, in each depth stratum $s$, convert individual length ($l_{i,j,s}$)  to weight ($w_{i,j,s}$):
 
@@ -94,9 +92,9 @@ The values of the length-weight parameters used are for Area 3CD: `r paste0("$\\
 {W_{i,j,s}} = \alpha{L_{i,j,s}}^{\beta}
 \end{equation}
 
-where $\alpha$ and $\alpha$ are constant length-weight parameters.
+where $\alpha$ and $\alpha$ are constant length-weight parameters, where the values of the length-weight parameters are `r paste0("$\\alpha = ", .ALPHA3, "$")` and `r paste0("$\\beta = ", .BETA3, "$")` for Area 3CD, and `r paste0("$\\alpha = ", .ALPHA, "$")` and `r paste0("$\\beta = ", .BETA, "$")` for Area 5ABCD.
 
-2. Calculate the mean weight ($W_j$) for each Sample ID ($j$), in each depth stratum $s$:
+2. Calculate the mean weight ($W_j$) for each specimen $i$ in each sample ID $j$, in each depth stratum $s$:
 
 \begin{equation}
   {W_{j,s}} =  \frac{\sum\limits_{i=1}^{N_{j,s}}{{w_{i,j,s}}}}{{N_{j,s}}}
@@ -115,10 +113,10 @@ where $N_s$ is the number of samples in depth stratum $s$.
 4. Calculate the annual survey mean weight ($W$), weighted by the catch $C_s$ in each stratum $s$:
 
 \begin{equation}
-{W} = \frac{{\sum\limits_{s=1}^{{N}} {{W_sC_s}}}}{{\sum\limits_{s=1}^{{N}} {{C_s}}}}
+{W} = \frac{{\sum\limits_{s=1}^{{K}} {{W_sC_s}}}}{{\sum\limits_{s=1}^{{K}} {{C_s}}}}
 \end{equation}
 
-where $N$ is the number of depth strata surveyed in that year.
+where $K$ is the number of depth strata surveyed in that year.
 
 ## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
 

@@ -161,10 +161,11 @@ For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all
 
 ## Steps 4 and 5. Update model data files and run models
 
+Recall that this analysis assumes no collection of commercial samples from 2018-2020. For each area, we updated the model data files with available *predicted* commercial mean weight values for the years 2018-2020 (Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd)). We used the original values from the 2020 assessment for years prior to 2018. Note that for Area 3CD, the only available predicted commercial mean weight value was in 2018 and there are therefore no values for 2019 and 2020 as we did not wish to extrapolate beyond the data. 
+
 Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd). 
 
-For each area, 
-Note that for Area 3CD, 
+
 
 
 

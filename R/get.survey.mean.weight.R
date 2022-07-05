@@ -283,25 +283,31 @@ for(AREA in AREAS){
   # Now need to interpolate for years with no survey data
   # Only need to do this for years without comm samples
   comparedata_interpolate <- comparedata_allyrs %>%
-    select(year,pred_commercial_mw) %>%
-    filter(year<2021)
+    select(year,pred_commercial_mw)
 
+  # NOW interpolate values between 2018 and 2020 for updating the model files
+  # Okay to assume we had a 2021 survey
   if(AREA=="3CD"){
-    #Interpolate between 2016 and 2018
-    # For this 2022 TWG exercise, no point in showing 3CD
-    # Because no survey obs after 2018
+    # Interpolate between 2018 and 2021
     interpolate <- comparedata_interpolate %>%
-      filter(year%in%2016:2018) %>%
-      approx(xout=2017)
+      filter(year%in%2018:2021) %>%
+      approx(xout=2019:2020)
     #Add interpolated value to dataframe
-    comparedata_interpolate[which(comparedata_interpolate$year==2017),2]<-interpolate$y
+    comparedata_interpolate[which(comparedata_interpolate$year %in% 2019:2020),2]<-interpolate$y
   }else{
-    #Interpolate between 2016 and 2018
+    #1. Interpolate between 2017 and 2019
     interpolate <- comparedata_interpolate %>%
       filter(year%in%2017:2019) %>%
       approx(xout=2018)
     #Add interpolated value to dataframe
     comparedata_interpolate[which(comparedata_interpolate$year==2018),2]<-interpolate$y
+
+    #2. Interpolate between 2019 and 2021
+    interpolate <- comparedata_interpolate %>%
+      filter(year%in%2019:2021) %>%
+      approx(xout=2020)
+    #Add interpolated value to dataframe
+    comparedata_interpolate[which(comparedata_interpolate$year==2020),2]<-interpolate$y
   }
 
   # write out the values

@@ -161,6 +161,8 @@ For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all
 
 Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd). 
 
+### Area 3CD
+
 Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1 and 2 are shown in Figures \@ref(fig:fig-base-mean-weight-3cd) to \@ref(fig:fig-base-mean-weight-3cd-sc2). As in previous assessments [@forrest2020], model fits to the mean weight index in all scenarios were generally poor, with the models tending to underestimate observed mean weight, especially in the earlier part of the time series. 
 
 Posterior biomass estimates from the Reference case model are shown in Figure \@ref(fig:fig-model-ref-biomass-3cd). Compared to this model, Scenarios 1 and 2 resulted in reduced estimates of biomass for 2019-2020 and a reduced 2021 forecast (Table \@ref(tab:tab-est-biomass-3cd); Figure \@ref(fig:fig-sens-biomass-3cd)). The percentage change for the median 2021 forecast biomass ranged from -24.5% in Scenario 1 to -15.8% in Scenario 2 (Table \@ref(tab:tab-est-biomass-3cd-per)). Median posterior estimates of recruitment were much lower in 2019-2020 in Scenarios 1 and 2 compared to the Reference case, with the percentage change ranging from -53.9% in Scenario 1 to -27.8% in Scenario 2 (Table \@ref(tab:tab-est-recruit-3cd); Figure \@ref(fig:fig-sens-recr-3cd)). We note that biases were larger in Scenario 1, where interpolation was applied, than in Scenario 2, where it was not.
@@ -169,7 +171,7 @@ The lower estimates of 2019-2020 recruitment in Scenarios 1 and 2, compared to t
 
 Clearly from Tables \@ref(tab:tab-est-biomass-3cd-per) and \@ref(tab:tab-est-recruit-3cd), recruitment estimates are more strongly influenced by the mean weight index than biomass estimates, which are more directly influenced by catch and indices of abundance. However, given the short lifespan of Pacific cod in BC (~10-11 years) and the assumed early age of maturity in the models (2 years), changes in estimates of recruitment are expected to impact estimates of biomass relatively quickly.  
 
-## Area 5ABCD
+### Area 5ABCD
 
 Maximum posterior density (MPD) model fits to the commercial mean weight index from the Reference case model and Scenarios 1 and 2 are shown in Figures \@ref(fig:fig-base-mean-weight-5abcd) to \@ref(fig:fig-base-mean-weight-5abcd-sc3). As for Area 3CD and previous assessments [@forrest2015; @forrest2020], model fits in all scenarios tended to underestimate observed mean weight. In contrast to Area 3CD, mean weight index values for 2018-2020 in Scenarios 2-3 were more similar to the Reference model (Table \@ref(tab:tab-mean-weight-recent-5abcd)).
 

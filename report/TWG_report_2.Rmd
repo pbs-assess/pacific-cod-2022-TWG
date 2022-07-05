@@ -94,7 +94,7 @@ The calculation of the survey annual mean weight index was done in the following
 
 where $\alpha$ and $\alpha$ are constant length-weight parameters, where the values of the length-weight parameters are `r paste0("$\\alpha = ", .ALPHA3, "$")` and `r paste0("$\\beta = ", .BETA3, "$")` for Area 3CD, and `r paste0("$\\alpha = ", .ALPHA, "$")` and `r paste0("$\\beta = ", .BETA, "$")` for Area 5ABCD.
 
-2. Calculate the mean weight ($W_j$) for each specimen $i$ in each sample ID $j$, in each depth stratum $s$:
+2. Calculate the mean weight ($W_j$) in each sample ID $j$, in each depth stratum $s$:
 
 \begin{equation}
   {W_{j,s}} =  \frac{\sum\limits_{i=1}^{N_{j,s}}{{w_{i,j,s}}}}{{N_{j,s}}}

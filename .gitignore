@@ -52,6 +52,7 @@ retrospectives/
 data/results/
 data/Results/
 report/figures/
+report/zold/
 report/sr.Rmd
 cpue-comp-*
 index/resdoc.tex

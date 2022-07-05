@@ -1,5 +1,5 @@
 ---
-title: "Evaluation of the loss of commercial length samples for Pacific Cod (*Gadus macrocephalus*) for Area 3CD and Area 5ABCD in 2022. Part 2: using the survey mean weight index to predict the commercial mean weight index. *Do not circulate without permission from the authors*."
+title: "Evaluation of the loss of commercial length samples for Pacific Cod for Area 3CD and Area 5ABCD in 2022. Part 2: using the survey mean weight index to predict the commercial mean weight index. *Do not circulate without permission from the authors*."
 author: "Robyn Forrest, Sean Anderson and Chris Grandin"
 date: "07/06/2022"
 link-citations: true
@@ -62,15 +62,15 @@ if(!knitr:::is_latex_output())
 
 # Context
 
-This is the second report exploring methods for mitigating the loss of commercial sampling in the groundfish bottom trawl fishery. As for the first report (presented to the Technical Working Group (TWG) on June 27, 2022), we take the approach of evaluating how the 2020 assessment [@dfo2021] could have been affected by the loss of three years of commercial length data. We compare results from the 2020 stock assessment with an alternative treatment of the mean weight index for the years 2018-2020 by using a survey mean weight index to predict the commercial index, *assuming there had been no commercial sampling in the years 2018-2020*.
+This is the second report exploring methods for mitigating the loss of commercial sampling in the groundfish bottom trawl fishery, for the Pacific cod assessment. As for the first report (presented to the Pacific Cod Technical Working Group (TWG) on June 27, 2022), we take the approach of evaluating how the 2020 assessment [@dfo2021] could have been affected by the loss of three years of commercial length data. We compare results from the 2020 stock assessment with an alternative treatment of the commercial mean weight index for the years 2018-2020 by using a survey mean weight index to predict the commercial index.
 
-We use the survey mean weight index to predict the commercial mean weight index so that we can have a continuous mean weight index for the entire model period, beginning in 1956.
+We use the survey mean weight index to predict the commercial mean weight index for 2018-2020 so that we can have a continuous mean weight index for the entire model period, beginning in 1956.
 
 # Methods
 
-For each of Area 3CD and Area 5ABCD, we followed these steps (details provided below):
+For each of Areas 3CD and 5ABCD, we took the following steps:
 
-Step 1. Develop a survey mean weight index, weighted by depth-stratum and catch weight;
+Step 1. Develop a survey mean weight index;
 
 Step 2. Perform a linear regression of log(commercial mean weight) on log(survey mean weight);
 

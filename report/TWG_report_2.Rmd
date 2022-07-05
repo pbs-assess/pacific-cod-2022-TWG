@@ -181,7 +181,7 @@ Posterior estimates of recruitment in 2019-2020 differed by year and scenario co
 
 We were able to derive a catch-weighted survey mean weight index for each area. We were able to derive a predicted commercial mean weight index from the survey mean weight index. 
 
-The effects of the two alternative treatments in each Area were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2.
+The effects of the two alternative treatments in each area were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2.
 
 The results of this exercise highlight obvious differences in selectivity between the commercial fishery and synoptic surveys, especially in Area 5ABCD, where the survey catches much smaller fish. This represents a violation of the assumptions of the delay-difference model, which assumes knife-edged selectivity in both the survey and fishery. However, violation of this assumption is probably less consequential than the assumption of the same knife-edged maturity. As long as the relative selectivities in the survey and fishery remain approximately constant, calibration exercises such as this may be an acceptable approach to continue the time series of the commercial mean weight index, although this should be evaluated through simulation-testing. 
 

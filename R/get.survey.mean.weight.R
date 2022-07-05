@@ -258,6 +258,14 @@ for(AREA in AREAS){
     arrange(year) %>%
     filter(year<2021)
 
+  # put back the observed commercial mean weights for years with no survey
+  if(AREA=="3CD"){
+    comparedata_allyrs[which(comparedata_allyrs$year==2019),3] <- cmw[which(cmw$year==2019),2]
+  }else{
+    comparedata_allyrs[which(comparedata_allyrs$year==2018),3] <- cmw[which(cmw$year==2018),2]
+  }
+
+
   g1 <- comparedata_allyrs %>%
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
     ggplot()+

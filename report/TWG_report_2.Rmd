@@ -131,7 +131,7 @@ We used a simple generalized linear regression (GLM) with a Gamma log link funct
 
 where the $\phi$ parameter contributes to both the rate and shape of the Gamma distribution.
 
-We then used the `predict` function in R to predict survey mean weights from commercial mean weights
+We then used the `predict` function in R to predict survey mean weights from commercial mean weights. Note that we included the 2021 survey indices for both areas in the regression model.
 
 ## Steps 4 and 5. Update model data files and run models
 
@@ -161,7 +161,10 @@ For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all
 
 ## Steps 4 and 5. Update model data files and run models
 
-Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd).
+Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd). 
+
+For each area, 
+Note that for Area 3CD, 
 
 
 
@@ -219,10 +222,13 @@ The scenarios for further discussion would be:
 *Scenario 3:* Use the average(2017:2019) mean weight index value for model years 2020-2022.
 
 The reduction and cessation of commercial sampling in the commercial trawl fishery will continue to impact the Pacific cod assessment, as well as assessments for other species, and the impacts will become worse as time goes on, regardless of the choice of strategy for mitigating the data losses. We strongly recommend that some commercial sampling be resumed, even at the dock, as these data provide the only direct information about recruitment strength for stocks assessed with delay-difference models. Continued absence of these data will lead to continued deterioration of the quality of the Pacific cod stock assessment.
+-->
+
+\clearpage
 
 # References {-}
 
--->
+
 
 <!-- This allows appendices to appear after the references -->
 <div id="refs"></div>

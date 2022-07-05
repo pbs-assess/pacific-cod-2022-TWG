@@ -200,15 +200,9 @@ for(AREA in AREAS){
 
   r <- range(log(c(dat1$survey_mw, dat1$commercial_mw)), na.rm = TRUE)
 
-  # TODO: Fit not working with glm
   g <- ggplot(dat1, aes(log(survey_mw), log(commercial_mw))) +
     geom_point() +
     stat_smooth(method = "lm", se = FALSE)+
-    # geom_smooth(method=glm,
-    #             data=dat1,
-    #             formula=commercial_mw ~ log(survey_mw),
-    #             method.args = list(family = Gamma(link = "log")),
-    #             se = FALSE)+
     ggrepel::geom_text_repel(aes(label = year), size = 4) +
     geom_abline(intercept = 0, slope = 1) +
     #coord_fixed(xlim = c(r[1], r[2]), ylim = c(r[1], r[2])) +
@@ -255,8 +249,7 @@ for(AREA in AREAS){
                 rep(NA,length(nosurvyr)))) %>%
     `colnames<-`(colnames(comparedata)) %>%
     rbind(comparedata) %>%
-    arrange(year) %>%
-    filter(year<2021)
+    arrange(year)
 
   # put back the observed commercial mean weights for years with no survey
   if(AREA=="3CD"){
@@ -264,7 +257,6 @@ for(AREA in AREAS){
   }else{
     comparedata_allyrs[which(comparedata_allyrs$year==2018),3] <- cmw[which(cmw$year==2018),2]
   }
-
 
   g1 <- comparedata_allyrs %>%
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%

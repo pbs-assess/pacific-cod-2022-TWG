@@ -263,9 +263,11 @@ knitr::kable(tab,
 
 ```
 
+\clearpage
+
 -->
 
-\clearpage
+
 
 ```{r tab-mean-weight-recent-3cd, results='asis'}
 mw.table(c(base.model.3cd, 
@@ -289,8 +291,92 @@ mw.table(c(base.model.5abcd,
 
 ```
 
+\clearpage
+
+
+```{r tab-est-biomass-3cd, results='asis'}
+make.value.table.compare(c(base.model.3cd, 
+                           sens.models.11), 
+                 c(base.model.3cd.name, 
+                   sens.models.name.11), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value.")
+
+```
+
+```{r tab-est-biomass-3cd-per, results='asis'}
+make.value.table.compare(c(base.model.3cd, 
+                           sens.models.11), 
+                 c(base.model.3cd.name, 
+                   sens.models.name.11), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value..",
+                 percent=TRUE)
+
+```
 
 \clearpage
+
+
+```{r tab-est-recruit-3cd, results='asis'}
+make.value.table.compare(c(base.model.3cd, 
+                           sens.models.11), 
+                 c(base.model.3cd.name, 
+                   sens.models.name.11),
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 3CD. Sc. 1 = use 2018 predicted commercial mean weight value.",
+                 percent=TRUE)
+
+```
+
+\clearpage
+
+
+```{r tab-est-biomass-5abcd, results='asis'}
+make.value.table.compare(c(base.model.5abcd, 
+                           sens.models.1), 
+                 c(base.model.5abcd.name, 
+                   sens.models.name.1), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of recent median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.")
+
+```
+
+\clearpage
+
+```{r tab-est-biomass-5abcd-per, results='asis'}
+make.value.table.compare(c(base.model.5abcd, 
+                           sens.models.1), 
+                 c(base.model.5abcd.name, 
+                   sens.models.name.1), 
+                 years=2010:2021,
+                 type= 1,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior biomass estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.",
+                 percent=TRUE)
+
+```
+
+```{r tab-est-recruit-5abcd, results='asis'}
+make.value.table.compare(c(base.model.5abcd, 
+                           sens.models.1), 
+                 c(base.model.5abcd.name, 
+                   sens.models.name.1), 
+                 years=2010:2020,
+                 type= 2,
+                 mpdmed="med",
+                 caption = "Comparison of percentage difference in median posterior recruitment estimates from the 2020 Reference case model and sensitivity analyses, Area 5ABCD. Sc. 1 = use 2019 predicted commercial mean weight value; Sc 2 = use 2019 predicted commercial mean weight value and interpolate 2018 value.",
+                 percent=TRUE)
+
+```
 
 # Figures
 
@@ -417,7 +503,6 @@ b.plot(base.model.5abcd,
 ```{r fig-sens-biomass-5abcd, fig.cap="Sensitivity of biomass estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
 b.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))
 ```
-
 
 ```{r fig-sens-recr-5abcd, fig.cap="Sensitivity of recruitment estimates to the two treatments of the commercial mean weight index (Sc 1: use 2019 predicted commercial mean weight value; Sc 2: use 2019 predicted commercial mean weight value and interpolate the 2018 value), Area 5ABCD."}
 r.plot(c(base.model.5abcd, sens.models.1), c(base.model.5abcd.name, sens.models.name.1))

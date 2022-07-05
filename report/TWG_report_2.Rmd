@@ -191,15 +191,15 @@ The results of this exercise highlight obvious differences in selectivity betwee
 
 The decision point at this juncture is whether to proceed with a 2022 assessment update for Pacific Cod. The following considerations will inform this decision:
 
-1. Whether the development of the survey mean weight index and the predicted commercial mean weight index require more work, including simulation-testing;
+1. Whether the development of the survey mean weight index and the predicted commercial mean weight index require more work, including possible simulation-testing;
 
-2. Whether this work requires full peer review through CSAS;
+2. If no to (1), whether the work presented here requires full peer review through CSAS;
 
-3. Whether further work is needed on the assessment itself (e.g., development of a recruitment index);
+3. Whether further work is needed on the assessment itself (e.g., development of a recruitment index, consideration of other models);
 
-4. Knowledge that the 2022 WCVI data will not be available until Fall 2022; and
+4. Knowledge that the 2022 WCVI survey data will not be available until Fall 2022; and
 
-5. Availability of Science staff, given the time already spent on these exercises.
+5. Availability of Science staff, given time already spent on this exercise.
 
 \clearpage
 
@@ -265,8 +265,6 @@ knitr::kable(tab,
 \clearpage
 
 -->
-
-
 
 ```{r tab-mean-weight-recent-3cd, results='asis'}
 mw.table(c(base.model.3cd, 

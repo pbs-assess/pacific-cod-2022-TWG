@@ -84,7 +84,7 @@ Step 5. Run the models and evaluate sensitivity of model results to the updated 
 
 We followed the steps in Appendix C of @forrest2020, which described the methodology for weighting the commercial length samples to produce a commercial mean weight index, weighted by sequential quarter and catch weight. For the survey, we replaced weighting by sequential quarter with weighting by depth stratum.
 
-The calculation of the survey annual mean weight index was done in the following steps.
+The calculation of the survey annual mean weight index was done in the following steps. For simplicity, we have dropped year subscripts.
 
 1. For each specimen $i$, in each Sample ID $j$, in each depth stratum $s$, convert individual length ($l_{i,j,s}$)  to weight ($w_{i,j,s}$):
 
@@ -133,15 +133,13 @@ We then used the `predict` function in R to predict survey mean weights from com
 
 ## Steps 4 and 5. Update model data files and run models
 
-We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the observed mean weight values, as used in the 2020 reference model. Using this approach, we note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
+We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the mean weight index values that were used in the 2020 Reference model. We note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
 
-For **Area 3CD**, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2018. We ran two scenarios: **Scenario 1:** values for 2019 and 2020 were obtained by linear interpolation between the 2018 and 2021 predicted values; and **Scenario 2:** use only the 2018 value. 
+For **Area 3CD**, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2018. We ran two alternative scenarios. **Scenario 1:** values for 2019 and 2020 were obtained by linear interpolation between the 2018 and 2021 predicted values; and **Scenario 2:** we used only the 2018 value. 
 
-For **Area 5ABCD**, there were HS and QCS synoptic surveys in 2019. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2019. We ran two scenarios: **Scenario 1:** the value for 2018 was obtained by linear interpolation between the 2017 and 2019 predicted values, and the value for 2020 was obtained by linear interpolation between the 2019 and 2021 predicted values; and **Scenario 2:** use only the 2019 value.
+For **Area 5ABCD**, there were HS and QCS synoptic surveys in 2019. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2019. We ran two alternative scenarios. **Scenario 1:** the value for 2018 was obtained by linear interpolation between the 2017 and 2019 predicted values, and the value for 2020 was obtained by linear interpolation between the 2019 and 2021 predicted values; and **Scenario 2:** we used only the 2019 value.
 
 For both areas, the joint posterior distribution for each model was numerically approximated using the Markov Chain Monte Carlo (MCMC) routines built into AD Model Builder (Metropolis-Hastings algorithm) [@fournier2012]. Posterior samples were drawn every 2,500 iterations from a chain of length 5 million, resulting in 2,000 posterior samples (the first 1,000 samples were dropped to allow for sufficient burn-in).
-
-Given current uncertainty in future commercial sampling programs, we also evaluated the impacts of 7-year medium-term losses of commercial length data compared to the 2020 Reference case models. See Appendix B for methods and results.
 
 # Results
 

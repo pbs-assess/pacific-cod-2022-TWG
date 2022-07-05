@@ -235,10 +235,16 @@ See C:\GitHub\pacific-cod-2020\data\results\AnnualMeanWeight_3CD_compare2018.xls
 
 ```{r tab-compare-all-mean-weight-3cd}
 
-caption <- "Values for survey mean weight index, observed commercial mean weight index and predicted mean weight index, Area 3CD."
+caption <- "Values for survey mean weight index and predicted mean weight index, Area 3CD."
 
 tab <- readr::read_csv(here::here("report/figures/3cd/Comm_v_Survey_weights_3CD_all_compare.csv"))
-tab[,2:4]<- round(tab[,2:4],3)
+tab <- tab %>% 
+  select(year,survey_mw,pred_commercial_mw) %>% 
+  rename("Year"=year,"Survey mean weight"=survey_mw,"Pred. comm. mean weight"=pred_commercial_mw)
+  # `colnames<-`(c("Year","Survey mean weight","Obs comm mean weight", "Pred comm mean weight"))
+
+tab[,2:3]<- round(tab[,2:3],3)
+
 knitr::kable(tab,
               caption = caption,
               longtable = TRUE, format = "pandoc",
@@ -250,10 +256,15 @@ knitr::kable(tab,
 
 ```{r tab-compare-all-mean-weight-5abcd}
 
-caption<-"Values for survey mean weight index, observed commercial mean weight index and predicted mean weight index, Area 5ABCD."
+caption<-"Values for survey mean weight index and predicted mean weight index, Area 5ABCD."
 
 tab <- readr::read_csv(here::here("report/figures/5abcd/Comm_v_Survey_weights_5ABCD_all_compare.csv"))
-tab[,2:4]<- round(tab[,2:4],3)
+
+tab <- tab %>% 
+  select(year,survey_mw,pred_commercial_mw) %>% 
+  rename("Year"=year,"Survey mean weight"=survey_mw,"Pred. comm. mean weight"=pred_commercial_mw)
+ 
+tab[,2:3]<- round(tab[,2:3],3)
 knitr::kable(tab,
               caption = caption,
               longtable = TRUE, format = "pandoc",

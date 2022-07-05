@@ -313,9 +313,6 @@ for(AREA in AREAS){
   }
 
   # write out the values
-  comparedata_allyrs <- comparedata_allyrs %>%
-    `colnames<-`(c("Year","Survey mean weight","Obs comm mean weight", "Pred comm mean weight"))
-
   readr::write_csv(comparedata_allyrs,
             file.path(figdir,paste0("Comm_v_Survey_weights_",
             AREA,"_all_compare.csv")))

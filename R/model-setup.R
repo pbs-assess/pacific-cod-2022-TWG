@@ -103,7 +103,7 @@ if(verbose){
 ## Sensitivity models group 1 (5ABCD)
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.1 <- c(file.path(model.dir,
-                                     "0_1b_5ABCD_SurveyMnWt_interp_2018"),
+                                     "0_1b_5ABCD_SurveyMnWt_interp"),
                             file.path(model.dir,
                                       "0_1c_5ABCD_SurveyMnWt_no_interp"))
 
@@ -114,9 +114,12 @@ sens.models.name.1 <- c("Scenario 1",
 ## Sensitivity models group 11 (3CD) - individual imputation iterations
 ## -----------------------------------------------------------------------------
 sens.models.dir.name.11 <- c(file.path(model.dir,
-                                       "1_1b_3CD_SurveyMnWt_2018_only"))
+                                       "1_1b_3CD_SurveyMnWt_interp"),
+                             file.path(model.dir,
+                                       "1_1c_3CD_SurveyMnWt_no_interp"))
 
-sens.models.name.11 <- c("Scenario 1")
+sens.models.name.11 <- c("Scenario 1",
+                         "Scenario 2")
 
 
 ## -----------------------------------------------------------------------------

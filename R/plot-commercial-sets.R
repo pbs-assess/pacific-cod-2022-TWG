@@ -125,6 +125,7 @@ plot_comm_sets(d_samples_3cd1,
                utm_zone = 9,
                bath = c(100,200, 500),
                xlim = c(500, 890), ylim = c(5350, 5650))
+ggsave(here("report/figures/commercial_sample_locations_3CD.png"))
 
 # 5ABCD
 plot_comm_sets(d_samples_5abcd1,
@@ -132,6 +133,7 @@ plot_comm_sets(d_samples_5abcd1,
                utm_zone = 9,
                bath = c(100,200, 500),
                xlim = c(200, 700), ylim = c(5600, 6100))
+ggsave(here("report/figures/commercial_sample_locations_5ABCD.png"))
 
 ##########################################################
 # OLD approach not working because dat$catch and dat$commercial_samples

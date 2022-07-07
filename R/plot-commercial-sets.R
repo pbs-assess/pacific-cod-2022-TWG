@@ -82,17 +82,14 @@ d_samples_5abcd2 <- d2$commercial_samples %>%
                                      "5D: NORTHERN HECATE STRAIT"))
 
 # Summarize the data
+# 3CD
 summary_3cd1 <- d_samples_3cd1 %>%
     select(year,SAMPLE_ID,GEAR_CODE,N_Lengths) %>%
     group_by(year,GEAR_CODE) %>%
     summarize(nsamples=n_distinct(SAMPLE_ID),
               nlengths=sum(N_Lengths))
 
-summary_3cd2 <- d2$commercial_samples %>%
-  filter(year>=minyear,
-         gear_desc %in% c("BOTTOM TRAWL", "UNKNOWN TRAWL"),
-         major_stat_area_name %in% c("3C: S.W. VANCOUVER ISLAND",
-                                     "3D: N.W. VANCOUVER ISLAND")) %>%
+summary_3cd2 <- d_samples_3cd2 %>%
   select(year,sample_id,gear_desc,length) %>%
   group_by(year,gear_desc) %>%
   summarize(nsamples=n_distinct(sample_id),
@@ -115,6 +112,37 @@ summary_3cd2 <- d2$commercial_samples %>%
   FEmatch <- match(FE_id1,FE_id2)
 
   # All match, but there are two extra samples in FE_id2
+
+  # 5ABCD
+  summary_5abcd1 <- d_samples_5abcd1 %>%
+    select(year,SAMPLE_ID,GEAR_CODE,N_Lengths) %>%
+    group_by(year,GEAR_CODE) %>%
+    summarize(nsamples=n_distinct(SAMPLE_ID),
+              nlengths=sum(N_Lengths))
+
+  summary_5abcd2 <- d_samples_5abcd2 %>%
+    select(year,sample_id,gear_desc,length) %>%
+    group_by(year,gear_desc) %>%
+    summarize(nsamples=n_distinct(sample_id),
+              nlengths=sum(!is.na(length)))
+
+  #View(summary_5abcd1)
+  #View(summary_5abcd2)
+
+  sample_id1 <- unique(d_samples_5abcd1$SAMPLE_ID)
+  sample_id2 <- unique(d_samples_5abcd2$sample_id)
+
+  N_sample_id1 <- length(sample_id1)
+  N_sample_id2 <- length(sample_id2)
+  N_sample_id1
+  N_sample_id2
+
+  FE_id1 <- sort(unique(d_samples_5abcd1$FISHING_EVENT_ID))
+  FE_id2 <- sort(unique(d_samples_5abcd2$fishing_event_id))
+
+  FEmatch <- match(FE_id1,FE_id2)
+  FEmatch
+  # More mismatches for 5ABCD. 10 more samples in all_samples
 
 # Now map
 source(here("R/plot-length-spatial.R"))

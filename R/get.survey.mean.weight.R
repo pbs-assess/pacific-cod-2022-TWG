@@ -265,8 +265,8 @@ for(AREA in AREAS){
   g1 <- comparedata_allyrs %>%
     melt(id.vars="year", variable.name="Obs_vs_Pred", value.name="commercial_mw") %>%
     ggplot()+
-    geom_point(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), size=2)+
-    geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=0.75, lty=2)+
+    geom_point(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), size=2.5)+
+    geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=1, lty=2)+
     theme_light()+
     #scale_colour_brewer(palette = "Dark2")+
     scale_colour_viridis_d()+
@@ -282,7 +282,7 @@ for(AREA in AREAS){
     ylim(0,3.5)+
     scale_x_continuous(breaks=seq(min(comparedata_allyrs$year),max(comparedata_allyrs$year), by=2))+
     labs(title = paste(AREA), y = "Mean weight", x = "Year")
-  g1
+  #g1
   ggsave(file.path(figdir,paste0("Compare_obs_v_predicted_",
                                  AREA,".png")))
 

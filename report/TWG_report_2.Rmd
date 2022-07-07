@@ -149,9 +149,9 @@ Comparison between the survey mean weight index, calculated from Equation 4, and
 
 ## Step 2. Generalized linear regression model
 
-For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), green and blue series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), red series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no scheduled survey in 2019 but there were commercial samples. There was no survey or commercial sampling in 2020, due to the COVID-19 pandemic.
+For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), yellow and purple series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), green series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no scheduled survey in 2019 but there were commercial samples. There was no survey or commercial sampling in 2020, due to the COVID-19 pandemic.
 
-For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all-mean-weight-series-5abcd), green series) followed the observed survey and commercial mean weight series (Figure \@ref(fig:all-mean-weight-series-5abcd), red and blue series) but did not capture the scale of interannual variation in the observed series.
+For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all-mean-weight-series-5abcd), yellow series) loosely followed the observed survey and commercial mean weight series (Figure \@ref(fig:all-mean-weight-series-5abcd), purple and green series) but did not capture the scale of interannual variation in the observed series.
 
 ## Steps 3 and 4. Update model data files and run models
 
@@ -177,9 +177,9 @@ Posterior estimates of recruitment in 2019-2020 differed by year and scenario co
 
 # Conclusions and recommendations
 
-We were able to derive a catch-weighted survey mean weight index for each area. We were able to derive a predicted commercial mean weight index from the survey mean weight index. 
+We were able to derive a catch-weighted survey mean weight index for each area. We were able to derive a predicted commercial mean weight index from the survey mean weight index. The survey mean weight index was a better predictor of the commercial mean weight index in Area 3CD, compared to Area 5ABCD.
 
-The effects of the two alternative treatments in each area were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference Case model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2.
+The effects of the two alternative treatments in each area were stronger for Area 3CD than for Area 5ABCD, especially for recruitment. This was because the last observed 2019 mean weight index value used in the Reference Case model was much lower (~0.5-1.0 kg lower) than the values used for 2018-2020 in Scenarios 1 and 2. The larger perceived bias in Area 3CD should be considered in light of the fact that the 2019 and 2020 commercial mean weight values used in the 2020 Reference Case model were based on only two samples. Given the apparent strong relationship between the survey and fishery prior to 2016 (Figure \@ref(fig-comm-vs-survey-weights-3cd)), the predicted commercial mean weight index may represent more realistic values.
 
 The results of this exercise highlight obvious differences in selectivity between the commercial fishery and synoptic surveys, especially in Area 5ABCD, where the survey catches much smaller fish. This represents a violation of the assumptions of the delay-difference model, which assumes knife-edged selectivity in both the survey and fishery. However, violation of this assumption is probably less consequential than the assumption of the same knife-edged maturity. As long as the relative selectivities in the survey and fishery remain approximately constant, calibration exercises such as this may be an acceptable approach to continue the time series of the commercial mean weight index, although this should be evaluated through simulation-testing. 
 
@@ -187,7 +187,7 @@ It should also be acknowledged that the surveys are biennial. Simple linear inte
 
 The decision point at this juncture is whether to proceed with a 2022 assessment update for Pacific Cod. The following considerations will inform this decision:
 
-1. Whether development of the survey mean weight indices and the predicted commercial mean weight indices requires more work, including possible simulation-testing;
+1. Whether development of the survey mean weight indices and the predicted commercial mean weight indices requires more work, including possible simulation-testing, especially given the poorer fit for Area 5ABCD;
 
 2. If no to (1), whether the work presented here requires full peer review through CSAS;
 
@@ -410,11 +410,11 @@ knitr::include_graphics(here::here("report/figures/5abcd/lnSurvey_v_lnCom_with_l
 
 \clearpage
 
-```{r all-mean-weight-series-3cd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 3CD.", out.width="4in"}
+```{r all-mean-weight-series-3cd, fig.cap="Survey mean weight index (purple), observed commercial mean weight index (green), predicted mean weight index (yellow), Area 3CD.", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/3cd/Compare_obs_v_predicted_3CD.png"))
 ```
 
-```{r all-mean-weight-series-5abcd, fig.cap="Survey mean weight index (blue), observed commercial mean weight index (red), predicted mean weight index (green), Area 5ABCD", out.width="4in"}
+```{r all-mean-weight-series-5abcd, fig.cap="Survey mean weight index (purple), observed commercial mean weight index (green), predicted mean weight index (yellow), Area 5ABCD", out.width="4in"}
 knitr::include_graphics(here::here("report/figures/5abcd/Compare_obs_v_predicted_5ABCD.png"))
 ```
 

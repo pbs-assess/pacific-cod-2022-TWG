@@ -72,13 +72,11 @@ For each of Areas 3CD and 5ABCD, we took the following steps:
 
 Step 1. Develop a survey mean weight index;
 
-Step 2. Perform a linear regression of log(commercial mean weight) on log(survey mean weight);
+Step 2. Use a generalized linear regression model (GLM) with a log link to predict commercial mean weight from survey mean weight;
 
-Step 3. Predict commercial mean weight from survey mean weight;
+Step 3. Update model data files with predicted commercial mean weight index values for 2018-2020, noting that predicted commercial mean weight index values will only be available for years in which there was a survey. Make alternative data files, with and without interpolation between years with predictions.
 
-Step 4. Update model data files with predicted commercial mean weight index values for 2018-2020, noting that predicted commercial mean weight index values will only be available for years in which there was a survey. Make alternative data files, with and without interpolation between years with predictions.
-
-Step 5. Run the models and evaluate sensitivity of model results to the updated commercial mean weight indices.
+Step 4. Run the models and evaluate sensitivity of model results to the updated commercial mean weight indices.
 
 ## Step 1. Survey mean weight index
 
@@ -118,9 +116,9 @@ where $N_s$ is the number of samples in depth stratum $s$.
 
 where $K$ is the number of depth strata surveyed in that year.
 
-## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
+## Step 2. Generalized linear regression model
 
-We used a simple generalized linear regression (GLM) with a Gamma log link function, to estimate model fit of log  commercial mean weights ($y_t$) in year $t$ to log survey mean weights ($W_t$) from Step 1:
+We used a simple GLM with a Gamma log link function, to estimate model fit of log  commercial mean weights ($y_t$) in year $t$ to log survey mean weights ($W_t$) from Step 1:
 
 \begin{align}
 {y_t} \sim \mathrm{Gamma}(\phi / \mu_t, \phi), \\
@@ -129,13 +127,13 @@ We used a simple generalized linear regression (GLM) with a Gamma log link funct
 
 where the $\phi$ parameter contributes to both the rate and shape of the Gamma distribution.
 
-We then used the `predict` function in R to predict survey mean weights from commercial mean weights. Note that we included the 2021 survey indices for both areas in the regression model.
+We then used the `predict` function in R to predict commercial mean weights from survey mean weights. Note that we included the 2021 survey indices for both areas in the regression model.
 
-## Steps 4 and 5. Update model data files and run models
+## Steps 3 and 4. Update model data files and run models
 
 We used the predicted commercial mean weights to update the commercial mean weight index for the years 2018-2020. For all other years, we used the mean weight index values that were used in the 2020 Reference model. We note that commercial mean weights are only predicted for years when there was a survey. There are therefore gaps in the predicted commercial mean weight index for some years between 2018 and 2020.
 
-For **Area 3CD**, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2018. We ran two alternative scenarios. **Scenario 1:** values for 2019 and 2020 were obtained by linear interpolation between the 2018 and 2021 predicted values; and **Scenario 2:** we used only the 2018 value. 
+For **Area 3CD**, there was a WCVI survey in 2018, but no survey in 2020. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2018. We ran two alternative scenarios. **Scenario 1:** values for 2019 and 2020 were obtained by linear interpolation between the 2018 and 2021 predicted values; and **Scenario 2:** we used only the 2018 value. We used the `approx` function in R for the interpolation, in natural space.
 
 For **Area 5ABCD**, there were HS and QCS synoptic surveys in 2019. Therefore, for the 2018-2020 period of interest, there was only a predicted commercial mean weight index point in 2019. We ran two alternative scenarios. **Scenario 1:** the value for 2018 was obtained by linear interpolation between the 2017 and 2019 predicted values, and the value for 2020 was obtained by linear interpolation between the 2019 and 2021 predicted values; and **Scenario 2:** we used only the 2019 value.
 
@@ -149,13 +147,13 @@ Specimen weights were calculated from length data and length weight parameters u
 
 Comparison between the survey mean weight index, calculated from Equation 4, and the observed commercial mean weight index is shown in Figures \@ref(fig:fig-comm-vs-survey-weights-3cd) and \@ref(fig:fig-comm-vs-survey-weights-3cd-2) for Area 3CD and in Figures \@ref(fig:fig-comm-vs-survey-weights-5abcd) and \@ref(fig:fig-comm-vs-survey-weights-5abcd-2) for Area 5ABCD. 
 
-## Step 2 and 3. Linear regression of commercial mean weight on survey mean weight
+## Step 2. Generalized linear regression model
 
 For Area 3CD, the predicted commercial mean weight index (Equations 5 and 6) closely tracked the WCVI survey mean weight index (Figure \@ref(fig:all-mean-weight-series-3cd), green and blue series). It also tracked the observed commercial mean weight index until 2016 (Figure \@ref(fig:all-mean-weight-series-3cd), red series). After 2016, there is a mismatch in timing between the survey and commercial mean weight index. Survey data were collected in 2018 but no commercial samples were collected. There was no scheduled survey in 2019 but there were commercial samples. There was no survey or commercial sampling in 2020, due to the COVID-19 pandemic.
 
 For Area 5ABCD, the predicted commercial mean weight index (Figure \@ref(fig:all-mean-weight-series-5abcd), green series) followed the observed survey and commercial mean weight series (Figure \@ref(fig:all-mean-weight-series-5abcd), red and blue series) but did not capture the scale of interannual variation in the observed series.
 
-## Steps 4 and 5. Update model data files and run models
+## Steps 3 and 4. Update model data files and run models
 
 Commercial mean weight values used in the model scenarios are provided in Tables \@ref(tab:tab-mean-weight-recent-3cd) and \@ref(tab:tab-mean-weight-recent-5abcd). 
 

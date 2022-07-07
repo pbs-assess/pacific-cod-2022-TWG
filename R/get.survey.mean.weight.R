@@ -137,7 +137,9 @@ for(AREA in AREAS){
                   linetype=measurement_type), size=1.5)+
     ylim(0,2.5)+
     gfplot::theme_pbs()+
-    scale_color_aaas()+
+    #scale_colour_brewer(palette = "Dark2")+
+    #scale_color_aaas()+
+    scale_colour_viridis_d()+
     theme(title = element_text(size=12, face="bold"))+
     theme(axis.text.x = element_text(size=12))+
     theme(axis.text.y = element_text(size=12))+
@@ -186,7 +188,9 @@ for(AREA in AREAS){
     ggtitle(paste(AREA, TYPE))+
     theme_light()+
     ylim(0,3.2)+
-    scale_color_aaas()+
+    #scale_colour_brewer(palette = "Dark2")+
+    #scale_color_aaas()+
+    scale_colour_viridis_d()+
     theme(title = element_text(size=12, face="bold"))+
     theme(axis.text.x = element_text(size=12))+
     theme(axis.text.y = element_text(size=12))+
@@ -264,7 +268,9 @@ for(AREA in AREAS){
     geom_point(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), size=2)+
     geom_line(aes(x=year, y=commercial_mw, colour=Obs_vs_Pred), lwd=0.75, lty=2)+
     theme_light()+
-    scale_color_aaas()+
+    #scale_colour_brewer(palette = "Dark2")+
+    scale_colour_viridis_d()+
+    #scale_color_aaas()+
     theme(title = element_text(size=12, face="bold"))+
     theme(axis.text.x = element_text(size=10))+
     theme(axis.text.y = element_text(size=12))+

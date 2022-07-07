@@ -143,7 +143,7 @@ For both areas, the joint posterior distribution for each model was numerically 
 
 ## Step 1. Survey mean weight index
 
-Specimen weights were calculated from length data and length weight parameters using Equation 1. Specimen weights were also measured directly on the surveys. We chose to use the calculated weights, as this resulted in more samples, and using the directly-measured weights resulted in some depth strata without specimen weights. The relationship between measured and calculated weights was linear (Figures \@ref(fig:fig-meas-vs-calc-weights-3cd) and \@ref(fig:fig-meas-vs-calc-weights-5abcd)).
+Specimen weights were calculated from length data and length weight parameters using Equation 1. Specimen weights were also measured directly on the surveys. We chose to use the calculated weights, as this resulted in more samples, and using the directly-measured weights resulted in some depth strata without specimen weights. The relationship between measured and calculated weights was approximately linear (Figures \@ref(fig:fig-meas-vs-calc-weights-3cd) and \@ref(fig:fig-meas-vs-calc-weights-5abcd)).
 
 Comparison between the survey mean weight index, calculated from Equation 4, and the observed commercial mean weight index is shown in Figures \@ref(fig:fig-comm-vs-survey-weights-3cd) and \@ref(fig:fig-comm-vs-survey-weights-3cd-2) for Area 3CD and in Figures \@ref(fig:fig-comm-vs-survey-weights-5abcd) and \@ref(fig:fig-comm-vs-survey-weights-5abcd-2) for Area 5ABCD. 
 

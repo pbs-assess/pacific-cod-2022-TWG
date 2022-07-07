@@ -82,10 +82,6 @@ d_samples_5abcd2 <- d2$commercial_samples %>%
                                      "5D: NORTHERN HECATE STRAIT"))
 
 # Summarize the data
-# Summarizing from this table makes it seem like there are a lot more samples than
-# when we summarised from d2$commercial_samples
-# but maybe this has NAs in lengths? need to dig a little deeper and look
-# at the specimens themselves
 summary_3cd1 <- d_samples_3cd1 %>%
     select(year,SAMPLE_ID,GEAR_CODE,N_Lengths) %>%
     group_by(year,GEAR_CODE) %>%

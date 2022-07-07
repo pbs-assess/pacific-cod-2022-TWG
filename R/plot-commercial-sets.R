@@ -14,10 +14,9 @@ minyear <- 2008
 
 dat.file1 <- here("data/pcod-cache/all-pcod-samples.rds")
 dat.file2 <- here("data/pcod-cache/pacific-cod.rds")
-dat.file3 <- here("data/generated/comm-samples-with-length-type.rds")
+
 d <- readRDS(dat.file1)
 d2 <- readRDS(dat.file2)
-d3 <- readRDS(dat.file3)
 
 unique(d$TRIP_SUB_TYPE_CODE)
 

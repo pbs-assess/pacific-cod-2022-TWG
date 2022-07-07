@@ -12,8 +12,17 @@ library(PBSmapping)
 ## # Load the raw data
 minyear <- 2008
 
-dat.file1 <- here("data/pcod-cache/all-pcod-samples.rds")
-dat.file2 <- here("data/pcod-cache/pacific-cod.rds")
+my.dir <- here("data/pcod-cache")
+
+# dat.file1 sent by Philina
+# dat.file2 from
+  #gfdata::cache_pbs_data(species = "pacific cod",
+  #                     path = my.dir,
+  #                     survey_sets = TRUE,
+  #                     unsorted_only = FALSE,
+  #                     return_all_lengths = TRUE)
+dat.file1 <- file.path(my.dir,"all-pcod-samples.rds")
+dat.file2 <- file.path(my.dir,"pacific-cod.rds")
 
 d <- readRDS(dat.file1)
 d2 <- readRDS(dat.file2)

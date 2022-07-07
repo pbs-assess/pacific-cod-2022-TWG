@@ -105,10 +105,12 @@ summary_3cd2 <- d2$commercial_samples %>%
   N_sample_id1
   N_sample_id2
 
-# TODO
-# OK so the samples table from GFFOS has a two more samples
-# for 3CD but they're pretty close.
-# Look at the specimens themselves
+  FE_id1 <- sort(unique(d_samples_3cd1$FISHING_EVENT_ID))
+  FE_id2 <- sort(unique(d_samples_3cd2$fishing_event_id))
+
+  FEmatch <- match(FE_id1,FE_id2)
+
+  # All match, but there are two extra samples in FE_id2
 
 # Now map
 source(here("R/plot-length-spatial.R"))
@@ -120,6 +122,7 @@ plot_comm_sets(d_samples_3cd1,
                bath = c(100,200, 500),
                xlim = c(500, 890), ylim = c(5350, 5650))
 
+# 5ABCD
 plot_comm_sets(d_samples_5abcd1,
                min_year = 2018,
                utm_zone = 9,

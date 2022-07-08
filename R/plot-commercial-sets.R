@@ -84,19 +84,21 @@ d_samples_5abcd2 <- d2$commercial_samples %>%
 # Summarize the data
 # 3CD
 summary_3cd1 <- d_samples_3cd1 %>%
-    select(year,SAMPLE_ID,GEAR_CODE,N_Lengths) %>%
+    select(year,SAMPLE_ID,GEAR_CODE,VESSEL_ID, N_Lengths) %>%
     group_by(year,GEAR_CODE) %>%
     summarize(nsamples=n_distinct(SAMPLE_ID),
-              nlengths=sum(N_Lengths))
+              nlengths=sum(N_Lengths),
+              nvessels=n_distinct(VESSEL_ID))
 
 summary_3cd2 <- d_samples_3cd2 %>%
-  select(year,sample_id,gear_desc,length) %>%
+  select(year,sample_id,gear_desc,vessel_id,length) %>%
   group_by(year,gear_desc) %>%
   summarize(nsamples=n_distinct(sample_id),
-            nlengths=sum(!is.na(length)))
+            nlengths=sum(!is.na(length)),
+            nvessels=n_distinct(vessel_id))
 
-  #View(summary_3cd1)
-  #View(summary_3cd2)
+  View(summary_3cd1)
+  View(summary_3cd2)
 
   sample_id1 <- unique(d_samples_3cd1$SAMPLE_ID)
   sample_id2 <- unique(d_samples_3cd2$sample_id)
@@ -115,16 +117,18 @@ summary_3cd2 <- d_samples_3cd2 %>%
 
   # 5ABCD
   summary_5abcd1 <- d_samples_5abcd1 %>%
-    select(year,SAMPLE_ID,GEAR_CODE,N_Lengths) %>%
+    select(year,SAMPLE_ID,GEAR_CODE,VESSEL_ID,N_Lengths) %>%
     group_by(year,GEAR_CODE) %>%
     summarize(nsamples=n_distinct(SAMPLE_ID),
-              nlengths=sum(N_Lengths))
+              nlengths=sum(N_Lengths),
+              nvessels=n_distinct(VESSEL_ID))
 
   summary_5abcd2 <- d_samples_5abcd2 %>%
-    select(year,sample_id,gear_desc,length) %>%
+    select(year,sample_id,gear_desc,vessel_id,length) %>%
     group_by(year,gear_desc) %>%
     summarize(nsamples=n_distinct(sample_id),
-              nlengths=sum(!is.na(length)))
+              nlengths=sum(!is.na(length)),
+              nvessels=n_distinct(vessel_id))
 
   #View(summary_5abcd1)
   #View(summary_5abcd2)
@@ -144,24 +148,45 @@ summary_3cd2 <- d_samples_3cd2 %>%
   FEmatch
   # More mismatches for 5ABCD. 10 more samples in all_samples
 
+
+
 # Now map
 source(here("R/plot-length-spatial.R"))
 
 # 3CD
 plot_comm_sets(d_samples_3cd1,
                min_year = 2017,
+               bydate=TRUE,
                utm_zone = 9,
                bath = c(100,200, 500),
                xlim = c(500, 890), ylim = c(5350, 5650))
-ggsave(here("report/figures/commercial_sample_locations_3CD.png"))
+ggsave(here("report/figures/commercial_sample_locations_bydate_3CD.png"))
+
+plot_comm_sets(d_samples_3cd1,
+               min_year = 2010,
+               bydate=FALSE,
+               utm_zone = 9,
+               bath = c(100,200, 500),
+               xlim = c(500, 890), ylim = c(5350, 5650))
+ggsave(here("report/figures/commercial_sample_locations_byyear_3CD.png"))
 
 # 5ABCD
 plot_comm_sets(d_samples_5abcd1,
                min_year = 2018,
+               bydate=TRUE,
                utm_zone = 9,
                bath = c(100,200, 500),
                xlim = c(200, 700), ylim = c(5600, 6100))
-ggsave(here("report/figures/commercial_sample_locations_5ABCD.png"))
+ggsave(here("report/figures/commercial_sample_locations_bydate_5ABCD.png"))
+
+plot_comm_sets(d_samples_5abcd1,
+               min_year = 2011,
+               bydate=FALSE,
+               utm_zone = 9,
+               bath = c(100,200, 500),
+               xlim = c(200, 700), ylim = c(5600, 6100))
+ggsave(here("report/figures/commercial_sample_locations_byyear_5ABCD.png"))
+
 
 ##########################################################
 # OLD approach not working because dat$catch and dat$commercial_samples

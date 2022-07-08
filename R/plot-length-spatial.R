@@ -73,6 +73,7 @@ plot_length_spatial <- function (dat,
 
 plot_comm_sets <- function(dat,
                            min_year,
+                           bydate = TRUE,
                            utm_zone = 9,
                            bath = c(100,200, 500),
                            xlim = c(500, 890), ylim = c(5350, 5650)) {
@@ -91,23 +92,41 @@ plot_comm_sets <- function(dat,
   coast <- gfplot:::load_coastline(llrange$X + c(-1, 1),
                                            llrange$Y + c(-1, 1),
                                            utm_zone = utm_zone)
-  ggplot(dd, aes(X, Y))+
-    #scale_size_area(max_size = 8) +
-    geom_point(data = dd, pch = 4,
-               size = 2, col = "red") +
-    coord_equal(expand = FALSE, xlim = xlim, ylim = ylim) +
-    geom_point(pch = 21,size = 2, col = "red") +
-    facet_wrap(~SAMPLE_DATE) +
-    geom_polygon(
-      data = coast, aes_string(x = "X", y = "Y", group = "PID"),
-      fill = "grey87", col = "grey70", lwd = 0.2, inherit.aes = FALSE) +
-    scale_fill_viridis_c(trans = "sqrt") +
-    labs(x = "Easting",
-         y = "Northing") +
-    gfplot::theme_pbs()+
-    guides(
-      size = guide_legend(order = 1),
-      fill = guide_colorbar(order = 0))
+  if(bydate==TRUE){
+    ggplot(dd, aes(X, Y))+
+      geom_point(data = dd, pch = 4,
+                 size = 2, col = "red") +
+      coord_equal(expand = FALSE, xlim = xlim, ylim = ylim) +
+      geom_point(pch = 21,size = 2, col = "red") +
+      facet_wrap(~SAMPLE_DATE) +
+      geom_polygon(
+        data = coast, aes_string(x = "X", y = "Y", group = "PID"),
+        fill = "grey87", col = "grey70", lwd = 0.2, inherit.aes = FALSE) +
+      scale_fill_viridis_c(trans = "sqrt") +
+      labs(x = "Easting",
+           y = "Northing") +
+      gfplot::theme_pbs()+
+      guides(
+        size = guide_legend(order = 1),
+        fill = guide_colorbar(order = 0))
+  }else{
+    ggplot(dd, aes(X, Y))+
+      geom_point(data = dd, pch = 4,
+                 size = 2, col = "red") +
+      coord_equal(expand = FALSE, xlim = xlim, ylim = ylim) +
+      geom_point(pch = 21,size = 2, col = "red") +
+      facet_wrap(~year) +
+      geom_polygon(
+        data = coast, aes_string(x = "X", y = "Y", group = "PID"),
+        fill = "grey87", col = "grey70", lwd = 0.2, inherit.aes = FALSE) +
+      scale_fill_viridis_c(trans = "sqrt") +
+      labs(x = "Easting",
+           y = "Northing") +
+      gfplot::theme_pbs()+
+      guides(
+        size = guide_legend(order = 1),
+        fill = guide_colorbar(order = 0))
+  }
 }
 
 

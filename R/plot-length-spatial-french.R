@@ -71,7 +71,7 @@ plot_length_spatial <- function (dat,
 
 }
 
-plot_comm_sets-french <- function(dat,
+plot_comm_sets_french <- function(dat,
                            min_year,
                            bydate = TRUE,
                            utm_zone = 9,

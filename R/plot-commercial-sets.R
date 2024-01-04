@@ -1,7 +1,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # plot locations of commercial length samples
 # Robyn Forrest. July 6 2022.
-# For Pacific cod TWG
+# For Pacific cod TWG and also the 2024 3CD Science Response
 library(tidyverse)
 library(gfdata)
 library(gfplot)
@@ -152,6 +152,7 @@ summary_3cd2 <- d_samples_3cd2 %>%
 
 # Now map
 source(here("R/plot-length-spatial.R"))
+source(here("R/plot-length-spatial-french.R"))
 
 # 3CD
 plot_comm_sets(d_samples_3cd1,
@@ -169,6 +170,23 @@ plot_comm_sets(d_samples_3cd1,
                bath = c(100,200, 500),
                xlim = c(500, 890), ylim = c(5350, 5650))
 ggsave(here("report/figures/commercial_sample_locations_byyear_3CD.png"))
+
+# 3CD - for the 2024 3CD Science Response
+plot_comm_sets_french(d_samples_3cd1,
+               min_year = 2017,
+               bydate=TRUE,
+               utm_zone = 9,
+               bath = c(100,200, 500),
+               xlim = c(500, 890), ylim = c(5350, 5650))
+ggsave(here("report/figures/commercial_sample_locations_bydate_3CD-french.png"))
+
+plot_comm_sets_french(d_samples_3cd1,
+               min_year = 2010,
+               bydate=FALSE,
+               utm_zone = 9,
+               bath = c(100,200, 500),
+               xlim = c(500, 890), ylim = c(5350, 5650))
+ggsave(here("report/figures/commercial_sample_locations_byyear_3CD-french.png"))
 
 # 5ABCD
 plot_comm_sets(d_samples_5abcd1,
